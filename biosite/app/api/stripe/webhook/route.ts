@@ -63,21 +63,46 @@ export async function POST(request: NextRequest) {
         console.log('🧪 Test mode session detected')
       }
 
-      // Update user subscription tier
-      const { error } = await supabase
-        .from('users')
-        .update({
-          subscription_tier: tier,
-          updated_at: new Date().toISOString()
-        })
-        .eq('id', agent_id)
+      // Determine billing cycle and amount
+      const isSubscription = tier === 'pro'
+      const billingCycle = isSubscription ? 'monthly' : 'one_time'
+      const amountPaid = isSubscription ? 2000 : 2500 // $20 for pro, $25 for business
+      
+      // Calculate period dates
+      const now = new Date()
+      const periodStart = now
+      const periodEnd = isSubscription ? new Date(now.getTime() + 30 * 24 * 60 * 60 * 1000) : now
 
-      if (error) {
-        console.error('❌ Error updating user subscription:', error)
-        return NextResponse.json({ error: 'Failed to update subscription' }, { status: 500 })
+      // Insert subscription record
+      const { error: subscriptionError } = await supabase
+        .from('subscriptions')
+        .insert({
+          user_id: agent_id,
+          stripe_customer_id: session.customer as string,
+          stripe_subscription_id: session.subscription as string,
+          stripe_payment_intent_id: session.payment_intent as string,
+          stripe_checkout_session_id: session.id,
+          tier: tier,
+          status: 'active',
+          amount_paid: amountPaid,
+          currency: 'usd',
+          billing_cycle: billingCycle,
+          current_period_start: periodStart.toISOString(),
+          current_period_end: periodEnd.toISOString(),
+          metadata: {
+            session_id: session.id,
+            payment_status: session.payment_status,
+            livemode: session.livemode,
+            created_at: session.created
+          }
+        })
+
+      if (subscriptionError) {
+        console.error('❌ Error creating subscription record:', subscriptionError)
+        return NextResponse.json({ error: 'Failed to create subscription record' }, { status: 500 })
       }
 
-      console.log(`✅ User ${agent_id} upgraded to ${tier} plan (Payment: ${session.payment_status})`)
+      console.log(`✅ Subscription record created for user ${agent_id} (${tier} plan, $${amountPaid/100})`)
     }
 
     // Handle payment failures
@@ -96,7 +121,7 @@ export async function POST(request: NextRequest) {
       const subscription = event.data.object as Stripe.Subscription
       const customerId = subscription.customer as string
 
-      // Find user by customer ID (you might need to store this in your users table)
+      // Find user by customer ID
       const { data: user } = await supabase
         .from('users')
         .select('id')
@@ -104,20 +129,28 @@ export async function POST(request: NextRequest) {
         .single()
 
       if (user) {
-        const newTier = subscription.status === 'active' ? 'pro' : 'free'
+        const newStatus = subscription.status === 'active' ? 'active' : 
+                         subscription.status === 'canceled' ? 'canceled' :
+                         subscription.status === 'past_due' ? 'past_due' :
+                         subscription.status === 'unpaid' ? 'unpaid' : 'incomplete'
 
+        // Update subscription record
         const { error } = await supabase
-          .from('users')
+          .from('subscriptions')
           .update({
-            subscription_tier: newTier,
+            status: newStatus,
+            current_period_start: new Date(subscription.current_period_start * 1000).toISOString(),
+            current_period_end: new Date(subscription.current_period_end * 1000).toISOString(),
+            canceled_at: subscription.canceled_at ? new Date(subscription.canceled_at * 1000).toISOString() : null,
+            cancel_at_period_end: subscription.cancel_at_period_end,
             updated_at: new Date().toISOString()
           })
-          .eq('id', user.id)
+          .eq('stripe_subscription_id', subscription.id)
 
         if (error) {
           console.error('Error updating subscription status:', error)
         } else {
-          console.log(`✅ User ${user.id} subscription updated to ${newTier}`)
+          console.log(`✅ Subscription ${subscription.id} status updated to ${newStatus}`)
         }
       }
     }
@@ -127,26 +160,20 @@ export async function POST(request: NextRequest) {
       const subscription = event.data.object as Stripe.Subscription
       const customerId = subscription.customer as string
 
-      const { data: user } = await supabase
-        .from('users')
-        .select('id')
-        .eq('stripe_customer_id', customerId)
-        .single()
+      // Update subscription record to canceled
+      const { error } = await supabase
+        .from('subscriptions')
+        .update({
+          status: 'canceled',
+          canceled_at: new Date().toISOString(),
+          updated_at: new Date().toISOString()
+        })
+        .eq('stripe_subscription_id', subscription.id)
 
-      if (user) {
-        const { error } = await supabase
-          .from('users')
-          .update({
-            subscription_tier: 'free',
-            updated_at: new Date().toISOString()
-          })
-          .eq('id', user.id)
-
-        if (error) {
-          console.error('Error downgrading subscription:', error)
-        } else {
-          console.log(`✅ User ${user.id} subscription cancelled, downgraded to free`)
-        }
+      if (error) {
+        console.error('Error updating canceled subscription:', error)
+      } else {
+        console.log(`✅ Subscription ${subscription.id} marked as canceled`)
       }
     }
 
