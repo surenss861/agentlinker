@@ -1,6 +1,6 @@
 import { redirect } from 'next/navigation'
 import { createServerSupabaseClient } from '@/lib/supabase-server'
-import Beams from '@/components/Beams'
+import LiquidEther from '@/components/LiquidEther'
 
 export default async function DashboardLayout({
   children,
@@ -15,20 +15,27 @@ export default async function DashboardLayout({
   }
 
   return (
-    <div className="min-h-screen bg-black relative overflow-hidden">
-      {/* Beams Background */}
-      <div className="absolute inset-0">
-        <Beams 
-          beamWidth={3}
-          beamHeight={30}
-          beamNumber={20}
-          lightColor="#ffffff"
-          speed={2}
-          noiseIntensity={1.75}
-          scale={0.2}
-          rotation={30}
-        />
-      </div>
+        <div className="min-h-screen bg-black relative overflow-hidden">
+          {/* Liquid Ether Background */}
+          <div className="absolute inset-0">
+            <LiquidEther
+              colors={['#000000', '#FF0000', '#800000']}
+              mouseForce={20}
+              cursorSize={100}
+              isViscous={false}
+              viscous={30}
+              iterationsViscous={32}
+              iterationsPoisson={32}
+              resolution={0.5}
+              isBounce={false}
+              autoDemo={true}
+              autoSpeed={0.5}
+              autoIntensity={2.2}
+              takeoverDuration={0.25}
+              autoResumeDelay={1000}
+              autoRampDuration={0.6}
+            />
+          </div>
       
       {/* Content */}
       <div className="relative z-10">
