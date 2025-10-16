@@ -23,7 +23,7 @@ export default function HomePage() {
       <div className="relative z-20">
         {/* Subtle overlay for better text readability */}
         <div className="fixed inset-0 bg-black/20 pointer-events-none z-10"></div>
-        
+
         {/* Card Navigation */}
         <CardNav
           logo="/agentlinkerpfp.png"
@@ -39,7 +39,7 @@ export default function HomePage() {
               ]
             },
             {
-              label: "Features", 
+              label: "Features",
               bgColor: "#170D27",
               textColor: "#fff",
               links: [
@@ -49,7 +49,7 @@ export default function HomePage() {
             },
             {
               label: "Contact",
-              bgColor: "#271E37", 
+              bgColor: "#271E37",
               textColor: "#fff",
               links: [
                 { label: "Email", ariaLabel: "Email us", href: "mailto:support@agentlinker.ca" },
@@ -323,11 +323,11 @@ export default function HomePage() {
                     <div className="absolute -top-4 left-1/2 -translate-x-1/2 bg-black text-red-500 px-6 py-2 rounded-full text-sm font-bold border border-red-500">
                       ⚡ EVERYTHING INCLUDED
                     </div>
-                    
+
                     <h3 className="text-3xl font-bold mb-4">AgentLinker Pro</h3>
                     <div className="text-6xl font-bold mb-2">$20<span className="text-2xl opacity-90">/mo</span></div>
                     <p className="text-red-100 text-lg mb-8">Your complete real estate growth platform</p>
-                    
+
                     <div className="grid grid-cols-2 gap-4 mb-8 text-sm">
                       <div className="flex items-center gap-2">
                         <Check className="h-4 w-4 flex-shrink-0" />
@@ -354,14 +354,14 @@ export default function HomePage() {
                         <span>Custom Domain</span>
                       </div>
                     </div>
-                    
-                    <Link 
-                      href="/signup" 
+
+                    <Link
+                      href="/signup"
                       className="block text-center bg-black text-red-500 px-8 py-4 rounded-full hover:bg-neutral-900 transition-all font-bold text-lg border-2 border-red-500 shadow-xl"
                     >
                       Get Started →
                     </Link>
-                    
+
                     <p className="text-center text-red-100 text-sm mt-4">
                       No credit card required • Cancel anytime • Setup in 5 minutes
                     </p>
@@ -372,164 +372,163 @@ export default function HomePage() {
           </div>
         </section>
 
-          {/* Verification Badge Card */}
-          <div className="mt-12 flex justify-center">
-            <div className="bg-gradient-to-br from-blue-600 to-blue-800 rounded-xl shadow-xl p-6 text-white border border-blue-500 max-w-md w-full">
-              <div className="text-center">
-                <div className="flex items-center justify-center gap-2 mb-3">
-                  <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 20 20">
-                    <path fillRule="evenodd" d="M6.267 3.455a3.066 3.066 0 001.745-.723 3.066 3.066 0 013.976 0 3.066 3.066 0 001.745.723 3.066 3.066 0 012.812 2.812c.051.643.304 1.254.723 1.745a3.066 3.066 0 010 3.976 3.066 3.066 0 00-.723 1.745 3.066 3.066 0 01-2.812 2.812 3.066 3.066 0 00-1.745.723 3.066 3.066 0 01-3.976 0 3.066 3.066 0 00-1.745-.723 3.066 3.066 0 01-2.812-2.812 3.066 3.066 0 00-.723-1.745 3.066 3.066 0 010-3.976 3.066 3.066 0 00.723-1.745 3.066 3.066 0 012.812-2.812zm7.44 5.252a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
-                  </svg>
-                  <span className="font-bold text-lg">Verified Agent Badge</span>
-                </div>
-
-                <div className="text-3xl font-bold mb-2">$25</div>
-                <p className="text-blue-100 text-sm mb-4">One-time verification fee</p>
-
-                <div className="text-left space-y-2 mb-4">
-                  <div className="flex items-center gap-2">
-                    <Check className="h-4 w-4 flex-shrink-0" />
-                    <span className="text-sm">Blue checkmark on profile</span>
-                  </div>
-                  <div className="flex items-center gap-2">
-                    <Check className="h-4 w-4 flex-shrink-0" />
-                    <span className="text-sm">Build trust with clients</span>
-                  </div>
-                  <div className="flex items-center gap-2">
-                    <Check className="h-4 w-4 flex-shrink-0" />
-                    <span className="text-sm">Stand out from competition</span>
-                  </div>
-                </div>
-
-                <Link
-                  href="/signup"
-                  className="block bg-white text-blue-600 px-6 py-3 rounded-lg hover:bg-blue-50 transition-all font-semibold text-sm border-2 border-white"
-                >
-                  Get Verified →
-                </Link>
+        {/* Verification Badge Card */}
+        <div className="mt-12 flex justify-center">
+          <div className="bg-gradient-to-br from-blue-600 to-blue-800 rounded-xl shadow-xl p-6 text-white border border-blue-500 max-w-md w-full">
+            <div className="text-center">
+              <div className="flex items-center justify-center gap-2 mb-3">
+                <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 20 20">
+                  <path fillRule="evenodd" d="M6.267 3.455a3.066 3.066 0 001.745-.723 3.066 3.066 0 013.976 0 3.066 3.066 0 001.745.723 3.066 3.066 0 012.812 2.812c.051.643.304 1.254.723 1.745a3.066 3.066 0 010 3.976 3.066 3.066 0 00-.723 1.745 3.066 3.066 0 01-2.812 2.812 3.066 3.066 0 00-1.745.723 3.066 3.066 0 01-3.976 0 3.066 3.066 0 00-1.745-.723 3.066 3.066 0 01-2.812-2.812 3.066 3.066 0 00-.723-1.745 3.066 3.066 0 010-3.976 3.066 3.066 0 00.723-1.745 3.066 3.066 0 012.812-2.812zm7.44 5.252a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+                </svg>
+                <span className="font-bold text-lg">Verified Agent Badge</span>
               </div>
-            </div>
-          </div>
-        </section>
 
-        {/* Social Proof Section */}
-        <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
-          <h2 className="text-4xl font-bold text-center mb-4 text-white">Real Results from Real Agents</h2>
-          <p className="text-center text-gray-400 mb-16">These numbers don't lie</p>
+              <div className="text-3xl font-bold mb-2">$25</div>
+              <p className="text-blue-100 text-sm mb-4">One-time verification fee</p>
 
-          <div className="grid md:grid-cols-3 gap-8">
-            <div className="bg-neutral-900 rounded-xl p-8 border border-red-900/30">
-              <div className="flex items-center gap-3 mb-4">
-                <img src="https://images.unsplash.com/photo-1494790108755-2616b612b786?w=100&h=100&fit=crop&crop=faces&q=80" alt="Sarah" className="w-12 h-12 rounded-full" />
-                <div>
-                  <h4 className="font-semibold text-white">Sarah Chen</h4>
-                  <p className="text-sm text-gray-400">Toronto, ON</p>
+              <div className="text-left space-y-2 mb-4">
+                <div className="flex items-center gap-2">
+                  <Check className="h-4 w-4 flex-shrink-0" />
+                  <span className="text-sm">Blue checkmark on profile</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <Check className="h-4 w-4 flex-shrink-0" />
+                  <span className="text-sm">Build trust with clients</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <Check className="h-4 w-4 flex-shrink-0" />
+                  <span className="text-sm">Stand out from competition</span>
                 </div>
               </div>
-              <p className="text-gray-300 mb-4">"My AgentLinker generated 312 views and 7 booked calls in just 2 weeks. That's 3x more than my old setup."</p>
-              <div className="flex gap-4 text-sm">
-                <span className="text-red-500 font-bold">312 views</span>
-                <span className="text-red-500 font-bold">7 calls</span>
-                <span className="text-red-500 font-bold">2 clients</span>
-              </div>
-            </div>
 
-            <div className="bg-neutral-900 rounded-xl p-8 border border-red-900/30">
-              <div className="flex items-center gap-3 mb-4">
-                <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=100&h=100&fit=crop&crop=faces&q=80" alt="Mike" className="w-12 h-12 rounded-full" />
-                <div>
-                  <h4 className="font-semibold text-white">Mike Rodriguez</h4>
-                  <p className="text-sm text-gray-400">Vancouver, BC</p>
-                </div>
-              </div>
-              <p className="text-gray-300 mb-4">"Finally, a professional page that matches my brand. Closed 2 deals in my first month using AgentLinker."</p>
-              <div className="flex gap-4 text-sm">
-                <span className="text-red-500 font-bold">156 views</span>
-                <span className="text-red-500 font-bold">4 calls</span>
-                <span className="text-red-500 font-bold">2 deals</span>
-              </div>
-            </div>
-
-            <div className="bg-neutral-900 rounded-xl p-8 border border-red-900/30">
-              <div className="flex items-center gap-3 mb-4">
-                <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=100&h=100&fit=crop&crop=faces&q=80" alt="Lisa" className="w-12 h-12 rounded-full" />
-                <div>
-                  <h4 className="font-semibold text-white">Lisa Thompson</h4>
-                  <p className="text-sm text-gray-400">Calgary, AB</p>
-                </div>
-              </div>
-              <p className="text-gray-300 mb-4">"The analytics show exactly what's working. My conversion rate doubled since switching to AgentLinker."</p>
-              <div className="flex gap-4 text-sm">
-                <span className="text-red-500 font-bold">89 views</span>
-                <span className="text-red-500 font-bold">3 calls</span>
-                <span className="text-red-500 font-bold">1 deal</span>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* CTA Section */}
-        <section className="bg-gradient-to-r from-red-600 to-red-800 text-white py-20 border-y border-red-900/50">
-          <div className="max-w-4xl mx-auto text-center px-4">
-            <h2 className="text-4xl font-bold mb-6">Ready to Turn Your Bio Into Booked Showings?</h2>
-            <p className="text-xl mb-8 opacity-90">
-              Join agents who are already getting 5-10 showing requests monthly. One extra deal pays for AgentLinker for years.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Link href="/signup" className="bg-black text-red-500 px-8 py-4 rounded-full hover:bg-neutral-900 transition-colors font-semibold text-lg border border-red-500 inline-flex items-center gap-2">
-                Get Started →
-                <ArrowRight className="h-5 w-5" />
+              <Link
+                href="/signup"
+                className="block bg-white text-blue-600 px-6 py-3 rounded-lg hover:bg-blue-50 transition-all font-semibold text-sm border-2 border-white"
+              >
+                Get Verified →
               </Link>
-              <div className="text-sm opacity-80 self-center">
-                No credit card • Setup in 5 minutes • Cancel anytime
-              </div>
             </div>
           </div>
-        </section>
+        </div>
 
-        {/* Footer */}
-        <footer className="bg-black text-white py-12 border-t border-red-900/30">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="grid md:grid-cols-4 gap-8">
+      {/* Social Proof Section */}
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
+        <h2 className="text-4xl font-bold text-center mb-4 text-white">Real Results from Real Agents</h2>
+        <p className="text-center text-gray-400 mb-16">These numbers don't lie</p>
+
+        <div className="grid md:grid-cols-3 gap-8">
+          <div className="bg-neutral-900 rounded-xl p-8 border border-red-900/30">
+            <div className="flex items-center gap-3 mb-4">
+              <img src="https://images.unsplash.com/photo-1494790108755-2616b612b786?w=100&h=100&fit=crop&crop=faces&q=80" alt="Sarah" className="w-12 h-12 rounded-full" />
               <div>
-                <div className="flex items-center mb-4">
-                  <Home className="h-6 w-6 text-red-600" />
-                  <span className="ml-2 text-xl font-bold text-red-500">AgentLinker</span>
-                </div>
-                <p className="text-gray-500 text-sm">
-                  The smart growth hub for real estate agents.
-                </p>
-              </div>
-              <div>
-                <h4 className="font-semibold mb-4 text-red-500">Product</h4>
-                <ul className="space-y-2 text-gray-500 text-sm">
-                  <li><Link href="/features" className="hover:text-red-500">Features</Link></li>
-                  <li><Link href="/pricing" className="hover:text-red-500">Pricing</Link></li>
-                  <li><Link href="/demo" className="hover:text-red-500">Demo</Link></li>
-                </ul>
-              </div>
-              <div>
-                <h4 className="font-semibold mb-4 text-red-500">Company</h4>
-                <ul className="space-y-2 text-gray-500 text-sm">
-                  <li><Link href="/about" className="hover:text-red-500">About</Link></li>
-                  <li><Link href="/blog" className="hover:text-red-500">Blog</Link></li>
-                  <li><Link href="/contact" className="hover:text-red-500">Contact</Link></li>
-                </ul>
-              </div>
-              <div>
-                <h4 className="font-semibold mb-4 text-red-500">Legal</h4>
-                <ul className="space-y-2 text-gray-500 text-sm">
-                  <li><Link href="/privacy" className="hover:text-red-500">Privacy</Link></li>
-                  <li><Link href="/terms" className="hover:text-red-500">Terms</Link></li>
-                </ul>
+                <h4 className="font-semibold text-white">Sarah Chen</h4>
+                <p className="text-sm text-gray-400">Toronto, ON</p>
               </div>
             </div>
-            <div className="border-t border-red-900/30 mt-8 pt-8 text-center text-gray-600 text-sm">
-              © 2025 AgentLinker. All rights reserved.
+            <p className="text-gray-300 mb-4">"My AgentLinker generated 312 views and 7 booked calls in just 2 weeks. That's 3x more than my old setup."</p>
+            <div className="flex gap-4 text-sm">
+              <span className="text-red-500 font-bold">312 views</span>
+              <span className="text-red-500 font-bold">7 calls</span>
+              <span className="text-red-500 font-bold">2 clients</span>
             </div>
           </div>
-        </footer>
-      </div>
+
+          <div className="bg-neutral-900 rounded-xl p-8 border border-red-900/30">
+            <div className="flex items-center gap-3 mb-4">
+              <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=100&h=100&fit=crop&crop=faces&q=80" alt="Mike" className="w-12 h-12 rounded-full" />
+              <div>
+                <h4 className="font-semibold text-white">Mike Rodriguez</h4>
+                <p className="text-sm text-gray-400">Vancouver, BC</p>
+              </div>
+            </div>
+            <p className="text-gray-300 mb-4">"Finally, a professional page that matches my brand. Closed 2 deals in my first month using AgentLinker."</p>
+            <div className="flex gap-4 text-sm">
+              <span className="text-red-500 font-bold">156 views</span>
+              <span className="text-red-500 font-bold">4 calls</span>
+              <span className="text-red-500 font-bold">2 deals</span>
+            </div>
+          </div>
+
+          <div className="bg-neutral-900 rounded-xl p-8 border border-red-900/30">
+            <div className="flex items-center gap-3 mb-4">
+              <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=100&h=100&fit=crop&crop=faces&q=80" alt="Lisa" className="w-12 h-12 rounded-full" />
+              <div>
+                <h4 className="font-semibold text-white">Lisa Thompson</h4>
+                <p className="text-sm text-gray-400">Calgary, AB</p>
+              </div>
+            </div>
+            <p className="text-gray-300 mb-4">"The analytics show exactly what's working. My conversion rate doubled since switching to AgentLinker."</p>
+            <div className="flex gap-4 text-sm">
+              <span className="text-red-500 font-bold">89 views</span>
+              <span className="text-red-500 font-bold">3 calls</span>
+              <span className="text-red-500 font-bold">1 deal</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* CTA Section */}
+      <section className="bg-gradient-to-r from-red-600 to-red-800 text-white py-20 border-y border-red-900/50">
+        <div className="max-w-4xl mx-auto text-center px-4">
+          <h2 className="text-4xl font-bold mb-6">Ready to Turn Your Bio Into Booked Showings?</h2>
+          <p className="text-xl mb-8 opacity-90">
+            Join agents who are already getting 5-10 showing requests monthly. One extra deal pays for AgentLinker for years.
+          </p>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <Link href="/signup" className="bg-black text-red-500 px-8 py-4 rounded-full hover:bg-neutral-900 transition-colors font-semibold text-lg border border-red-500 inline-flex items-center gap-2">
+              Get Started →
+              <ArrowRight className="h-5 w-5" />
+            </Link>
+            <div className="text-sm opacity-80 self-center">
+              No credit card • Setup in 5 minutes • Cancel anytime
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Footer */}
+      <footer className="bg-black text-white py-12 border-t border-red-900/30">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid md:grid-cols-4 gap-8">
+            <div>
+              <div className="flex items-center mb-4">
+                <Home className="h-6 w-6 text-red-600" />
+                <span className="ml-2 text-xl font-bold text-red-500">AgentLinker</span>
+              </div>
+              <p className="text-gray-500 text-sm">
+                The smart growth hub for real estate agents.
+              </p>
+            </div>
+            <div>
+              <h4 className="font-semibold mb-4 text-red-500">Product</h4>
+              <ul className="space-y-2 text-gray-500 text-sm">
+                <li><Link href="/features" className="hover:text-red-500">Features</Link></li>
+                <li><Link href="/pricing" className="hover:text-red-500">Pricing</Link></li>
+                <li><Link href="/demo" className="hover:text-red-500">Demo</Link></li>
+              </ul>
+            </div>
+            <div>
+              <h4 className="font-semibold mb-4 text-red-500">Company</h4>
+              <ul className="space-y-2 text-gray-500 text-sm">
+                <li><Link href="/about" className="hover:text-red-500">About</Link></li>
+                <li><Link href="/blog" className="hover:text-red-500">Blog</Link></li>
+                <li><Link href="/contact" className="hover:text-red-500">Contact</Link></li>
+              </ul>
+            </div>
+            <div>
+              <h4 className="font-semibold mb-4 text-red-500">Legal</h4>
+              <ul className="space-y-2 text-gray-500 text-sm">
+                <li><Link href="/privacy" className="hover:text-red-500">Privacy</Link></li>
+                <li><Link href="/terms" className="hover:text-red-500">Terms</Link></li>
+              </ul>
+            </div>
+          </div>
+          <div className="border-t border-red-900/30 mt-8 pt-8 text-center text-gray-600 text-sm">
+            © 2025 AgentLinker. All rights reserved.
+          </div>
+        </div>
+      </footer>
     </div>
+    </div >
   )
 }
