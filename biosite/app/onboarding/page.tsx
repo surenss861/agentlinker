@@ -16,7 +16,6 @@ export default function OnboardingPage() {
     brokerage: '',
     bio: '',
     country: 'CA',
-    template: 'modern',
   })
   const router = useRouter()
   const supabase = createClient()
@@ -195,27 +194,6 @@ export default function OnboardingPage() {
               />
             </div>
 
-            <div>
-              <label className="block text-sm font-medium text-gray-300 mb-3">
-                Choose Your Template
-              </label>
-              <div className="grid grid-cols-3 gap-4">
-                {['modern', 'luxury', 'minimalist'].map((template) => (
-                  <button
-                    key={template}
-                    type="button"
-                    onClick={() => setFormData({ ...formData, template })}
-                    className={`p-4 border-2 rounded-lg text-center capitalize transition-all ${
-                      formData.template === template
-                        ? 'border-red-600 bg-red-900/20 text-white'
-                        : 'border-red-900/30 hover:border-red-600/50 text-gray-400'
-                    }`}
-                  >
-                    {template}
-                  </button>
-                ))}
-              </div>
-            </div>
 
             <button
               type="submit"
