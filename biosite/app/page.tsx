@@ -28,14 +28,11 @@ export default function HomePage() {
           logo="/agentlinkerpfp.png"
           logoAlt="AgentLinker Logo"
           items={[
-            { label: 'Home', href: '/' },
-            { label: 'About', href: '/about' },
-            { label: 'Features', href: '/features' },
-            { label: 'Pricing', href: '/pricing' },
-            { label: 'Contact', href: '/contact' }
+            { label: 'Sign In', href: '/login' },
+            { label: 'Get Started', href: '/signup' }
           ]}
           activeHref="/"
-          className="custom-nav"
+          className="custom-nav centered-nav"
           ease="power2.easeOut"
           baseColor="#000000"
           pillColor="#ffffff"
