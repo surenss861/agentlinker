@@ -58,11 +58,8 @@ export default function LoginPage() {
               <img 
                 src="/agentlinkerpfp.png" 
                 alt="AgentLinker" 
-                className="h-12 w-12 rounded-full"
+                className="h-20 w-20 rounded-full"
               />
-              <span className="ml-2 text-3xl font-bold bg-gradient-to-r from-red-600 to-red-400 bg-clip-text text-transparent">
-                AgentLinker
-              </span>
             </Link>
             <h1 className="text-4xl font-bold text-white mb-2">Welcome Back</h1>
             <p className="text-gray-300">Continue growing your real estate business</p>
