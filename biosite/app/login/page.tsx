@@ -58,7 +58,7 @@ export default function LoginPage() {
               <img 
                 src="/agentlinkerpfp.png" 
                 alt="AgentLinker" 
-                className="h-20 w-20 rounded-full"
+                className="h-24 w-24 rounded-full"
               />
             </Link>
             <h1 className="text-4xl font-bold text-white mb-2">Welcome Back</h1>
