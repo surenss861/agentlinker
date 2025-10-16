@@ -65,7 +65,7 @@ export default function HomePage() {
         />
 
         {/* Hero Section */}
-        <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-20 pb-16">
+        <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-32 pb-16">
           <div className="text-center">
             <h1 className="text-5xl sm:text-6xl font-bold text-white mb-6">
               Turn Your Bio Into a{' '}
