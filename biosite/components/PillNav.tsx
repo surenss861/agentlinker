@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import Link from 'next/link';
 import { gsap } from 'gsap';
 import './PillNav.css';
@@ -239,11 +239,11 @@ const PillNav = ({
   const isRouterLink = (href: string) => href && !isExternalLink(href);
 
   const cssVars = {
-    ['--base']: baseColor,
-    ['--pill-bg']: pillColor,
-    ['--hover-text']: hoveredPillTextColor,
-    ['--pill-text']: resolvedPillTextColor
-  };
+    '--base': baseColor,
+    '--pill-bg': pillColor,
+    '--hover-text': hoveredPillTextColor,
+    '--pill-text': resolvedPillTextColor
+  } as React.CSSProperties;
 
   return (
     <div className="pill-nav-container">
