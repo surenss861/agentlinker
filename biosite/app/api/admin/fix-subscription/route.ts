@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { createClient } from '@/lib/supabase'
+import { createServerSupabaseClient } from '@/lib/supabase-server'
 
 export async function POST(request: NextRequest) {
     try {
@@ -13,7 +13,7 @@ export async function POST(request: NextRequest) {
             return NextResponse.json({ error: 'Invalid tier' }, { status: 400 })
         }
 
-        const supabase = createClient()
+        const supabase = await createServerSupabaseClient()
 
         // First, let's check the current user data
         const { data: currentUser, error: fetchError } = await supabase
@@ -42,7 +42,12 @@ export async function POST(request: NextRequest) {
 
         if (updateError) {
             console.error('Error updating subscription:', updateError)
-            return NextResponse.json({ error: 'Failed to update subscription' }, { status: 500 })
+            return NextResponse.json({ 
+                error: 'Failed to update subscription', 
+                details: updateError,
+                userId,
+                tier 
+            }, { status: 500 })
         }
 
         console.log(`✅ User ${userId} subscription updated to ${tier}`)

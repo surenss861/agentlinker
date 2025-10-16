@@ -91,7 +91,7 @@ export default function BillingPage() {
 
   const handleDebugSubscription = async () => {
     if (!agent?.id) return
-    
+
     try {
       const response = await fetch('/api/admin/debug-subscription', {
         method: 'POST',
@@ -101,7 +101,7 @@ export default function BillingPage() {
 
       const result = await response.json()
       console.log('🔍 Debug info:', result)
-      
+
       // Show detailed info in alert
       const debugText = `
 User ID: ${result.debug?.user?.id || 'Not found'}
@@ -111,7 +111,7 @@ Updated At: ${result.debug?.user?.updated_at || 'Not found'}
 Subscriptions Count: ${result.debug?.subscriptions?.length || 0}
 Errors: ${JSON.stringify(result.debug?.errors || {})}
       `.trim()
-      
+
       alert('Debug Info:\n' + debugText)
     } catch (error) {
       console.error('Debug error:', error)
