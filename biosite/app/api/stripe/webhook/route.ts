@@ -12,7 +12,7 @@ const webhookSecret = process.env.STRIPE_WEBHOOK_SECRET
 export async function POST(request: NextRequest) {
   try {
     console.log('🔔 Webhook received')
-    
+
     // Return early if Stripe is not configured
     if (!stripe || !webhookSecret) {
       console.log('❌ Stripe webhook not configured, skipping')
@@ -40,16 +40,33 @@ export async function POST(request: NextRequest) {
       const { agent_id, tier } = session.metadata || {}
 
       console.log('📋 Session metadata:', { agent_id, tier })
+      console.log('💰 Payment status:', session.payment_status)
+      console.log('💳 Payment intent:', session.payment_intent)
+
+      // CRITICAL: Only process if payment was actually successful
+      if (session.payment_status !== 'paid') {
+        console.log('❌ Payment not successful, skipping subscription update')
+        console.log('Payment status:', session.payment_status)
+        return NextResponse.json({ 
+          message: 'Payment not successful, subscription not updated',
+          payment_status: session.payment_status 
+        })
+      }
 
       if (!agent_id || !tier) {
         console.error('❌ Missing metadata in checkout session:', { agent_id, tier })
         return NextResponse.json({ error: 'Missing metadata' }, { status: 400 })
       }
 
+      // Additional verification: Check if this is a test mode session
+      if (session.livemode === false) {
+        console.log('🧪 Test mode session detected')
+      }
+
       // Update user subscription tier
       const { error } = await supabase
         .from('users')
-        .update({ 
+        .update({
           subscription_tier: tier,
           updated_at: new Date().toISOString()
         })
@@ -60,7 +77,18 @@ export async function POST(request: NextRequest) {
         return NextResponse.json({ error: 'Failed to update subscription' }, { status: 500 })
       }
 
-      console.log(`✅ User ${agent_id} upgraded to ${tier} plan`)
+      console.log(`✅ User ${agent_id} upgraded to ${tier} plan (Payment: ${session.payment_status})`)
+    }
+
+    // Handle payment failures
+    if (event.type === 'checkout.session.expired') {
+      console.log('⏰ Checkout session expired - no action needed')
+    }
+
+    if (event.type === 'payment_intent.payment_failed') {
+      console.log('❌ Payment failed - no subscription update')
+      const paymentIntent = event.data.object as Stripe.PaymentIntent
+      console.log('Payment failure details:', paymentIntent.last_payment_error)
     }
 
     // Handle subscription status changes
@@ -77,10 +105,10 @@ export async function POST(request: NextRequest) {
 
       if (user) {
         const newTier = subscription.status === 'active' ? 'pro' : 'free'
-        
+
         const { error } = await supabase
           .from('users')
-          .update({ 
+          .update({
             subscription_tier: newTier,
             updated_at: new Date().toISOString()
           })
@@ -108,7 +136,7 @@ export async function POST(request: NextRequest) {
       if (user) {
         const { error } = await supabase
           .from('users')
-          .update({ 
+          .update({
             subscription_tier: 'free',
             updated_at: new Date().toISOString()
           })

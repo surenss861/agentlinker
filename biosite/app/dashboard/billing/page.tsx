@@ -144,13 +144,42 @@ Errors: ${JSON.stringify(result.debug?.errors || {})}
     }
   }
 
-  const handleFixSubscription = async () => {
+  const handleResetSubscription = async () => {
     if (!agent?.id) return
     
+    if (!confirm('Are you sure you want to reset your subscription to Free? This will remove all Pro features.')) {
+      return
+    }
+    
+    try {
+      const response = await fetch('/api/admin/reset-subscription', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ userId: agent.id })
+      })
+
+      const result = await response.json()
+      console.log('🔄 Reset result:', result)
+      
+      if (response.ok) {
+        alert('✅ Subscription reset to Free!')
+        window.location.reload()
+      } else {
+        alert('❌ Reset failed:\n' + JSON.stringify(result, null, 2))
+      }
+    } catch (error) {
+      console.error('Reset error:', error)
+      alert('Error resetting subscription: ' + error)
+    }
+  }
+
+  const handleFixSubscription = async () => {
+    if (!agent?.id) return
+
     try {
       // First debug
       await handleDebugSubscription()
-      
+
       // Then fix
       const response = await fetch('/api/admin/fix-subscription', {
         method: 'POST',
@@ -257,7 +286,7 @@ Errors: ${JSON.stringify(result.debug?.errors || {})}
                   User ID: {agent?.id} | Current Tier: {agent?.subscription_tier || 'null'}
                 </p>
               </div>
-              <div className="flex gap-3">
+              <div className="flex gap-3 flex-wrap">
                 <button 
                   onClick={handleDebugSubscription}
                   className="px-4 py-3 bg-blue-500 text-white rounded-xl hover:bg-blue-400 transition-all font-medium"
@@ -269,6 +298,12 @@ Errors: ${JSON.stringify(result.debug?.errors || {})}
                   className="px-4 py-3 bg-green-500 text-white rounded-xl hover:bg-green-400 transition-all font-medium"
                 >
                   Test Webhook
+                </button>
+                <button 
+                  onClick={handleResetSubscription}
+                  className="px-4 py-3 bg-red-500 text-white rounded-xl hover:bg-red-400 transition-all font-medium"
+                >
+                  Reset to Free
                 </button>
                 <button 
                   onClick={handleFixSubscription}
