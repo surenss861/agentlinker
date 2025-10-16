@@ -76,9 +76,9 @@ export default function AnalyticsPage() {
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-gradient-to-b from-[#080705] to-[#1A0E10] flex items-center justify-center">
+      <div className="min-h-screen flex items-center justify-center">
         <div className="text-center">
-          <div className="w-16 h-16 border-4 border-[#F3C77E] border-t-transparent rounded-full animate-spin mx-auto mb-4" />
+          <div className="w-16 h-16 border-4 border-red-500 border-t-transparent rounded-full animate-spin mx-auto mb-4" />
           <div className="text-white">Loading analytics...</div>
         </div>
       </div>
@@ -87,12 +87,12 @@ export default function AnalyticsPage() {
 
   if (!analytics) {
     return (
-      <div className="min-h-screen bg-gradient-to-b from-[#080705] to-[#1A0E10]">
+      <>
         <NavBar />
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
           <div className="text-center text-white">Failed to load analytics</div>
         </div>
-      </div>
+      </>
     )
   }
 
@@ -118,7 +118,7 @@ export default function AnalyticsPage() {
   }))
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-[#080705] to-[#1A0E10]">
+    <>
       <NavBar />
       
       <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
@@ -396,6 +396,6 @@ export default function AnalyticsPage() {
         description="Get detailed conversion tracking, traffic analysis, ROI insights, and performance metrics to optimize your real estate business."
         requiredTier="pro"
       />
-    </div>
+    </>
   )
 }
