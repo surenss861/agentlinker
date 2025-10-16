@@ -40,44 +40,9 @@ export default function BillingPage() {
   // Handle success/cancel redirects
   useEffect(() => {
     const urlParams = new URLSearchParams(window.location.search)
-    const success = urlParams.get('success')
-    const tier = urlParams.get('tier')
     const canceled = urlParams.get('canceled')
 
-    if (success === 'true' && tier) {
-      console.log('✅ Checkout successful for tier:', tier)
-      
-      // Update subscription in database
-      const updateSubscription = async () => {
-        try {
-          const { data: { user } } = await supabase.auth.getUser()
-          if (!user) return
-
-          const response = await fetch('/api/subscription/update', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ userId: user.id, tier })
-          })
-
-          if (response.ok) {
-            // Update local state
-            setAgent((prev: any) => prev ? { ...prev, subscription_tier: tier } : null)
-            alert(`🎉 Successfully upgraded to ${tier} plan! Your features are now unlocked.`)
-          } else {
-            console.error('Failed to update subscription')
-            alert(`🎉 Payment successful! Your subscription will be updated shortly.`)
-          }
-        } catch (error) {
-          console.error('Error updating subscription:', error)
-          alert(`🎉 Payment successful! Your subscription will be updated shortly.`)
-        }
-      }
-
-      updateSubscription()
-      
-      // Clean up URL
-      window.history.replaceState({}, document.title, window.location.pathname)
-    } else if (canceled === 'true') {
+    if (canceled === 'true') {
       console.log('❌ Checkout canceled')
       alert('Checkout was canceled. You can try again anytime.')
       // Clean up URL

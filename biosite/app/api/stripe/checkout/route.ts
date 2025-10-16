@@ -83,7 +83,7 @@ export async function POST(request: NextRequest) {
       customer_email: userProfile.email,
       line_items: lineItems,
       mode: mode as any,
-      success_url: `${process.env.NEXT_PUBLIC_APP_URL}/dashboard/billing?success=true&tier=${tier}`,
+      success_url: `${process.env.NEXT_PUBLIC_APP_URL}/thank-you?tier=${tier}`,
       cancel_url: `${process.env.NEXT_PUBLIC_APP_URL}/dashboard/billing?canceled=true`,
       metadata: {
         agent_id: userProfile.id,
