@@ -3,6 +3,7 @@
 import { useLayoutEffect, useRef, useState } from 'react';
 import { gsap } from 'gsap';
 import { GoArrowUpRight } from 'react-icons/go';
+import Link from 'next/link';
 import './CardNav.css';
 
 interface CardNavLink {
@@ -179,13 +180,13 @@ const CardNav = ({
             <img src={logo} alt={logoAlt} className="logo" />
           </div>
 
-          <a
+          <Link
             href="/signup"
             className="card-nav-cta-button"
             style={{ backgroundColor: buttonBgColor, color: buttonTextColor }}
           >
             Get Started
-          </a>
+          </Link>
         </div>
 
         <div className="card-nav-content" aria-hidden={!isExpanded}>

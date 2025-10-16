@@ -1,6 +1,6 @@
 .card-nav-container {
   position: absolute;
-  top: 1em;
+  top: 2em;
   left: 50%;
   transform: translateX(-50%);
   width: 90%;
@@ -91,6 +91,10 @@
   font-weight: 500;
   cursor: pointer;
   transition: background-color 0.3s ease;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .card-nav-cta-button:hover {
@@ -160,7 +164,7 @@
 @media (max-width: 768px) {
   .card-nav-container {
     width: 90%;
-    top: 0.8em;
+    top: 1.2em;
   }
 
   .card-nav-top {
