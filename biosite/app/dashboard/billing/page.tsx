@@ -101,7 +101,18 @@ export default function BillingPage() {
 
       const result = await response.json()
       console.log('🔍 Debug info:', result)
-      alert('Debug info logged to console. Check browser dev tools.')
+      
+      // Show detailed info in alert
+      const debugText = `
+User ID: ${result.debug?.user?.id || 'Not found'}
+Email: ${result.debug?.user?.email || 'Not found'}
+Current Tier: ${result.debug?.user?.subscription_tier || 'Not found'}
+Updated At: ${result.debug?.user?.updated_at || 'Not found'}
+Subscriptions Count: ${result.debug?.subscriptions?.length || 0}
+Errors: ${JSON.stringify(result.debug?.errors || {})}
+      `.trim()
+      
+      alert('Debug Info:\n' + debugText)
     } catch (error) {
       console.error('Debug error:', error)
       alert('Error debugging subscription: ' + error)
@@ -110,11 +121,11 @@ export default function BillingPage() {
 
   const handleFixSubscription = async () => {
     if (!agent?.id) return
-    
+
     try {
       // First debug
       await handleDebugSubscription()
-      
+
       // Then fix
       const response = await fetch('/api/admin/fix-subscription', {
         method: 'POST',
@@ -130,7 +141,7 @@ export default function BillingPage() {
       } else {
         const error = await response.json()
         console.error('Fix failed:', error)
-        alert('Failed to fix subscription: ' + JSON.stringify(error))
+        alert('Failed to fix subscription:\n' + JSON.stringify(error, null, 2))
       }
     } catch (error) {
       console.error('Fix error:', error)
@@ -222,13 +233,13 @@ export default function BillingPage() {
                 </p>
               </div>
               <div className="flex gap-3">
-                <button 
+                <button
                   onClick={handleDebugSubscription}
                   className="px-4 py-3 bg-blue-500 text-white rounded-xl hover:bg-blue-400 transition-all font-medium"
                 >
                   Debug Info
                 </button>
-                <button 
+                <button
                   onClick={handleFixSubscription}
                   className="px-6 py-3 bg-yellow-500 text-black rounded-xl hover:bg-yellow-400 transition-all font-medium"
                 >
@@ -372,10 +383,10 @@ export default function BillingPage() {
                 onClick={() => handleUpgrade('pro')}
                 disabled={agent?.subscription_tier === 'pro' || processingUpgrade === 'pro'}
                 className={`w-full py-3 rounded-xl font-semibold transition-all ${agent?.subscription_tier === 'pro'
+                  ? 'bg-gray-600 text-gray-400 cursor-not-allowed'
+                  : processingUpgrade === 'pro'
                     ? 'bg-gray-600 text-gray-400 cursor-not-allowed'
-                    : processingUpgrade === 'pro'
-                      ? 'bg-gray-600 text-gray-400 cursor-not-allowed'
-                      : 'bg-gradient-to-r from-[#F3C77E] to-[#912F40] text-white hover:from-[#F3C77E]/80 hover:to-[#912F40]/80 hover:scale-105 shadow-[0_0_20px_rgba(243,199,126,0.3)]'
+                    : 'bg-gradient-to-r from-[#F3C77E] to-[#912F40] text-white hover:from-[#F3C77E]/80 hover:to-[#912F40]/80 hover:scale-105 shadow-[0_0_20px_rgba(243,199,126,0.3)]'
                   }`}
               >
                 {agent?.subscription_tier === 'pro' ? 'Current Plan' : processingUpgrade === 'pro' ? 'Processing...' : 'Get Started - $20/month'}
@@ -436,10 +447,10 @@ export default function BillingPage() {
                 onClick={() => handleUpgrade('business')}
                 disabled={agent?.subscription_tier === 'business' || processingUpgrade === 'business'}
                 className={`w-full py-3 rounded-xl font-semibold transition-all ${agent?.subscription_tier === 'business'
+                  ? 'bg-gray-600 text-gray-400 cursor-not-allowed'
+                  : processingUpgrade === 'business'
                     ? 'bg-gray-600 text-gray-400 cursor-not-allowed'
-                    : processingUpgrade === 'business'
-                      ? 'bg-gray-600 text-gray-400 cursor-not-allowed'
-                      : 'bg-gradient-to-r from-[#F3C77E] to-[#912F40] text-white hover:from-[#F3C77E]/80 hover:to-[#912F40]/80 hover:scale-105 shadow-[0_0_20px_rgba(243,199,126,0.3)]'
+                    : 'bg-gradient-to-r from-[#F3C77E] to-[#912F40] text-white hover:from-[#F3C77E]/80 hover:to-[#912F40]/80 hover:scale-105 shadow-[0_0_20px_rgba(243,199,126,0.3)]'
                   }`}
               >
                 {agent?.subscription_tier === 'business' ? 'Current Plan' : processingUpgrade === 'business' ? 'Processing...' : 'Get Started - $25 one-time'}
