@@ -254,9 +254,9 @@
   border: 2px solid #ef4444;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
   transition: all 0.3s ease;
-  width: 44px;
-  height: 44px;
-  padding: 8px;
+  width: 60px;
+  height: 60px;
+  padding: 4px;
   border-radius: 50%;
 }
 
@@ -277,21 +277,24 @@
   backdrop-filter: blur(15px);
   border: 1px solid rgba(239, 68, 68, 0.3);
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
-  padding: 8px;
-  border-radius: 30px;
+  padding: 10px;
+  border-radius: 35px;
+  height: 50px;
+  display: flex;
+  align-items: center;
 }
 
 .custom-nav .pill {
   background: transparent;
   color: #333333;
   font-weight: 600;
-  font-size: 14px;
-  padding: 0 28px;
-  height: 40px;
+  font-size: 15px;
+  padding: 0 32px;
+  height: 44px;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   position: relative;
   overflow: hidden;
-  border-radius: 22px;
+  border-radius: 25px;
   letter-spacing: 0.5px;
 }
 
@@ -329,18 +332,19 @@
   }
   
   .custom-nav .pill {
-    font-size: 13px;
-    padding: 0 20px;
-    height: 36px;
+    font-size: 14px;
+    padding: 0 24px;
+    height: 40px;
   }
   
   .custom-nav .pill-logo {
-    width: 40px;
-    height: 40px;
-    padding: 6px;
+    width: 50px;
+    height: 50px;
+    padding: 4px;
   }
   
   .custom-nav .pill-nav-items {
-    padding: 6px;
+    padding: 8px;
+    height: 45px;
   }
 }
