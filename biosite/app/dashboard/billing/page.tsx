@@ -119,13 +119,38 @@ Errors: ${JSON.stringify(result.debug?.errors || {})}
     }
   }
 
+  const handleTestWebhook = async () => {
+    if (!agent?.id) return
+    
+    try {
+      const response = await fetch('/api/admin/test-webhook', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ userId: agent.id, tier: 'pro' })
+      })
+
+      const result = await response.json()
+      console.log('🧪 Webhook test result:', result)
+      
+      if (response.ok) {
+        alert('✅ Webhook simulation successful! This is how real webhooks should work.')
+        window.location.reload()
+      } else {
+        alert('❌ Webhook test failed:\n' + JSON.stringify(result, null, 2))
+      }
+    } catch (error) {
+      console.error('Webhook test error:', error)
+      alert('Error testing webhook: ' + error)
+    }
+  }
+
   const handleFixSubscription = async () => {
     if (!agent?.id) return
-
+    
     try {
       // First debug
       await handleDebugSubscription()
-
+      
       // Then fix
       const response = await fetch('/api/admin/fix-subscription', {
         method: 'POST',
@@ -233,13 +258,19 @@ Errors: ${JSON.stringify(result.debug?.errors || {})}
                 </p>
               </div>
               <div className="flex gap-3">
-                <button
+                <button 
                   onClick={handleDebugSubscription}
                   className="px-4 py-3 bg-blue-500 text-white rounded-xl hover:bg-blue-400 transition-all font-medium"
                 >
                   Debug Info
                 </button>
-                <button
+                <button 
+                  onClick={handleTestWebhook}
+                  className="px-4 py-3 bg-green-500 text-white rounded-xl hover:bg-green-400 transition-all font-medium"
+                >
+                  Test Webhook
+                </button>
+                <button 
                   onClick={handleFixSubscription}
                   className="px-6 py-3 bg-yellow-500 text-black rounded-xl hover:bg-yellow-400 transition-all font-medium"
                 >

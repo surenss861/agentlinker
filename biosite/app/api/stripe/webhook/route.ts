@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { createClient } from '@/lib/supabase'
+import { createServerSupabaseClient } from '@/lib/supabase-server'
 import Stripe from 'stripe'
 
 // Only initialize Stripe if environment variables are available
@@ -11,9 +11,11 @@ const webhookSecret = process.env.STRIPE_WEBHOOK_SECRET
 
 export async function POST(request: NextRequest) {
   try {
+    console.log('🔔 Webhook received')
+    
     // Return early if Stripe is not configured
     if (!stripe || !webhookSecret) {
-      console.log('Stripe webhook not configured, skipping')
+      console.log('❌ Stripe webhook not configured, skipping')
       return NextResponse.json({ received: true })
     }
 
@@ -29,15 +31,18 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ error: 'Invalid signature' }, { status: 400 })
     }
 
-    const supabase = createClient()
+    const supabase = await createServerSupabaseClient()
 
     // Handle successful payment
     if (event.type === 'checkout.session.completed') {
+      console.log('✅ Checkout session completed')
       const session = event.data.object as Stripe.Checkout.Session
       const { agent_id, tier } = session.metadata || {}
 
+      console.log('📋 Session metadata:', { agent_id, tier })
+
       if (!agent_id || !tier) {
-        console.error('Missing metadata in checkout session:', { agent_id, tier })
+        console.error('❌ Missing metadata in checkout session:', { agent_id, tier })
         return NextResponse.json({ error: 'Missing metadata' }, { status: 400 })
       }
 
@@ -51,7 +56,7 @@ export async function POST(request: NextRequest) {
         .eq('id', agent_id)
 
       if (error) {
-        console.error('Error updating user subscription:', error)
+        console.error('❌ Error updating user subscription:', error)
         return NextResponse.json({ error: 'Failed to update subscription' }, { status: 500 })
       }
 

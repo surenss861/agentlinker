@@ -42,11 +42,11 @@ export async function POST(request: NextRequest) {
 
         if (updateError) {
             console.error('Error updating subscription:', updateError)
-            return NextResponse.json({ 
-                error: 'Failed to update subscription', 
+            return NextResponse.json({
+                error: 'Failed to update subscription',
                 details: updateError,
                 userId,
-                tier 
+                tier
             }, { status: 500 })
         }
 
