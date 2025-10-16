@@ -92,10 +92,10 @@ export default function BillingPage() {
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-gray-50">
-        <NavBar />
-        <div className="max-w-7xl mx-auto px-4 py-12 text-center">
-          <p className="text-gray-600">Loading...</p>
+      <div className="min-h-screen flex items-center justify-center">
+        <div className="text-center">
+          <div className="w-16 h-16 border-4 border-red-500 border-t-transparent rounded-full animate-spin mx-auto mb-4" />
+          <div className="text-white">Loading billing...</div>
         </div>
       </div>
     )
@@ -147,7 +147,7 @@ export default function BillingPage() {
   ]
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-[#080705] to-[#1A0E10]">
+    <>
       <NavBar />
 
       <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
@@ -371,7 +371,7 @@ export default function BillingPage() {
           </div>
         </div>
       </main>
-    </div>
+    </>
   )
 }
 
