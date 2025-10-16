@@ -91,6 +91,17 @@ export async function POST(request: NextRequest) {
       },
     })
 
+    // Store the Stripe customer ID if it was created
+    if (session.customer) {
+      await supabase
+        .from('users')
+        .update({
+          stripe_customer_id: session.customer as string,
+          updated_at: new Date().toISOString()
+        })
+        .eq('id', userProfile.id)
+    }
+
     return NextResponse.json({ url: session.url })
   } catch (error: any) {
     console.error('Error creating checkout session:', error)
