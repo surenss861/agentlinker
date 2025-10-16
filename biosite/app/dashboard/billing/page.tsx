@@ -10,7 +10,7 @@ export default function BillingPage() {
   const [loading, setLoading] = useState(true)
   const [agent, setAgent] = useState<any>(null)
   const [processingUpgrade, setProcessingUpgrade] = useState<string | null>(null)
-  
+
   const router = useRouter()
   const supabase = createClient()
 
@@ -53,7 +53,7 @@ export default function BillingPage() {
   const handleUpgrade = async (tier: string) => {
     console.log('🚀 Starting upgrade process for tier:', tier)
     setProcessingUpgrade(tier)
-    
+
     try {
       console.log('📡 Calling /api/stripe/checkout with tier:', tier)
       // Create Stripe Checkout Session
@@ -89,10 +89,33 @@ export default function BillingPage() {
     }
   }
 
+  const handleDebugSubscription = async () => {
+    if (!agent?.id) return
+    
+    try {
+      const response = await fetch('/api/admin/debug-subscription', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ userId: agent.id })
+      })
+
+      const result = await response.json()
+      console.log('🔍 Debug info:', result)
+      alert('Debug info logged to console. Check browser dev tools.')
+    } catch (error) {
+      console.error('Debug error:', error)
+      alert('Error debugging subscription: ' + error)
+    }
+  }
+
   const handleFixSubscription = async () => {
     if (!agent?.id) return
     
     try {
+      // First debug
+      await handleDebugSubscription()
+      
+      // Then fix
       const response = await fetch('/api/admin/fix-subscription', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -107,7 +130,7 @@ export default function BillingPage() {
       } else {
         const error = await response.json()
         console.error('Fix failed:', error)
-        alert('Failed to fix subscription: ' + error.error)
+        alert('Failed to fix subscription: ' + JSON.stringify(error))
       }
     } catch (error) {
       console.error('Fix error:', error)
@@ -174,7 +197,7 @@ export default function BillingPage() {
   return (
     <div className="min-h-screen bg-gradient-to-b from-[#080705] to-[#1A0E10]">
       <NavBar />
-      
+
       <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         <div className="mb-8">
           <h1 className="text-3xl font-bold text-white">Billing & Subscription</h1>
@@ -191,16 +214,27 @@ export default function BillingPage() {
                 <h3 className="text-lg font-semibold text-yellow-200 mb-2">
                   🔧 Debug: Subscription Not Updating
                 </h3>
-                <p className="text-yellow-100 text-sm">
+                <p className="text-yellow-100 text-sm mb-2">
                   If you just purchased Pro but it's not showing, click the button below to manually fix your subscription.
                 </p>
+                <p className="text-yellow-200 text-xs">
+                  User ID: {agent?.id} | Current Tier: {agent?.subscription_tier || 'null'}
+                </p>
               </div>
-              <button 
-                onClick={handleFixSubscription}
-                className="px-6 py-3 bg-yellow-500 text-black rounded-xl hover:bg-yellow-400 transition-all font-medium"
-              >
-                Fix My Subscription
-              </button>
+              <div className="flex gap-3">
+                <button 
+                  onClick={handleDebugSubscription}
+                  className="px-4 py-3 bg-blue-500 text-white rounded-xl hover:bg-blue-400 transition-all font-medium"
+                >
+                  Debug Info
+                </button>
+                <button 
+                  onClick={handleFixSubscription}
+                  className="px-6 py-3 bg-yellow-500 text-black rounded-xl hover:bg-yellow-400 transition-all font-medium"
+                >
+                  Fix My Subscription
+                </button>
+              </div>
             </div>
           </div>
         )}
@@ -218,13 +252,13 @@ export default function BillingPage() {
                 </p>
               </div>
               <div className="flex gap-3">
-                <button 
+                <button
                   onClick={() => window.open('https://billing.stripe.com/p/login/test_123', '_blank')}
                   className="px-6 py-3 bg-white/5 text-white rounded-xl hover:bg-white/10 transition-all font-medium border border-white/20"
                 >
                   Manage Billing
                 </button>
-                <button 
+                <button
                   onClick={() => handleUpgrade('business')}
                   className="px-6 py-3 bg-[#912F40] text-white rounded-xl hover:bg-[#702632] transition-all font-medium"
                 >
@@ -247,13 +281,13 @@ export default function BillingPage() {
                 </p>
               </div>
               <div className="flex gap-3">
-                <button 
+                <button
                   onClick={() => window.open('https://billing.stripe.com/p/login/test_123', '_blank')}
                   className="px-6 py-3 bg-white/5 text-white rounded-xl hover:bg-white/10 transition-all font-medium border border-white/20"
                 >
                   View Invoice
                 </button>
-                <button 
+                <button
                   onClick={() => handleUpgrade('pro')}
                   className="px-6 py-3 bg-[#F3C77E] text-[#080705] rounded-xl hover:bg-[#FFD89C] transition-all font-medium"
                 >
@@ -275,7 +309,7 @@ export default function BillingPage() {
                   Upgrade to unlock unlimited bookings, analytics, and premium features
                 </p>
               </div>
-              <button 
+              <button
                 onClick={() => handleUpgrade('pro')}
                 className="px-6 py-3 bg-[#F3C77E] text-[#080705] rounded-xl hover:bg-[#FFD89C] transition-all font-medium"
               >
@@ -337,13 +371,12 @@ export default function BillingPage() {
               <button
                 onClick={() => handleUpgrade('pro')}
                 disabled={agent?.subscription_tier === 'pro' || processingUpgrade === 'pro'}
-                className={`w-full py-3 rounded-xl font-semibold transition-all ${
-                  agent?.subscription_tier === 'pro'
+                className={`w-full py-3 rounded-xl font-semibold transition-all ${agent?.subscription_tier === 'pro'
                     ? 'bg-gray-600 text-gray-400 cursor-not-allowed'
                     : processingUpgrade === 'pro'
-                    ? 'bg-gray-600 text-gray-400 cursor-not-allowed'
-                    : 'bg-gradient-to-r from-[#F3C77E] to-[#912F40] text-white hover:from-[#F3C77E]/80 hover:to-[#912F40]/80 hover:scale-105 shadow-[0_0_20px_rgba(243,199,126,0.3)]'
-                }`}
+                      ? 'bg-gray-600 text-gray-400 cursor-not-allowed'
+                      : 'bg-gradient-to-r from-[#F3C77E] to-[#912F40] text-white hover:from-[#F3C77E]/80 hover:to-[#912F40]/80 hover:scale-105 shadow-[0_0_20px_rgba(243,199,126,0.3)]'
+                  }`}
               >
                 {agent?.subscription_tier === 'pro' ? 'Current Plan' : processingUpgrade === 'pro' ? 'Processing...' : 'Get Started - $20/month'}
               </button>
@@ -402,13 +435,12 @@ export default function BillingPage() {
               <button
                 onClick={() => handleUpgrade('business')}
                 disabled={agent?.subscription_tier === 'business' || processingUpgrade === 'business'}
-                className={`w-full py-3 rounded-xl font-semibold transition-all ${
-                  agent?.subscription_tier === 'business'
+                className={`w-full py-3 rounded-xl font-semibold transition-all ${agent?.subscription_tier === 'business'
                     ? 'bg-gray-600 text-gray-400 cursor-not-allowed'
                     : processingUpgrade === 'business'
-                    ? 'bg-gray-600 text-gray-400 cursor-not-allowed'
-                    : 'bg-gradient-to-r from-[#F3C77E] to-[#912F40] text-white hover:from-[#F3C77E]/80 hover:to-[#912F40]/80 hover:scale-105 shadow-[0_0_20px_rgba(243,199,126,0.3)]'
-                }`}
+                      ? 'bg-gray-600 text-gray-400 cursor-not-allowed'
+                      : 'bg-gradient-to-r from-[#F3C77E] to-[#912F40] text-white hover:from-[#F3C77E]/80 hover:to-[#912F40]/80 hover:scale-105 shadow-[0_0_20px_rgba(243,199,126,0.3)]'
+                  }`}
               >
                 {agent?.subscription_tier === 'business' ? 'Current Plan' : processingUpgrade === 'business' ? 'Processing...' : 'Get Started - $25 one-time'}
               </button>
