@@ -206,24 +206,6 @@ export default function PrivacyPage() {
                   </p>
                 </div>
 
-                <h2 className="text-2xl font-bold mb-6 text-white">Contact Us</h2>
-                <div className="mb-8">
-                  <p className="text-gray-300 mb-4">
-                    If you have questions about this privacy policy or our data practices, please contact us:
-                  </p>
-                  <div className="bg-gray-900 rounded-lg p-6">
-                    <div className="flex items-center mb-4">
-                      <Mail className="h-5 w-5 text-red-500 mr-3" />
-                      <span className="text-white font-semibold">Email:</span>
-                      <span className="text-gray-300 ml-2">privacy@agentlinker.ca</span>
-                    </div>
-                    <div className="flex items-center">
-                      <Phone className="h-5 w-5 text-red-500 mr-3" />
-                      <span className="text-white font-semibold">Phone:</span>
-                      <span className="text-gray-300 ml-2">1-800-AGENT-LINK</span>
-                    </div>
-                  </div>
-                </div>
 
               </div>
             </div>
