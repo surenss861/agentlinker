@@ -134,7 +134,7 @@ export default function TermsPage() {
                   <h3 className="text-xl font-semibold mb-4 text-red-400">Payment Terms</h3>
                   <ul className="list-disc list-inside text-gray-300 space-y-2 mb-6">
                     <li>Subscriptions are billed monthly in advance</li>
-                    <li>All fees are non-refundable except as required by law</li>
+                    <li><strong>NO REFUNDS:</strong> All fees are non-refundable and non-transferable</li>
                     <li>Failed payments may result in service suspension</li>
                     <li>You are responsible for all applicable taxes</li>
                     <li>We accept major credit cards and other payment methods</li>
@@ -143,7 +143,7 @@ export default function TermsPage() {
                   <h3 className="text-xl font-semibold mb-4 text-red-400">Cancellation</h3>
                   <p className="text-gray-300 mb-4">
                     You may cancel your subscription at any time. Cancellation takes effect at the end of your 
-                    current billing period. No partial refunds are provided for unused time.
+                    current billing period. <strong>NO REFUNDS</strong> are provided for unused time or cancelled subscriptions.
                   </p>
                 </div>
 
@@ -263,24 +263,6 @@ export default function TermsPage() {
                   </p>
                 </div>
 
-                <h2 className="text-2xl font-bold mb-6 text-white">Contact Information</h2>
-                <div className="mb-8">
-                  <p className="text-gray-300 mb-4">
-                    For questions about these terms or our service, please contact us:
-                  </p>
-                  <div className="bg-gray-900 rounded-lg p-6">
-                    <div className="flex items-center mb-4">
-                      <Mail className="h-5 w-5 text-red-500 mr-3" />
-                      <span className="text-white font-semibold">Email:</span>
-                      <span className="text-gray-300 ml-2">legal@agentlinker.ca</span>
-                    </div>
-                    <div className="flex items-center">
-                      <Phone className="h-5 w-5 text-red-500 mr-3" />
-                      <span className="text-white font-semibold">Phone:</span>
-                      <span className="text-gray-300 ml-2">1-800-AGENT-LINK</span>
-                    </div>
-                  </div>
-                </div>
 
               </div>
             </div>
