@@ -69,7 +69,7 @@ export default function BookingsPage() {
   const handleDeleteBooking = async (bookingId: string) => {
     console.log('🗑️ Deleting booking:', bookingId)
     try {
-      const { error} = await supabase
+      const { error } = await supabase
         .from('bookings')
         .delete()
         .eq('id', bookingId)
@@ -88,9 +88,9 @@ export default function BookingsPage() {
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-gradient-to-b from-[#080705] to-[#1A0E10] flex items-center justify-center">
+      <div className="min-h-screen flex items-center justify-center">
         <div className="text-center">
-          <div className="w-16 h-16 border-4 border-[#F3C77E] border-t-transparent rounded-full animate-spin mx-auto mb-4" />
+          <div className="w-16 h-16 border-4 border-red-500 border-t-transparent rounded-full animate-spin mx-auto mb-4" />
           <div className="text-white">Loading bookings...</div>
         </div>
       </div>
@@ -98,28 +98,27 @@ export default function BookingsPage() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-[#080705] to-[#1A0E10]">
+    <>
       <NavBar />
-      
+
       <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         {/* Subscription Status */}
         {subscription && (
           <div className="mb-6 p-4 bg-white/5 rounded-xl border border-white/10">
             <div className="flex items-center justify-between">
               <div className="flex items-center gap-3">
-                <div className={`px-3 py-1 rounded-full text-sm font-medium ${
-                  subscription.tier === 'free' 
-                    ? 'bg-gray-600 text-gray-300' 
+                <div className={`px-3 py-1 rounded-full text-sm font-medium ${subscription.tier === 'free'
+                    ? 'bg-gray-600 text-gray-300'
                     : subscription.tier === 'pro'
-                    ? 'bg-[#912F40] text-white'
-                    : 'bg-[#F3C77E] text-black'
-                }`}>
-                  {subscription.tier === 'free' ? 'Free Plan' : 
-                   subscription.tier === 'pro' ? 'Pro Plan' : 'Business Plan'}
+                      ? 'bg-[#912F40] text-white'
+                      : 'bg-[#F3C77E] text-black'
+                  }`}>
+                  {subscription.tier === 'free' ? 'Free Plan' :
+                    subscription.tier === 'pro' ? 'Pro Plan' : 'Business Plan'}
                   {subscription.tier !== 'free' && <Crown className="w-4 h-4 inline ml-1" />}
                 </div>
                 <span className="text-gray-400">
-                  {subscription.tier === 'free' 
+                  {subscription.tier === 'free'
                     ? 'Basic booking management - upgrade for advanced features'
                     : 'Full booking scheduler with advanced features'
                   }
@@ -176,6 +175,6 @@ export default function BookingsPage() {
         description="Get real-time scheduling, availability calendar, automated confirmations, email notifications, and advanced booking management features."
         requiredTier="pro"
       />
-    </div>
+    </>
   )
 }

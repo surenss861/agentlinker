@@ -16,7 +16,7 @@ export default function SettingsPage() {
   const [agent, setAgent] = useState<any>(null)
   const [profilePhotoUrl, setProfilePhotoUrl] = useState<string | null>(null)
   const fileInputRef = useRef<HTMLInputElement>(null)
-  
+
   const [formData, setFormData] = useState({
     full_name: '',
     email: '',
@@ -35,7 +35,7 @@ export default function SettingsPage() {
       twitter: '',
     },
   })
-  
+
   const router = useRouter()
   const supabase = createClient()
 
@@ -194,9 +194,9 @@ export default function SettingsPage() {
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-gradient-to-b from-[#080705] to-[#1A0E10] flex items-center justify-center">
+      <div className="min-h-screen flex items-center justify-center">
         <div className="text-center">
-          <div className="w-16 h-16 border-4 border-[#F3C77E] border-t-transparent rounded-full animate-spin mx-auto mb-4" />
+          <div className="w-16 h-16 border-4 border-red-500 border-t-transparent rounded-full animate-spin mx-auto mb-4" />
           <div className="text-white">Loading settings...</div>
         </div>
       </div>
@@ -205,9 +205,9 @@ export default function SettingsPage() {
 
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-[#080705] to-[#1A0E10]">
+    <>
       <NavBar />
-      
+
       <main className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         {/* Header */}
         <div className="mb-8">
@@ -236,11 +236,10 @@ export default function SettingsPage() {
 
         {/* Message Toast */}
         {message && (
-          <div className={`mb-6 p-4 rounded-xl backdrop-blur-md flex items-center gap-3 ${
-            message.type === 'success' 
-              ? 'bg-green-500/20 text-green-300 border border-green-500/30' 
+          <div className={`mb-6 p-4 rounded-xl backdrop-blur-md flex items-center gap-3 ${message.type === 'success'
+              ? 'bg-green-500/20 text-green-300 border border-green-500/30'
               : 'bg-red-500/20 text-red-300 border border-red-500/30'
-          }`}>
+            }`}>
             {message.type === 'success' ? <CheckCircle className="w-5 h-5" /> : <AlertCircle className="w-5 h-5" />}
             {message.text}
           </div>
@@ -252,7 +251,7 @@ export default function SettingsPage() {
             <Building className="w-5 h-5 text-[#F3C77E]" />
             Subscription Plan
           </h2>
-          
+
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-4">
               <div className="w-12 h-12 bg-gradient-to-br from-[#912F40] to-[#702632] rounded-xl flex items-center justify-center">
@@ -260,29 +259,29 @@ export default function SettingsPage() {
               </div>
               <div>
                 <h3 className="text-white font-semibold text-lg">
-                  {agent?.subscription_tier === 'pro' ? 'Pro Plan' : 
-                   agent?.subscription_tier === 'business' ? 'Business Plan' : 'Free Plan'}
+                  {agent?.subscription_tier === 'pro' ? 'Pro Plan' :
+                    agent?.subscription_tier === 'business' ? 'Business Plan' : 'Free Plan'}
                 </h3>
                 <p className="text-gray-400 text-sm">
                   {agent?.subscription_tier === 'pro' ? '$20/month - Full access to all features' :
-                   agent?.subscription_tier === 'business' ? '$25 one-time - Verified agent badge' : 
-                   'Free - Basic features only'}
+                    agent?.subscription_tier === 'business' ? '$25 one-time - Verified agent badge' :
+                      'Free - Basic features only'}
                 </p>
               </div>
             </div>
-            
+
             <div className="text-right">
               <div className="text-white font-semibold text-lg">
-                {agent?.subscription_tier === 'pro' ? '$20' : 
-                 agent?.subscription_tier === 'business' ? '$25' : 'Free'}
+                {agent?.subscription_tier === 'pro' ? '$20' :
+                  agent?.subscription_tier === 'business' ? '$25' : 'Free'}
               </div>
               <div className="text-gray-400 text-sm">
-                {agent?.subscription_tier === 'pro' ? 'per month' : 
-                 agent?.subscription_tier === 'business' ? 'one-time' : 'forever'}
+                {agent?.subscription_tier === 'pro' ? 'per month' :
+                  agent?.subscription_tier === 'business' ? 'one-time' : 'forever'}
               </div>
             </div>
           </div>
-          
+
           <div className="mt-6 flex gap-3">
             <button
               type="button"
@@ -292,7 +291,7 @@ export default function SettingsPage() {
               <Building className="w-4 h-4" />
               Manage Subscription
             </button>
-            
+
             {agent?.subscription_tier === 'free' && (
               <button
                 type="button"
@@ -313,7 +312,7 @@ export default function SettingsPage() {
               <User className="w-5 h-5 text-[#F3C77E]" />
               Profile Information
             </h2>
-            
+
             <div className="space-y-6">
               {/* Profile Photo */}
               <div>
@@ -538,6 +537,6 @@ export default function SettingsPage() {
           </div>
         </form>
       </main>
-    </div>
+    </>
   )
 }

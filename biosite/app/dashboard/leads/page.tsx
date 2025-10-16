@@ -24,7 +24,7 @@ export default function LeadsPage() {
     const fetchUser = async () => {
       try {
         const { data: { user }, error: authError } = await supabase.auth.getUser()
-        
+
         if (authError || !user) {
           console.error('Auth error:', authError)
           router.push('/login')
@@ -53,12 +53,12 @@ export default function LeadsPage() {
     try {
       // Find the lead to get its creation time
       const lead = leads.find(l => l.id === leadId)
-      
+
       const { error } = await supabase
         .from('leads')
         .update({ status, updated_at: new Date().toISOString() })
         .eq('id', leadId)
-      
+
       if (error) {
         console.error('Error updating lead status:', error)
         alert(`Failed to update lead status: ${error.message}`)
@@ -81,7 +81,7 @@ export default function LeadsPage() {
         .from('leads')
         .delete()
         .eq('id', leadId)
-      
+
       if (error) {
         console.error('Error deleting lead:', error)
         alert(`Failed to delete lead: ${error.message}`)
@@ -94,9 +94,9 @@ export default function LeadsPage() {
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-gradient-to-b from-[#080705] to-[#1A0E10] flex items-center justify-center">
+      <div className="min-h-screen flex items-center justify-center">
         <div className="text-center">
-          <div className="w-16 h-16 border-4 border-[#F3C77E] border-t-transparent rounded-full animate-spin mx-auto mb-4" />
+          <div className="w-16 h-16 border-4 border-red-500 border-t-transparent rounded-full animate-spin mx-auto mb-4" />
           <div className="text-white">Loading leads...</div>
         </div>
       </div>
@@ -104,28 +104,27 @@ export default function LeadsPage() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-[#080705] to-[#1A0E10]">
+    <>
       <NavBar />
-      
+
       <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         {/* Subscription Status */}
         {subscription && (
           <div className="mb-6 p-4 bg-white/5 rounded-xl border border-white/10">
             <div className="flex items-center justify-between">
               <div className="flex items-center gap-3">
-                <div className={`px-3 py-1 rounded-full text-sm font-medium ${
-                  subscription.tier === 'free' 
-                    ? 'bg-gray-600 text-gray-300' 
+                <div className={`px-3 py-1 rounded-full text-sm font-medium ${subscription.tier === 'free'
+                    ? 'bg-gray-600 text-gray-300'
                     : subscription.tier === 'pro'
-                    ? 'bg-[#912F40] text-white'
-                    : 'bg-[#F3C77E] text-black'
-                }`}>
-                  {subscription.tier === 'free' ? 'Free Plan' : 
-                   subscription.tier === 'pro' ? 'Pro Plan' : 'Business Plan'}
+                      ? 'bg-[#912F40] text-white'
+                      : 'bg-[#F3C77E] text-black'
+                  }`}>
+                  {subscription.tier === 'free' ? 'Free Plan' :
+                    subscription.tier === 'pro' ? 'Pro Plan' : 'Business Plan'}
                   {subscription.tier !== 'free' && <Crown className="w-4 h-4 inline ml-1" />}
                 </div>
                 <span className="text-gray-400">
-                  {subscription.tier === 'free' 
+                  {subscription.tier === 'free'
                     ? 'Leads preview only - upgrade for full access'
                     : 'Full leads management enabled'
                   }
@@ -195,7 +194,7 @@ export default function LeadsPage() {
         description="Get full leads management, real-time tracking, status updates, and advanced conversion tools to grow your real estate business."
         requiredTier="pro"
       />
-    </div>
+    </>
   )
 }
 

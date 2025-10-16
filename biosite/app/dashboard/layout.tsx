@@ -1,6 +1,6 @@
 import { redirect } from 'next/navigation'
 import { createServerSupabaseClient } from '@/lib/supabase-server'
-import DarkVeil from '@/components/DarkVeil'
+import Beams from '@/components/Beams'
 
 export default async function DashboardLayout({
   children,
@@ -16,15 +16,17 @@ export default async function DashboardLayout({
 
   return (
     <div className="min-h-screen bg-black relative overflow-hidden">
-      {/* Dark Veil Background */}
+      {/* Beams Background */}
       <div className="absolute inset-0">
-        <DarkVeil 
-          speed={0.8}
-          hueShift={237}
-          noiseIntensity={0.1}
-          scanlineIntensity={0.05}
-          scanlineFrequency={0.5}
-          warpAmount={0.02}
+        <Beams 
+          beamWidth={3}
+          beamHeight={30}
+          beamNumber={20}
+          lightColor="#ffffff"
+          speed={2}
+          noiseIntensity={1.75}
+          scale={0.2}
+          rotation={30}
         />
       </div>
       
