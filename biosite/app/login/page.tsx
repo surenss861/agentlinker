@@ -4,7 +4,8 @@ import { useState } from 'react'
 import { useRouter } from 'next/navigation'
 import Link from 'next/link'
 import { createClient } from '@/lib/supabase'
-import { Home } from 'lucide-react'
+import { Home, ArrowRight } from 'lucide-react'
+import DarkVeil from '@/components/DarkVeil'
 
 export default function LoginPage() {
   const [email, setEmail] = useState('')
@@ -37,80 +38,120 @@ export default function LoginPage() {
   }
 
   return (
-    <div className="min-h-screen bg-black flex items-center justify-center px-4">
-      <div className="max-w-md w-full">
-        <div className="text-center mb-8">
-          <Link href="/" className="inline-flex items-center justify-center mb-6">
-            <Home className="h-10 w-10 text-red-600" />
-            <span className="ml-2 text-3xl font-bold bg-gradient-to-r from-red-600 to-red-400 bg-clip-text text-transparent">
-              AgentLinker
-            </span>
-          </Link>
-          <h1 className="text-3xl font-bold text-white mb-2">Welcome Back</h1>
-          <p className="text-gray-400">Continue growing your real estate business</p>
-        </div>
+    <div className="min-h-screen bg-black relative overflow-hidden">
+      {/* Dark Veil Background */}
+      <div className="absolute inset-0">
+        <DarkVeil 
+          speed={0.8}
+          hueShift={237}
+          noiseIntensity={0.1}
+          scanlineIntensity={0.05}
+          scanlineFrequency={0.5}
+          warpAmount={0.02}
+        />
+      </div>
 
-        {/* ROI Reminder */}
-        <div className="bg-gradient-to-r from-red-900/30 to-black/30 rounded-xl p-4 mb-6 border border-red-900/30">
-          <p className="text-center text-sm text-gray-300">
-            <span className="text-red-500 font-semibold">Agents using AgentLinker</span> get 5-10 showing requests monthly
-          </p>
-        </div>
+      <div className="relative flex items-center justify-center px-4 py-12">
+        <div className="max-w-md w-full">
+          <div className="text-center mb-8">
+            <Link href="/" className="inline-flex items-center justify-center mb-6">
+              <Home className="h-10 w-10 text-red-600" />
+              <span className="ml-2 text-3xl font-bold bg-gradient-to-r from-red-600 to-red-400 bg-clip-text text-transparent">
+                AgentLinker
+              </span>
+            </Link>
+            <h1 className="text-4xl font-bold text-white mb-2">Welcome Back</h1>
+            <p className="text-gray-300">Continue growing your real estate business</p>
+          </div>
 
-        <div className="bg-neutral-900 rounded-2xl shadow-xl p-8 border border-red-900/30">
-          {error && (
-            <div className="bg-red-50 text-red-700 p-4 rounded-lg mb-6 text-sm">
-              {error}
-            </div>
-          )}
-
-          <form onSubmit={handleLogin} className="space-y-6">
-            <div>
-              <label htmlFor="email" className="block text-sm font-medium text-gray-300 mb-2">
-                Email
-              </label>
-              <input
-                id="email"
-                type="email"
-                required
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                className="w-full px-4 py-3 bg-black border border-red-900/30 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-red-500 text-white placeholder-gray-500"
-                placeholder="you@example.com"
+          {/* ROI Reminder */}
+          <div className="relative mb-6">
+            <div className="absolute inset-0 rounded-xl overflow-hidden">
+              <DarkVeil 
+                speed={0.8}
+                hueShift={200}
+                noiseIntensity={0.1}
+                scanlineIntensity={0.05}
+                scanlineFrequency={0.5}
+                warpAmount={0.02}
               />
             </div>
+            <div className="relative bg-black/90 backdrop-blur-sm rounded-xl border border-red-500/30 p-6 shadow-xl">
+              <p className="text-center text-sm text-gray-300">
+                <span className="text-red-500 font-semibold">Agents using AgentLinker</span> get 5-10 showing requests monthly
+              </p>
+            </div>
+          </div>
 
-            <div>
-              <label htmlFor="password" className="block text-sm font-medium text-gray-300 mb-2">
-                Password
-              </label>
-              <input
-                id="password"
-                type="password"
-                required
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                className="w-full px-4 py-3 bg-black border border-red-900/30 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-red-500 text-white placeholder-gray-500"
-                placeholder="••••••••"
+          <div className="relative">
+            <div className="absolute inset-0 rounded-2xl overflow-hidden">
+              <DarkVeil 
+                speed={0.8}
+                hueShift={237}
+                noiseIntensity={0.1}
+                scanlineIntensity={0.05}
+                scanlineFrequency={0.5}
+                warpAmount={0.02}
               />
             </div>
+            
+            <div className="relative bg-black/90 backdrop-blur-sm rounded-2xl border border-red-500/30 shadow-2xl p-8">
+              {error && (
+                <div className="bg-red-500/20 text-red-200 p-4 rounded-lg mb-6 text-sm border border-red-500/30">
+                  {error}
+                </div>
+              )}
 
-            <button
-              type="submit"
-              disabled={loading}
-              className="w-full bg-red-600 text-white py-3 rounded-lg hover:bg-red-700 transition-colors font-medium disabled:opacity-50"
-            >
-              {loading ? 'Signing in...' : 'Sign In'}
-            </button>
-          </form>
+              <form onSubmit={handleLogin} className="space-y-6">
+                <div>
+                  <label htmlFor="email" className="block text-sm font-medium text-gray-300 mb-2">
+                    Email
+                  </label>
+                  <input
+                    id="email"
+                    type="email"
+                    required
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    className="w-full px-4 py-3 bg-black/50 border border-red-500/30 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-red-500 text-white placeholder-gray-400 transition-all"
+                    placeholder="you@example.com"
+                  />
+                </div>
 
-          <div className="mt-6 text-center">
-            <p className="text-gray-400">
-              Don't have an account?{' '}
-              <Link href="/signup" className="text-red-500 hover:text-red-400 font-medium">
-                Sign up
-              </Link>
-            </p>
+                <div>
+                  <label htmlFor="password" className="block text-sm font-medium text-gray-300 mb-2">
+                    Password
+                  </label>
+                  <input
+                    id="password"
+                    type="password"
+                    required
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
+                    className="w-full px-4 py-3 bg-black/50 border border-red-500/30 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-red-500 text-white placeholder-gray-400 transition-all"
+                    placeholder="••••••••"
+                  />
+                </div>
+
+                <button
+                  type="submit"
+                  disabled={loading}
+                  className="w-full bg-red-600 text-white py-3 rounded-lg hover:bg-red-700 transition-all font-medium disabled:opacity-50 flex items-center justify-center gap-2 shadow-xl"
+                >
+                  {loading ? 'Signing in...' : 'Sign In'}
+                  {!loading && <ArrowRight className="h-4 w-4" />}
+                </button>
+              </form>
+
+              <div className="mt-6 text-center">
+                <p className="text-gray-400">
+                  Don't have an account?{' '}
+                  <Link href="/signup" className="text-red-500 hover:text-red-400 font-medium transition-colors">
+                    Sign up
+                  </Link>
+                </p>
+              </div>
+            </div>
           </div>
         </div>
       </div>
