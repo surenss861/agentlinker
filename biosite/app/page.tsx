@@ -276,41 +276,42 @@ export default function HomePage() {
           </div>
 
           {/* What You Get Instead */}
-          <div className="relative">
-            {/* Dark Veil Background */}
-            <div className="absolute inset-0 rounded-2xl overflow-hidden">
-              <DarkVeil 
-                speed={0.8}
-                hueShift={237}
-                noiseIntensity={0.1}
-                scanlineIntensity={0.05}
-                scanlineFrequency={0.5}
-                warpAmount={0.02}
-              />
-            </div>
-            
-            {/* Card Content */}
-            <div className="relative bg-black/90 backdrop-blur-sm rounded-2xl border border-red-500/30 p-8 text-center text-white shadow-2xl">
-              <h3 className="text-2xl font-bold mb-6">Instead, You Get:</h3>
-              <div className="grid md:grid-cols-3 gap-6">
-                <div>
-                  <div className="text-3xl mb-2">🎯</div>
-                  <h4 className="font-semibold mb-2">Lead-Optimized Pages</h4>
-                  <p className="text-red-100 text-sm">Every element designed to convert visitors into booked showings</p>
-                </div>
-                <div>
-                  <div className="text-3xl mb-2">📊</div>
-                  <h4 className="font-semibold mb-2">Real ROI Tracking</h4>
-                  <p className="text-red-100 text-sm">See exactly: views → requests → closed deals</p>
-                </div>
-                <div>
-                  <div className="text-3xl mb-2">⚡</div>
-                  <h4 className="font-semibold mb-2">Automated Follow-up</h4>
-                  <p className="text-red-100 text-sm">Instant notifications, SMS reminders, calendar sync</p>
+          <TiltedCard
+            imageSrc=""
+            altText="Features Card"
+            captionText="Instead, You Get:"
+            containerHeight="400px"
+            containerWidth="100%"
+            imageHeight="400px"
+            imageWidth="100%"
+            rotateAmplitude={8}
+            scaleOnHover={1.02}
+            showMobileWarning={false}
+            showTooltip={false}
+            displayOverlayContent={true}
+            overlayContent={
+              <div className="absolute inset-0 bg-black/90 backdrop-blur-sm rounded-2xl border border-red-500/30 p-8 text-center text-white shadow-2xl">
+                <h3 className="text-2xl font-bold mb-6">Instead, You Get:</h3>
+                <div className="grid md:grid-cols-3 gap-6">
+                  <div>
+                    <div className="text-3xl mb-2">🎯</div>
+                    <h4 className="font-semibold mb-2">Lead-Optimized Pages</h4>
+                    <p className="text-red-100 text-sm">Every element designed to convert visitors into booked showings</p>
+                  </div>
+                  <div>
+                    <div className="text-3xl mb-2">📊</div>
+                    <h4 className="font-semibold mb-2">Real ROI Tracking</h4>
+                    <p className="text-red-100 text-sm">See exactly: views → requests → closed deals</p>
+                  </div>
+                  <div>
+                    <div className="text-3xl mb-2">⚡</div>
+                    <h4 className="font-semibold mb-2">Automated Follow-up</h4>
+                    <p className="text-red-100 text-sm">Instant notifications, SMS reminders, calendar sync</p>
+                  </div>
                 </div>
               </div>
-            </div>
-          </div>
+            }
+          />
         </section>
 
         {/* Pricing Section */}
@@ -319,125 +320,127 @@ export default function HomePage() {
           <p className="text-center text-gray-400 mb-12">One plan. Everything included. No hidden fees.</p>
 
           <div className="flex justify-center">
-            <div className="relative">
-              {/* Dark Veil Background */}
-              <div className="absolute inset-0 rounded-2xl overflow-hidden">
-                <DarkVeil 
-                  speed={0.8}
-                  hueShift={237}
-                  noiseIntensity={0.1}
-                  scanlineIntensity={0.05}
-                  scanlineFrequency={0.5}
-                  warpAmount={0.02}
-                />
-              </div>
-              
-              {/* Pricing Card Content */}
-              <div className="relative bg-black/90 backdrop-blur-sm rounded-2xl border border-red-500/30 p-8 text-white shadow-2xl">
-                <div className="text-center">
-                  <div className="absolute -top-4 left-1/2 -translate-x-1/2 bg-black text-red-500 px-6 py-2 rounded-full text-sm font-bold border border-red-500">
-                    ⚡ EVERYTHING INCLUDED
+            <TiltedCard
+              imageSrc=""
+              altText="AgentLinker Pro Pricing"
+              captionText="AgentLinker Pro - $20/month"
+              containerHeight="600px"
+              containerWidth="450px"
+              imageHeight="600px"
+              imageWidth="450px"
+              rotateAmplitude={8}
+              scaleOnHover={1.03}
+              showMobileWarning={false}
+              showTooltip={true}
+              displayOverlayContent={true}
+              overlayContent={
+                <div className="absolute inset-0 bg-black/90 backdrop-blur-sm rounded-2xl border border-red-500/30 p-8 text-white shadow-2xl">
+                  <div className="text-center">
+                    <div className="absolute -top-4 left-1/2 -translate-x-1/2 bg-black text-red-500 px-6 py-2 rounded-full text-sm font-bold border border-red-500">
+                      ⚡ EVERYTHING INCLUDED
+                    </div>
+                    
+                    <h3 className="text-3xl font-bold mb-4 mt-4">AgentLinker Pro</h3>
+                    <div className="text-6xl font-bold mb-2">$20<span className="text-2xl opacity-90">/mo</span></div>
+                    <p className="text-red-100 text-lg mb-8">Your complete real estate growth platform</p>
+                    
+                    <div className="grid grid-cols-2 gap-4 mb-8 text-sm">
+                      <div className="flex items-center gap-2">
+                        <Check className="h-4 w-4 flex-shrink-0" />
+                        <span>Unlimited Listings</span>
+                      </div>
+                      <div className="flex items-center gap-2">
+                        <Check className="h-4 w-4 flex-shrink-0" />
+                        <span>Premium Templates</span>
+                      </div>
+                      <div className="flex items-center gap-2">
+                        <Check className="h-4 w-4 flex-shrink-0" />
+                        <span>Booking Scheduler</span>
+                      </div>
+                      <div className="flex items-center gap-2">
+                        <Check className="h-4 w-4 flex-shrink-0" />
+                        <span>Lead Capture</span>
+                      </div>
+                      <div className="flex items-center gap-2">
+                        <Check className="h-4 w-4 flex-shrink-0" />
+                        <span>Analytics Dashboard</span>
+                      </div>
+                      <div className="flex items-center gap-2">
+                        <Check className="h-4 w-4 flex-shrink-0" />
+                        <span>Custom Domain</span>
+                      </div>
+                    </div>
+                    
+                    <Link 
+                      href="/signup" 
+                      className="block text-center bg-red-600 text-white px-8 py-4 rounded-full hover:bg-red-700 transition-all font-bold text-lg shadow-xl mb-4"
+                    >
+                      Get Started →
+                    </Link>
+                    
+                    <p className="text-center text-red-100 text-sm">
+                      No credit card required • Cancel anytime • Setup in 5 minutes
+                    </p>
                   </div>
-                  
-                  <h3 className="text-3xl font-bold mb-4 mt-4">AgentLinker Pro</h3>
-                  <div className="text-6xl font-bold mb-2">$20<span className="text-2xl opacity-90">/mo</span></div>
-                  <p className="text-red-100 text-lg mb-8">Your complete real estate growth platform</p>
-                  
-                  <div className="grid grid-cols-2 gap-4 mb-8 text-sm">
-                    <div className="flex items-center gap-2">
-                      <Check className="h-4 w-4 flex-shrink-0" />
-                      <span>Unlimited Listings</span>
-                    </div>
-                    <div className="flex items-center gap-2">
-                      <Check className="h-4 w-4 flex-shrink-0" />
-                      <span>Premium Templates</span>
-                    </div>
-                    <div className="flex items-center gap-2">
-                      <Check className="h-4 w-4 flex-shrink-0" />
-                      <span>Booking Scheduler</span>
-                    </div>
-                    <div className="flex items-center gap-2">
-                      <Check className="h-4 w-4 flex-shrink-0" />
-                      <span>Lead Capture</span>
-                    </div>
-                    <div className="flex items-center gap-2">
-                      <Check className="h-4 w-4 flex-shrink-0" />
-                      <span>Analytics Dashboard</span>
-                    </div>
-                    <div className="flex items-center gap-2">
-                      <Check className="h-4 w-4 flex-shrink-0" />
-                      <span>Custom Domain</span>
-                    </div>
-                  </div>
-                  
-                  <Link 
-                    href="/signup" 
-                    className="block text-center bg-red-600 text-white px-8 py-4 rounded-full hover:bg-red-700 transition-all font-bold text-lg shadow-xl mb-4"
-                  >
-                    Get Started →
-                  </Link>
-                  
-                  <p className="text-center text-red-100 text-sm">
-                    No credit card required • Cancel anytime • Setup in 5 minutes
-                  </p>
                 </div>
-              </div>
-            </div>
+              }
+            />
           </div>
         </section>
 
         {/* Verification Badge Card */}
         <div className="mt-12 flex justify-center">
-          <div className="relative max-w-md w-full">
-            {/* Dark Veil Background */}
-            <div className="absolute inset-0 rounded-xl overflow-hidden">
-              <DarkVeil 
-                speed={0.8}
-                hueShift={200}
-                noiseIntensity={0.1}
-                scanlineIntensity={0.05}
-                scanlineFrequency={0.5}
-                warpAmount={0.02}
-              />
-            </div>
-            
-            {/* Card Content */}
-            <div className="relative bg-black/90 backdrop-blur-sm rounded-xl border border-blue-500/30 p-6 text-white shadow-xl">
-              <div className="text-center">
-                <div className="flex items-center justify-center gap-2 mb-3">
-                  <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 20 20">
-                    <path fillRule="evenodd" d="M6.267 3.455a3.066 3.066 0 001.745-.723 3.066 3.066 0 013.976 0 3.066 3.066 0 001.745.723 3.066 3.066 0 012.812 2.812c.051.643.304 1.254.723 1.745a3.066 3.066 0 010 3.976 3.066 3.066 0 00-.723 1.745 3.066 3.066 0 01-2.812 2.812 3.066 3.066 0 00-1.745.723 3.066 3.066 0 01-3.976 0 3.066 3.066 0 00-1.745-.723 3.066 3.066 0 01-2.812-2.812 3.066 3.066 0 00-.723-1.745 3.066 3.066 0 010-3.976 3.066 3.066 0 00.723-1.745 3.066 3.066 0 012.812-2.812zm7.44 5.252a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
-                  </svg>
-                  <span className="font-bold text-lg">Verified Agent Badge</span>
+          <TiltedCard
+            imageSrc=""
+            altText="Verified Agent Badge"
+            captionText="Verified Agent Badge - $25"
+            containerHeight="400px"
+            containerWidth="400px"
+            imageHeight="400px"
+            imageWidth="400px"
+            rotateAmplitude={6}
+            scaleOnHover={1.02}
+            showMobileWarning={false}
+            showTooltip={true}
+            displayOverlayContent={true}
+            overlayContent={
+              <div className="absolute inset-0 bg-black/90 backdrop-blur-sm rounded-xl border border-blue-500/30 p-6 text-white shadow-xl">
+                <div className="text-center">
+                  <div className="flex items-center justify-center gap-2 mb-3">
+                    <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 20 20">
+                      <path fillRule="evenodd" d="M6.267 3.455a3.066 3.066 0 001.745-.723 3.066 3.066 0 013.976 0 3.066 3.066 0 001.745.723 3.066 3.066 0 012.812 2.812c.051.643.304 1.254.723 1.745a3.066 3.066 0 010 3.976 3.066 3.066 0 00-.723 1.745 3.066 3.066 0 01-2.812 2.812 3.066 3.066 0 00-1.745.723 3.066 3.066 0 01-3.976 0 3.066 3.066 0 00-1.745-.723 3.066 3.066 0 01-2.812-2.812 3.066 3.066 0 00-.723-1.745 3.066 3.066 0 010-3.976 3.066 3.066 0 00.723-1.745 3.066 3.066 0 012.812-2.812zm7.44 5.252a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+                    </svg>
+                    <span className="font-bold text-lg">Verified Agent Badge</span>
+                  </div>
+
+                  <div className="text-3xl font-bold mb-2">$25</div>
+                  <p className="text-blue-100 text-sm mb-4">One-time verification fee</p>
+
+                  <div className="text-left space-y-2 mb-4">
+                    <div className="flex items-center gap-2">
+                      <Check className="h-4 w-4 flex-shrink-0" />
+                      <span className="text-sm">Blue checkmark on profile</span>
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <Check className="h-4 w-4 flex-shrink-0" />
+                      <span className="text-sm">Build trust with clients</span>
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <Check className="h-4 w-4 flex-shrink-0" />
+                      <span className="text-sm">Stand out from competition</span>
+                    </div>
+                  </div>
+
+                  <Link
+                    href="/signup"
+                    className="block bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition-all font-semibold text-sm shadow-xl"
+                  >
+                    Get Verified →
+                  </Link>
                 </div>
-
-                <div className="text-3xl font-bold mb-2">$25</div>
-                <p className="text-blue-100 text-sm mb-4">One-time verification fee</p>
-
-                <div className="text-left space-y-2 mb-4">
-                  <div className="flex items-center gap-2">
-                    <Check className="h-4 w-4 flex-shrink-0" />
-                    <span className="text-sm">Blue checkmark on profile</span>
-                  </div>
-                  <div className="flex items-center gap-2">
-                    <Check className="h-4 w-4 flex-shrink-0" />
-                    <span className="text-sm">Build trust with clients</span>
-                  </div>
-                  <div className="flex items-center gap-2">
-                    <Check className="h-4 w-4 flex-shrink-0" />
-                    <span className="text-sm">Stand out from competition</span>
-                  </div>
-                </div>
-
-                <Link
-                  href="/signup"
-                  className="block bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition-all font-semibold text-sm shadow-xl"
-                >
-                  Get Verified →
-                </Link>
               </div>
-            </div>
-          </div>
+            }
+          />
         </div>
 
         {/* Social Proof Section */}
@@ -446,98 +449,101 @@ export default function HomePage() {
           <p className="text-center text-gray-400 mb-16">These numbers don't lie</p>
 
           <div className="grid md:grid-cols-3 gap-8">
-            <div className="relative">
-              {/* Dark Veil Background */}
-              <div className="absolute inset-0 rounded-xl overflow-hidden">
-                <DarkVeil 
-                  speed={0.8}
-                  hueShift={237}
-                  noiseIntensity={0.1}
-                  scanlineIntensity={0.05}
-                  scanlineFrequency={0.5}
-                  warpAmount={0.02}
-                />
-              </div>
-              
-              {/* Card Content */}
-              <div className="relative bg-black/90 backdrop-blur-sm rounded-xl border border-red-500/30 p-8 shadow-xl">
-                <div className="flex items-center gap-3 mb-4">
-                  <img src="https://images.unsplash.com/photo-1494790108755-2616b612b786?w=100&h=100&fit=crop&crop=faces&q=80" alt="Sarah" className="w-12 h-12 rounded-full" />
-                  <div>
-                    <h4 className="font-semibold text-white">Sarah Chen</h4>
-                    <p className="text-sm text-gray-400">Toronto, ON</p>
+            <TiltedCard
+              imageSrc=""
+              altText="Sarah Chen Testimonial"
+              captionText="Sarah Chen - Toronto, ON"
+              containerHeight="300px"
+              containerWidth="100%"
+              imageHeight="300px"
+              imageWidth="100%"
+              rotateAmplitude={6}
+              scaleOnHover={1.02}
+              showMobileWarning={false}
+              showTooltip={true}
+              displayOverlayContent={true}
+              overlayContent={
+                <div className="absolute inset-0 bg-black/90 backdrop-blur-sm rounded-xl border border-red-500/30 p-8 shadow-xl">
+                  <div className="flex items-center gap-3 mb-4">
+                    <img src="https://images.unsplash.com/photo-1494790108755-2616b612b786?w=100&h=100&fit=crop&crop=faces&q=80" alt="Sarah" className="w-12 h-12 rounded-full" />
+                    <div>
+                      <h4 className="font-semibold text-white">Sarah Chen</h4>
+                      <p className="text-sm text-gray-400">Toronto, ON</p>
+                    </div>
+                  </div>
+                  <p className="text-gray-300 mb-4">"My AgentLinker generated 312 views and 7 booked calls in just 2 weeks. That's 3x more than my old setup."</p>
+                  <div className="flex gap-4 text-sm">
+                    <span className="text-red-500 font-bold">312 views</span>
+                    <span className="text-red-500 font-bold">7 calls</span>
+                    <span className="text-red-500 font-bold">2 clients</span>
                   </div>
                 </div>
-                <p className="text-gray-300 mb-4">"My AgentLinker generated 312 views and 7 booked calls in just 2 weeks. That's 3x more than my old setup."</p>
-                <div className="flex gap-4 text-sm">
-                  <span className="text-red-500 font-bold">312 views</span>
-                  <span className="text-red-500 font-bold">7 calls</span>
-                  <span className="text-red-500 font-bold">2 clients</span>
-                </div>
-              </div>
-            </div>
+              }
+            />
 
-            <div className="relative">
-              {/* Dark Veil Background */}
-              <div className="absolute inset-0 rounded-xl overflow-hidden">
-                <DarkVeil 
-                  speed={0.8}
-                  hueShift={237}
-                  noiseIntensity={0.1}
-                  scanlineIntensity={0.05}
-                  scanlineFrequency={0.5}
-                  warpAmount={0.02}
-                />
-              </div>
-              
-              {/* Card Content */}
-              <div className="relative bg-black/90 backdrop-blur-sm rounded-xl border border-red-500/30 p-8 shadow-xl">
-                <div className="flex items-center gap-3 mb-4">
-                  <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=100&h=100&fit=crop&crop=faces&q=80" alt="Mike" className="w-12 h-12 rounded-full" />
-                  <div>
-                    <h4 className="font-semibold text-white">Mike Rodriguez</h4>
-                    <p className="text-sm text-gray-400">Vancouver, BC</p>
+            <TiltedCard
+              imageSrc=""
+              altText="Mike Rodriguez Testimonial"
+              captionText="Mike Rodriguez - Vancouver, BC"
+              containerHeight="300px"
+              containerWidth="100%"
+              imageHeight="300px"
+              imageWidth="100%"
+              rotateAmplitude={6}
+              scaleOnHover={1.02}
+              showMobileWarning={false}
+              showTooltip={true}
+              displayOverlayContent={true}
+              overlayContent={
+                <div className="absolute inset-0 bg-black/90 backdrop-blur-sm rounded-xl border border-red-500/30 p-8 shadow-xl">
+                  <div className="flex items-center gap-3 mb-4">
+                    <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=100&h=100&fit=crop&crop=faces&q=80" alt="Mike" className="w-12 h-12 rounded-full" />
+                    <div>
+                      <h4 className="font-semibold text-white">Mike Rodriguez</h4>
+                      <p className="text-sm text-gray-400">Vancouver, BC</p>
+                    </div>
+                  </div>
+                  <p className="text-gray-300 mb-4">"Finally, a professional page that matches my brand. Closed 2 deals in my first month using AgentLinker."</p>
+                  <div className="flex gap-4 text-sm">
+                    <span className="text-red-500 font-bold">156 views</span>
+                    <span className="text-red-500 font-bold">4 calls</span>
+                    <span className="text-red-500 font-bold">2 deals</span>
                   </div>
                 </div>
-                <p className="text-gray-300 mb-4">"Finally, a professional page that matches my brand. Closed 2 deals in my first month using AgentLinker."</p>
-                <div className="flex gap-4 text-sm">
-                  <span className="text-red-500 font-bold">156 views</span>
-                  <span className="text-red-500 font-bold">4 calls</span>
-                  <span className="text-red-500 font-bold">2 deals</span>
-                </div>
-              </div>
-            </div>
+              }
+            />
 
-            <div className="relative">
-              {/* Dark Veil Background */}
-              <div className="absolute inset-0 rounded-xl overflow-hidden">
-                <DarkVeil 
-                  speed={0.8}
-                  hueShift={237}
-                  noiseIntensity={0.1}
-                  scanlineIntensity={0.05}
-                  scanlineFrequency={0.5}
-                  warpAmount={0.02}
-                />
-              </div>
-              
-              {/* Card Content */}
-              <div className="relative bg-black/90 backdrop-blur-sm rounded-xl border border-red-500/30 p-8 shadow-xl">
-                <div className="flex items-center gap-3 mb-4">
-                  <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=100&h=100&fit=crop&crop=faces&q=80" alt="Lisa" className="w-12 h-12 rounded-full" />
-                  <div>
-                    <h4 className="font-semibold text-white">Lisa Thompson</h4>
-                    <p className="text-sm text-gray-400">Calgary, AB</p>
+            <TiltedCard
+              imageSrc=""
+              altText="Lisa Thompson Testimonial"
+              captionText="Lisa Thompson - Calgary, AB"
+              containerHeight="300px"
+              containerWidth="100%"
+              imageHeight="300px"
+              imageWidth="100%"
+              rotateAmplitude={6}
+              scaleOnHover={1.02}
+              showMobileWarning={false}
+              showTooltip={true}
+              displayOverlayContent={true}
+              overlayContent={
+                <div className="absolute inset-0 bg-black/90 backdrop-blur-sm rounded-xl border border-red-500/30 p-8 shadow-xl">
+                  <div className="flex items-center gap-3 mb-4">
+                    <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=100&h=100&fit=crop&crop=faces&q=80" alt="Lisa" className="w-12 h-12 rounded-full" />
+                    <div>
+                      <h4 className="font-semibold text-white">Lisa Thompson</h4>
+                      <p className="text-sm text-gray-400">Calgary, AB</p>
+                    </div>
+                  </div>
+                  <p className="text-gray-300 mb-4">"The analytics show exactly what's working. My conversion rate doubled since switching to AgentLinker."</p>
+                  <div className="flex gap-4 text-sm">
+                    <span className="text-red-500 font-bold">89 views</span>
+                    <span className="text-red-500 font-bold">3 calls</span>
+                    <span className="text-red-500 font-bold">1 deal</span>
                   </div>
                 </div>
-                <p className="text-gray-300 mb-4">"The analytics show exactly what's working. My conversion rate doubled since switching to AgentLinker."</p>
-                <div className="flex gap-4 text-sm">
-                  <span className="text-red-500 font-bold">89 views</span>
-                  <span className="text-red-500 font-bold">3 calls</span>
-                  <span className="text-red-500 font-bold">1 deal</span>
-                </div>
-              </div>
-            </div>
+              }
+            />
           </div>
         </section>
 
@@ -545,7 +551,7 @@ export default function HomePage() {
         <section className="relative text-white py-20 border-y border-red-900/50 overflow-hidden">
           {/* Dark Veil Background */}
           <div className="absolute inset-0">
-            <DarkVeil 
+            <DarkVeil
               speed={0.8}
               hueShift={237}
               noiseIntensity={0.1}
@@ -554,7 +560,7 @@ export default function HomePage() {
               warpAmount={0.02}
             />
           </div>
-          
+
           {/* Content */}
           <div className="relative max-w-4xl mx-auto text-center px-4">
             <h2 className="text-4xl font-bold mb-6">Ready to Turn Your Bio Into Booked Showings?</h2>
