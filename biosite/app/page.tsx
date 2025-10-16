@@ -305,64 +305,64 @@ export default function HomePage() {
 
           <div className="flex justify-center">
             <TiltedCard
-              imageSrc="https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=400&h=500&fit=crop&crop=center&q=80"
+              imageSrc="https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=400&h=600&fit=crop&crop=center&q=80"
               altText="AgentLinker Pro Pricing Card"
               captionText="AgentLinker Pro - $20/month"
-              containerHeight="500px"
-              containerWidth="400px"
-              imageHeight="500px"
-              imageWidth="400px"
-              rotateAmplitude={12}
-              scaleOnHover={1.05}
+              containerHeight="600px"
+              containerWidth="450px"
+              imageHeight="600px"
+              imageWidth="450px"
+              rotateAmplitude={8}
+              scaleOnHover={1.03}
               showMobileWarning={false}
               showTooltip={true}
               displayOverlayContent={true}
               overlayContent={
-                <div className="absolute inset-0 bg-gradient-to-br from-red-600/90 to-red-800/90 rounded-2xl flex flex-col items-center justify-center p-8 text-white">
-                  <div className="text-center">
-                    <div className="absolute -top-4 left-1/2 -translate-x-1/2 bg-black text-red-500 px-6 py-2 rounded-full text-sm font-bold border border-red-500">
+                <div className="absolute inset-0 bg-gradient-to-br from-red-600/95 to-red-800/95 rounded-2xl flex flex-col items-center justify-center p-6 text-white">
+                  <div className="text-center w-full">
+                    <div className="absolute -top-3 left-1/2 -translate-x-1/2 bg-black text-red-500 px-4 py-1 rounded-full text-xs font-bold border border-red-500">
                       ⚡ EVERYTHING INCLUDED
                     </div>
-
-                    <h3 className="text-3xl font-bold mb-4">AgentLinker Pro</h3>
-                    <div className="text-6xl font-bold mb-2">$20<span className="text-2xl opacity-90">/mo</span></div>
-                    <p className="text-red-100 text-lg mb-8">Your complete real estate growth platform</p>
-
-                    <div className="grid grid-cols-2 gap-4 mb-8 text-sm">
+                    
+                    <h3 className="text-2xl font-bold mb-3 mt-2">AgentLinker Pro</h3>
+                    <div className="text-4xl font-bold mb-2">$20<span className="text-lg opacity-90">/mo</span></div>
+                    <p className="text-red-100 text-sm mb-6">Your complete real estate growth platform</p>
+                    
+                    <div className="grid grid-cols-1 gap-2 mb-6 text-xs">
                       <div className="flex items-center gap-2">
-                        <Check className="h-4 w-4 flex-shrink-0" />
+                        <Check className="h-3 w-3 flex-shrink-0" />
                         <span>Unlimited Listings</span>
                       </div>
                       <div className="flex items-center gap-2">
-                        <Check className="h-4 w-4 flex-shrink-0" />
+                        <Check className="h-3 w-3 flex-shrink-0" />
                         <span>Premium Templates</span>
                       </div>
                       <div className="flex items-center gap-2">
-                        <Check className="h-4 w-4 flex-shrink-0" />
+                        <Check className="h-3 w-3 flex-shrink-0" />
                         <span>Booking Scheduler</span>
                       </div>
                       <div className="flex items-center gap-2">
-                        <Check className="h-4 w-4 flex-shrink-0" />
+                        <Check className="h-3 w-3 flex-shrink-0" />
                         <span>Lead Capture</span>
                       </div>
                       <div className="flex items-center gap-2">
-                        <Check className="h-4 w-4 flex-shrink-0" />
+                        <Check className="h-3 w-3 flex-shrink-0" />
                         <span>Analytics Dashboard</span>
                       </div>
                       <div className="flex items-center gap-2">
-                        <Check className="h-4 w-4 flex-shrink-0" />
+                        <Check className="h-3 w-3 flex-shrink-0" />
                         <span>Custom Domain</span>
                       </div>
                     </div>
-
-                    <Link
-                      href="/signup"
-                      className="block text-center bg-black text-red-500 px-8 py-4 rounded-full hover:bg-neutral-900 transition-all font-bold text-lg border-2 border-red-500 shadow-xl"
+                    
+                    <Link 
+                      href="/signup" 
+                      className="block text-center bg-black text-red-500 px-6 py-3 rounded-full hover:bg-neutral-900 transition-all font-bold text-sm border-2 border-red-500 shadow-xl mb-3"
                     >
                       Get Started →
                     </Link>
-
-                    <p className="text-center text-red-100 text-sm mt-4">
+                    
+                    <p className="text-center text-red-100 text-xs">
                       No credit card required • Cancel anytime • Setup in 5 minutes
                     </p>
                   </div>
@@ -411,124 +411,124 @@ export default function HomePage() {
           </div>
         </div>
 
-      {/* Social Proof Section */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
-        <h2 className="text-4xl font-bold text-center mb-4 text-white">Real Results from Real Agents</h2>
-        <p className="text-center text-gray-400 mb-16">These numbers don't lie</p>
+        {/* Social Proof Section */}
+        <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
+          <h2 className="text-4xl font-bold text-center mb-4 text-white">Real Results from Real Agents</h2>
+          <p className="text-center text-gray-400 mb-16">These numbers don't lie</p>
 
-        <div className="grid md:grid-cols-3 gap-8">
-          <div className="bg-neutral-900 rounded-xl p-8 border border-red-900/30">
-            <div className="flex items-center gap-3 mb-4">
-              <img src="https://images.unsplash.com/photo-1494790108755-2616b612b786?w=100&h=100&fit=crop&crop=faces&q=80" alt="Sarah" className="w-12 h-12 rounded-full" />
+          <div className="grid md:grid-cols-3 gap-8">
+            <div className="bg-neutral-900 rounded-xl p-8 border border-red-900/30">
+              <div className="flex items-center gap-3 mb-4">
+                <img src="https://images.unsplash.com/photo-1494790108755-2616b612b786?w=100&h=100&fit=crop&crop=faces&q=80" alt="Sarah" className="w-12 h-12 rounded-full" />
+                <div>
+                  <h4 className="font-semibold text-white">Sarah Chen</h4>
+                  <p className="text-sm text-gray-400">Toronto, ON</p>
+                </div>
+              </div>
+              <p className="text-gray-300 mb-4">"My AgentLinker generated 312 views and 7 booked calls in just 2 weeks. That's 3x more than my old setup."</p>
+              <div className="flex gap-4 text-sm">
+                <span className="text-red-500 font-bold">312 views</span>
+                <span className="text-red-500 font-bold">7 calls</span>
+                <span className="text-red-500 font-bold">2 clients</span>
+              </div>
+            </div>
+
+            <div className="bg-neutral-900 rounded-xl p-8 border border-red-900/30">
+              <div className="flex items-center gap-3 mb-4">
+                <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=100&h=100&fit=crop&crop=faces&q=80" alt="Mike" className="w-12 h-12 rounded-full" />
+                <div>
+                  <h4 className="font-semibold text-white">Mike Rodriguez</h4>
+                  <p className="text-sm text-gray-400">Vancouver, BC</p>
+                </div>
+              </div>
+              <p className="text-gray-300 mb-4">"Finally, a professional page that matches my brand. Closed 2 deals in my first month using AgentLinker."</p>
+              <div className="flex gap-4 text-sm">
+                <span className="text-red-500 font-bold">156 views</span>
+                <span className="text-red-500 font-bold">4 calls</span>
+                <span className="text-red-500 font-bold">2 deals</span>
+              </div>
+            </div>
+
+            <div className="bg-neutral-900 rounded-xl p-8 border border-red-900/30">
+              <div className="flex items-center gap-3 mb-4">
+                <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=100&h=100&fit=crop&crop=faces&q=80" alt="Lisa" className="w-12 h-12 rounded-full" />
+                <div>
+                  <h4 className="font-semibold text-white">Lisa Thompson</h4>
+                  <p className="text-sm text-gray-400">Calgary, AB</p>
+                </div>
+              </div>
+              <p className="text-gray-300 mb-4">"The analytics show exactly what's working. My conversion rate doubled since switching to AgentLinker."</p>
+              <div className="flex gap-4 text-sm">
+                <span className="text-red-500 font-bold">89 views</span>
+                <span className="text-red-500 font-bold">3 calls</span>
+                <span className="text-red-500 font-bold">1 deal</span>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* CTA Section */}
+        <section className="bg-gradient-to-r from-red-600 to-red-800 text-white py-20 border-y border-red-900/50">
+          <div className="max-w-4xl mx-auto text-center px-4">
+            <h2 className="text-4xl font-bold mb-6">Ready to Turn Your Bio Into Booked Showings?</h2>
+            <p className="text-xl mb-8 opacity-90">
+              Join agents who are already getting 5-10 showing requests monthly. One extra deal pays for AgentLinker for years.
+            </p>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <Link href="/signup" className="bg-black text-red-500 px-8 py-4 rounded-full hover:bg-neutral-900 transition-colors font-semibold text-lg border border-red-500 inline-flex items-center gap-2">
+                Get Started →
+                <ArrowRight className="h-5 w-5" />
+              </Link>
+              <div className="text-sm opacity-80 self-center">
+                No credit card • Setup in 5 minutes • Cancel anytime
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Footer */}
+        <footer className="bg-black text-white py-12 border-t border-red-900/30">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="grid md:grid-cols-4 gap-8">
               <div>
-                <h4 className="font-semibold text-white">Sarah Chen</h4>
-                <p className="text-sm text-gray-400">Toronto, ON</p>
+                <div className="flex items-center mb-4">
+                  <Home className="h-6 w-6 text-red-600" />
+                  <span className="ml-2 text-xl font-bold text-red-500">AgentLinker</span>
+                </div>
+                <p className="text-gray-500 text-sm">
+                  The smart growth hub for real estate agents.
+                </p>
               </div>
-            </div>
-            <p className="text-gray-300 mb-4">"My AgentLinker generated 312 views and 7 booked calls in just 2 weeks. That's 3x more than my old setup."</p>
-            <div className="flex gap-4 text-sm">
-              <span className="text-red-500 font-bold">312 views</span>
-              <span className="text-red-500 font-bold">7 calls</span>
-              <span className="text-red-500 font-bold">2 clients</span>
-            </div>
-          </div>
-
-          <div className="bg-neutral-900 rounded-xl p-8 border border-red-900/30">
-            <div className="flex items-center gap-3 mb-4">
-              <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=100&h=100&fit=crop&crop=faces&q=80" alt="Mike" className="w-12 h-12 rounded-full" />
               <div>
-                <h4 className="font-semibold text-white">Mike Rodriguez</h4>
-                <p className="text-sm text-gray-400">Vancouver, BC</p>
+                <h4 className="font-semibold mb-4 text-red-500">Product</h4>
+                <ul className="space-y-2 text-gray-500 text-sm">
+                  <li><Link href="/features" className="hover:text-red-500">Features</Link></li>
+                  <li><Link href="/pricing" className="hover:text-red-500">Pricing</Link></li>
+                  <li><Link href="/demo" className="hover:text-red-500">Demo</Link></li>
+                </ul>
               </div>
-            </div>
-            <p className="text-gray-300 mb-4">"Finally, a professional page that matches my brand. Closed 2 deals in my first month using AgentLinker."</p>
-            <div className="flex gap-4 text-sm">
-              <span className="text-red-500 font-bold">156 views</span>
-              <span className="text-red-500 font-bold">4 calls</span>
-              <span className="text-red-500 font-bold">2 deals</span>
-            </div>
-          </div>
-
-          <div className="bg-neutral-900 rounded-xl p-8 border border-red-900/30">
-            <div className="flex items-center gap-3 mb-4">
-              <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=100&h=100&fit=crop&crop=faces&q=80" alt="Lisa" className="w-12 h-12 rounded-full" />
               <div>
-                <h4 className="font-semibold text-white">Lisa Thompson</h4>
-                <p className="text-sm text-gray-400">Calgary, AB</p>
+                <h4 className="font-semibold mb-4 text-red-500">Company</h4>
+                <ul className="space-y-2 text-gray-500 text-sm">
+                  <li><Link href="/about" className="hover:text-red-500">About</Link></li>
+                  <li><Link href="/blog" className="hover:text-red-500">Blog</Link></li>
+                  <li><Link href="/contact" className="hover:text-red-500">Contact</Link></li>
+                </ul>
+              </div>
+              <div>
+                <h4 className="font-semibold mb-4 text-red-500">Legal</h4>
+                <ul className="space-y-2 text-gray-500 text-sm">
+                  <li><Link href="/privacy" className="hover:text-red-500">Privacy</Link></li>
+                  <li><Link href="/terms" className="hover:text-red-500">Terms</Link></li>
+                </ul>
               </div>
             </div>
-            <p className="text-gray-300 mb-4">"The analytics show exactly what's working. My conversion rate doubled since switching to AgentLinker."</p>
-            <div className="flex gap-4 text-sm">
-              <span className="text-red-500 font-bold">89 views</span>
-              <span className="text-red-500 font-bold">3 calls</span>
-              <span className="text-red-500 font-bold">1 deal</span>
+            <div className="border-t border-red-900/30 mt-8 pt-8 text-center text-gray-600 text-sm">
+              © 2025 AgentLinker. All rights reserved.
             </div>
           </div>
-        </div>
-      </section>
-
-      {/* CTA Section */}
-      <section className="bg-gradient-to-r from-red-600 to-red-800 text-white py-20 border-y border-red-900/50">
-        <div className="max-w-4xl mx-auto text-center px-4">
-          <h2 className="text-4xl font-bold mb-6">Ready to Turn Your Bio Into Booked Showings?</h2>
-          <p className="text-xl mb-8 opacity-90">
-            Join agents who are already getting 5-10 showing requests monthly. One extra deal pays for AgentLinker for years.
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Link href="/signup" className="bg-black text-red-500 px-8 py-4 rounded-full hover:bg-neutral-900 transition-colors font-semibold text-lg border border-red-500 inline-flex items-center gap-2">
-              Get Started →
-              <ArrowRight className="h-5 w-5" />
-            </Link>
-            <div className="text-sm opacity-80 self-center">
-              No credit card • Setup in 5 minutes • Cancel anytime
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Footer */}
-      <footer className="bg-black text-white py-12 border-t border-red-900/30">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid md:grid-cols-4 gap-8">
-            <div>
-              <div className="flex items-center mb-4">
-                <Home className="h-6 w-6 text-red-600" />
-                <span className="ml-2 text-xl font-bold text-red-500">AgentLinker</span>
-              </div>
-              <p className="text-gray-500 text-sm">
-                The smart growth hub for real estate agents.
-              </p>
-            </div>
-            <div>
-              <h4 className="font-semibold mb-4 text-red-500">Product</h4>
-              <ul className="space-y-2 text-gray-500 text-sm">
-                <li><Link href="/features" className="hover:text-red-500">Features</Link></li>
-                <li><Link href="/pricing" className="hover:text-red-500">Pricing</Link></li>
-                <li><Link href="/demo" className="hover:text-red-500">Demo</Link></li>
-              </ul>
-            </div>
-            <div>
-              <h4 className="font-semibold mb-4 text-red-500">Company</h4>
-              <ul className="space-y-2 text-gray-500 text-sm">
-                <li><Link href="/about" className="hover:text-red-500">About</Link></li>
-                <li><Link href="/blog" className="hover:text-red-500">Blog</Link></li>
-                <li><Link href="/contact" className="hover:text-red-500">Contact</Link></li>
-              </ul>
-            </div>
-            <div>
-              <h4 className="font-semibold mb-4 text-red-500">Legal</h4>
-              <ul className="space-y-2 text-gray-500 text-sm">
-                <li><Link href="/privacy" className="hover:text-red-500">Privacy</Link></li>
-                <li><Link href="/terms" className="hover:text-red-500">Terms</Link></li>
-              </ul>
-            </div>
-          </div>
-          <div className="border-t border-red-900/30 mt-8 pt-8 text-center text-gray-600 text-sm">
-            © 2025 AgentLinker. All rights reserved.
-          </div>
-        </div>
-      </footer>
-    </div>
+        </footer>
+      </div>
     </div >
   )
 }
