@@ -4,7 +4,7 @@ import { useState } from 'react'
 import { useRouter } from 'next/navigation'
 import Link from 'next/link'
 import { createClient } from '@/lib/supabase'
-import { Home, ArrowRight } from 'lucide-react'
+import { ArrowRight } from 'lucide-react'
 import DarkVeil from '@/components/DarkVeil'
 
 export default function LoginPage() {
@@ -41,7 +41,7 @@ export default function LoginPage() {
     <div className="min-h-screen bg-black relative overflow-hidden">
       {/* Dark Veil Background */}
       <div className="absolute inset-0">
-        <DarkVeil 
+        <DarkVeil
           speed={0.8}
           hueShift={237}
           noiseIntensity={0.1}
@@ -55,7 +55,11 @@ export default function LoginPage() {
         <div className="max-w-md w-full">
           <div className="text-center mb-8">
             <Link href="/" className="inline-flex items-center justify-center mb-6">
-              <Home className="h-10 w-10 text-red-600" />
+              <img 
+                src="/agentlinkerpfp.png" 
+                alt="AgentLinker" 
+                className="h-12 w-12 rounded-full"
+              />
               <span className="ml-2 text-3xl font-bold bg-gradient-to-r from-red-600 to-red-400 bg-clip-text text-transparent">
                 AgentLinker
               </span>
@@ -67,7 +71,7 @@ export default function LoginPage() {
           {/* ROI Reminder */}
           <div className="relative mb-6">
             <div className="absolute inset-0 rounded-xl overflow-hidden">
-              <DarkVeil 
+              <DarkVeil
                 speed={0.8}
                 hueShift={200}
                 noiseIntensity={0.1}
@@ -85,7 +89,7 @@ export default function LoginPage() {
 
           <div className="relative">
             <div className="absolute inset-0 rounded-2xl overflow-hidden">
-              <DarkVeil 
+              <DarkVeil
                 speed={0.8}
                 hueShift={237}
                 noiseIntensity={0.1}
@@ -94,7 +98,7 @@ export default function LoginPage() {
                 warpAmount={0.02}
               />
             </div>
-            
+
             <div className="relative bg-black/90 backdrop-blur-sm rounded-2xl border border-red-500/30 shadow-2xl p-8">
               {error && (
                 <div className="bg-red-500/20 text-red-200 p-4 rounded-lg mb-6 text-sm border border-red-500/30">
