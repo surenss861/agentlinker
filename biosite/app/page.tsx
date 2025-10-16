@@ -276,23 +276,38 @@ export default function HomePage() {
           </div>
 
           {/* What You Get Instead */}
-          <div className="bg-gradient-to-r from-red-600 to-red-800 rounded-2xl p-8 text-center text-white">
-            <h3 className="text-2xl font-bold mb-6">Instead, You Get:</h3>
-            <div className="grid md:grid-cols-3 gap-6">
-              <div>
-                <div className="text-3xl mb-2">🎯</div>
-                <h4 className="font-semibold mb-2">Lead-Optimized Pages</h4>
-                <p className="text-red-100 text-sm">Every element designed to convert visitors into booked showings</p>
-              </div>
-              <div>
-                <div className="text-3xl mb-2">📊</div>
-                <h4 className="font-semibold mb-2">Real ROI Tracking</h4>
-                <p className="text-red-100 text-sm">See exactly: views → requests → closed deals</p>
-              </div>
-              <div>
-                <div className="text-3xl mb-2">⚡</div>
-                <h4 className="font-semibold mb-2">Automated Follow-up</h4>
-                <p className="text-red-100 text-sm">Instant notifications, SMS reminders, calendar sync</p>
+          <div className="relative">
+            {/* Dark Veil Background */}
+            <div className="absolute inset-0 rounded-2xl overflow-hidden">
+              <DarkVeil 
+                speed={0.8}
+                hueShift={237}
+                noiseIntensity={0.1}
+                scanlineIntensity={0.05}
+                scanlineFrequency={0.5}
+                warpAmount={0.02}
+              />
+            </div>
+            
+            {/* Card Content */}
+            <div className="relative bg-black/90 backdrop-blur-sm rounded-2xl border border-red-500/30 p-8 text-center text-white shadow-2xl">
+              <h3 className="text-2xl font-bold mb-6">Instead, You Get:</h3>
+              <div className="grid md:grid-cols-3 gap-6">
+                <div>
+                  <div className="text-3xl mb-2">🎯</div>
+                  <h4 className="font-semibold mb-2">Lead-Optimized Pages</h4>
+                  <p className="text-red-100 text-sm">Every element designed to convert visitors into booked showings</p>
+                </div>
+                <div>
+                  <div className="text-3xl mb-2">📊</div>
+                  <h4 className="font-semibold mb-2">Real ROI Tracking</h4>
+                  <p className="text-red-100 text-sm">See exactly: views → requests → closed deals</p>
+                </div>
+                <div>
+                  <div className="text-3xl mb-2">⚡</div>
+                  <h4 className="font-semibold mb-2">Automated Follow-up</h4>
+                  <p className="text-red-100 text-sm">Instant notifications, SMS reminders, calendar sync</p>
+                </div>
               </div>
             </div>
           </div>
@@ -373,39 +388,54 @@ export default function HomePage() {
 
         {/* Verification Badge Card */}
         <div className="mt-12 flex justify-center">
-          <div className="bg-gradient-to-br from-blue-600 to-blue-800 rounded-xl shadow-xl p-6 text-white border border-blue-500 max-w-md w-full">
-            <div className="text-center">
-              <div className="flex items-center justify-center gap-2 mb-3">
-                <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 20 20">
-                  <path fillRule="evenodd" d="M6.267 3.455a3.066 3.066 0 001.745-.723 3.066 3.066 0 013.976 0 3.066 3.066 0 001.745.723 3.066 3.066 0 012.812 2.812c.051.643.304 1.254.723 1.745a3.066 3.066 0 010 3.976 3.066 3.066 0 00-.723 1.745 3.066 3.066 0 01-2.812 2.812 3.066 3.066 0 00-1.745.723 3.066 3.066 0 01-3.976 0 3.066 3.066 0 00-1.745-.723 3.066 3.066 0 01-2.812-2.812 3.066 3.066 0 00-.723-1.745 3.066 3.066 0 010-3.976 3.066 3.066 0 00.723-1.745 3.066 3.066 0 012.812-2.812zm7.44 5.252a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
-                </svg>
-                <span className="font-bold text-lg">Verified Agent Badge</span>
+          <div className="relative max-w-md w-full">
+            {/* Dark Veil Background */}
+            <div className="absolute inset-0 rounded-xl overflow-hidden">
+              <DarkVeil 
+                speed={0.8}
+                hueShift={200}
+                noiseIntensity={0.1}
+                scanlineIntensity={0.05}
+                scanlineFrequency={0.5}
+                warpAmount={0.02}
+              />
+            </div>
+            
+            {/* Card Content */}
+            <div className="relative bg-black/90 backdrop-blur-sm rounded-xl border border-blue-500/30 p-6 text-white shadow-xl">
+              <div className="text-center">
+                <div className="flex items-center justify-center gap-2 mb-3">
+                  <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 20 20">
+                    <path fillRule="evenodd" d="M6.267 3.455a3.066 3.066 0 001.745-.723 3.066 3.066 0 013.976 0 3.066 3.066 0 001.745.723 3.066 3.066 0 012.812 2.812c.051.643.304 1.254.723 1.745a3.066 3.066 0 010 3.976 3.066 3.066 0 00-.723 1.745 3.066 3.066 0 01-2.812 2.812 3.066 3.066 0 00-1.745.723 3.066 3.066 0 01-3.976 0 3.066 3.066 0 00-1.745-.723 3.066 3.066 0 01-2.812-2.812 3.066 3.066 0 00-.723-1.745 3.066 3.066 0 010-3.976 3.066 3.066 0 00.723-1.745 3.066 3.066 0 012.812-2.812zm7.44 5.252a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+                  </svg>
+                  <span className="font-bold text-lg">Verified Agent Badge</span>
+                </div>
+
+                <div className="text-3xl font-bold mb-2">$25</div>
+                <p className="text-blue-100 text-sm mb-4">One-time verification fee</p>
+
+                <div className="text-left space-y-2 mb-4">
+                  <div className="flex items-center gap-2">
+                    <Check className="h-4 w-4 flex-shrink-0" />
+                    <span className="text-sm">Blue checkmark on profile</span>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <Check className="h-4 w-4 flex-shrink-0" />
+                    <span className="text-sm">Build trust with clients</span>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <Check className="h-4 w-4 flex-shrink-0" />
+                    <span className="text-sm">Stand out from competition</span>
+                  </div>
+                </div>
+
+                <Link
+                  href="/signup"
+                  className="block bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition-all font-semibold text-sm shadow-xl"
+                >
+                  Get Verified →
+                </Link>
               </div>
-
-              <div className="text-3xl font-bold mb-2">$25</div>
-              <p className="text-blue-100 text-sm mb-4">One-time verification fee</p>
-
-              <div className="text-left space-y-2 mb-4">
-                <div className="flex items-center gap-2">
-                  <Check className="h-4 w-4 flex-shrink-0" />
-                  <span className="text-sm">Blue checkmark on profile</span>
-                </div>
-                <div className="flex items-center gap-2">
-                  <Check className="h-4 w-4 flex-shrink-0" />
-                  <span className="text-sm">Build trust with clients</span>
-                </div>
-                <div className="flex items-center gap-2">
-                  <Check className="h-4 w-4 flex-shrink-0" />
-                  <span className="text-sm">Stand out from competition</span>
-                </div>
-              </div>
-
-              <Link
-                href="/signup"
-                className="block bg-white text-blue-600 px-6 py-3 rounded-lg hover:bg-blue-50 transition-all font-semibold text-sm border-2 border-white"
-              >
-                Get Verified →
-              </Link>
             </div>
           </div>
         </div>
@@ -416,65 +446,123 @@ export default function HomePage() {
           <p className="text-center text-gray-400 mb-16">These numbers don't lie</p>
 
           <div className="grid md:grid-cols-3 gap-8">
-            <div className="bg-neutral-900 rounded-xl p-8 border border-red-900/30">
-              <div className="flex items-center gap-3 mb-4">
-                <img src="https://images.unsplash.com/photo-1494790108755-2616b612b786?w=100&h=100&fit=crop&crop=faces&q=80" alt="Sarah" className="w-12 h-12 rounded-full" />
-                <div>
-                  <h4 className="font-semibold text-white">Sarah Chen</h4>
-                  <p className="text-sm text-gray-400">Toronto, ON</p>
-                </div>
+            <div className="relative">
+              {/* Dark Veil Background */}
+              <div className="absolute inset-0 rounded-xl overflow-hidden">
+                <DarkVeil 
+                  speed={0.8}
+                  hueShift={237}
+                  noiseIntensity={0.1}
+                  scanlineIntensity={0.05}
+                  scanlineFrequency={0.5}
+                  warpAmount={0.02}
+                />
               </div>
-              <p className="text-gray-300 mb-4">"My AgentLinker generated 312 views and 7 booked calls in just 2 weeks. That's 3x more than my old setup."</p>
-              <div className="flex gap-4 text-sm">
-                <span className="text-red-500 font-bold">312 views</span>
-                <span className="text-red-500 font-bold">7 calls</span>
-                <span className="text-red-500 font-bold">2 clients</span>
+              
+              {/* Card Content */}
+              <div className="relative bg-black/90 backdrop-blur-sm rounded-xl border border-red-500/30 p-8 shadow-xl">
+                <div className="flex items-center gap-3 mb-4">
+                  <img src="https://images.unsplash.com/photo-1494790108755-2616b612b786?w=100&h=100&fit=crop&crop=faces&q=80" alt="Sarah" className="w-12 h-12 rounded-full" />
+                  <div>
+                    <h4 className="font-semibold text-white">Sarah Chen</h4>
+                    <p className="text-sm text-gray-400">Toronto, ON</p>
+                  </div>
+                </div>
+                <p className="text-gray-300 mb-4">"My AgentLinker generated 312 views and 7 booked calls in just 2 weeks. That's 3x more than my old setup."</p>
+                <div className="flex gap-4 text-sm">
+                  <span className="text-red-500 font-bold">312 views</span>
+                  <span className="text-red-500 font-bold">7 calls</span>
+                  <span className="text-red-500 font-bold">2 clients</span>
+                </div>
               </div>
             </div>
 
-            <div className="bg-neutral-900 rounded-xl p-8 border border-red-900/30">
-              <div className="flex items-center gap-3 mb-4">
-                <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=100&h=100&fit=crop&crop=faces&q=80" alt="Mike" className="w-12 h-12 rounded-full" />
-                <div>
-                  <h4 className="font-semibold text-white">Mike Rodriguez</h4>
-                  <p className="text-sm text-gray-400">Vancouver, BC</p>
-                </div>
+            <div className="relative">
+              {/* Dark Veil Background */}
+              <div className="absolute inset-0 rounded-xl overflow-hidden">
+                <DarkVeil 
+                  speed={0.8}
+                  hueShift={237}
+                  noiseIntensity={0.1}
+                  scanlineIntensity={0.05}
+                  scanlineFrequency={0.5}
+                  warpAmount={0.02}
+                />
               </div>
-              <p className="text-gray-300 mb-4">"Finally, a professional page that matches my brand. Closed 2 deals in my first month using AgentLinker."</p>
-              <div className="flex gap-4 text-sm">
-                <span className="text-red-500 font-bold">156 views</span>
-                <span className="text-red-500 font-bold">4 calls</span>
-                <span className="text-red-500 font-bold">2 deals</span>
+              
+              {/* Card Content */}
+              <div className="relative bg-black/90 backdrop-blur-sm rounded-xl border border-red-500/30 p-8 shadow-xl">
+                <div className="flex items-center gap-3 mb-4">
+                  <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=100&h=100&fit=crop&crop=faces&q=80" alt="Mike" className="w-12 h-12 rounded-full" />
+                  <div>
+                    <h4 className="font-semibold text-white">Mike Rodriguez</h4>
+                    <p className="text-sm text-gray-400">Vancouver, BC</p>
+                  </div>
+                </div>
+                <p className="text-gray-300 mb-4">"Finally, a professional page that matches my brand. Closed 2 deals in my first month using AgentLinker."</p>
+                <div className="flex gap-4 text-sm">
+                  <span className="text-red-500 font-bold">156 views</span>
+                  <span className="text-red-500 font-bold">4 calls</span>
+                  <span className="text-red-500 font-bold">2 deals</span>
+                </div>
               </div>
             </div>
 
-            <div className="bg-neutral-900 rounded-xl p-8 border border-red-900/30">
-              <div className="flex items-center gap-3 mb-4">
-                <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=100&h=100&fit=crop&crop=faces&q=80" alt="Lisa" className="w-12 h-12 rounded-full" />
-                <div>
-                  <h4 className="font-semibold text-white">Lisa Thompson</h4>
-                  <p className="text-sm text-gray-400">Calgary, AB</p>
-                </div>
+            <div className="relative">
+              {/* Dark Veil Background */}
+              <div className="absolute inset-0 rounded-xl overflow-hidden">
+                <DarkVeil 
+                  speed={0.8}
+                  hueShift={237}
+                  noiseIntensity={0.1}
+                  scanlineIntensity={0.05}
+                  scanlineFrequency={0.5}
+                  warpAmount={0.02}
+                />
               </div>
-              <p className="text-gray-300 mb-4">"The analytics show exactly what's working. My conversion rate doubled since switching to AgentLinker."</p>
-              <div className="flex gap-4 text-sm">
-                <span className="text-red-500 font-bold">89 views</span>
-                <span className="text-red-500 font-bold">3 calls</span>
-                <span className="text-red-500 font-bold">1 deal</span>
+              
+              {/* Card Content */}
+              <div className="relative bg-black/90 backdrop-blur-sm rounded-xl border border-red-500/30 p-8 shadow-xl">
+                <div className="flex items-center gap-3 mb-4">
+                  <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=100&h=100&fit=crop&crop=faces&q=80" alt="Lisa" className="w-12 h-12 rounded-full" />
+                  <div>
+                    <h4 className="font-semibold text-white">Lisa Thompson</h4>
+                    <p className="text-sm text-gray-400">Calgary, AB</p>
+                  </div>
+                </div>
+                <p className="text-gray-300 mb-4">"The analytics show exactly what's working. My conversion rate doubled since switching to AgentLinker."</p>
+                <div className="flex gap-4 text-sm">
+                  <span className="text-red-500 font-bold">89 views</span>
+                  <span className="text-red-500 font-bold">3 calls</span>
+                  <span className="text-red-500 font-bold">1 deal</span>
+                </div>
               </div>
             </div>
           </div>
         </section>
 
         {/* CTA Section */}
-        <section className="bg-gradient-to-r from-red-600 to-red-800 text-white py-20 border-y border-red-900/50">
-          <div className="max-w-4xl mx-auto text-center px-4">
+        <section className="relative text-white py-20 border-y border-red-900/50 overflow-hidden">
+          {/* Dark Veil Background */}
+          <div className="absolute inset-0">
+            <DarkVeil 
+              speed={0.8}
+              hueShift={237}
+              noiseIntensity={0.1}
+              scanlineIntensity={0.05}
+              scanlineFrequency={0.5}
+              warpAmount={0.02}
+            />
+          </div>
+          
+          {/* Content */}
+          <div className="relative max-w-4xl mx-auto text-center px-4">
             <h2 className="text-4xl font-bold mb-6">Ready to Turn Your Bio Into Booked Showings?</h2>
             <p className="text-xl mb-8 opacity-90">
               Join agents who are already getting 5-10 showing requests monthly. One extra deal pays for AgentLinker for years.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Link href="/signup" className="bg-black text-red-500 px-8 py-4 rounded-full hover:bg-neutral-900 transition-colors font-semibold text-lg border border-red-500 inline-flex items-center gap-2">
+              <Link href="/signup" className="bg-black text-red-500 px-8 py-4 rounded-full hover:bg-neutral-900 transition-colors font-semibold text-lg border border-red-500 inline-flex items-center gap-2 shadow-xl">
                 Get Started →
                 <ArrowRight className="h-5 w-5" />
               </Link>
