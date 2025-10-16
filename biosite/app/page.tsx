@@ -124,7 +124,7 @@ export default function HomePage() {
                 <div className="text-center">
                   <div className="w-24 h-24 rounded-full mx-auto mb-4 overflow-hidden border-4 border-red-600 shadow-lg shadow-red-900/50">
                     <img 
-                      src="https://images.unsplash.com/photo-1560250097-0b93528c311a?w=200&h=200&fit=crop&crop=faces" 
+                      src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=300&h=300&fit=crop&crop=faces&q=80" 
                       alt="John Doe"
                       className="w-full h-full object-cover"
                     />
@@ -148,7 +148,7 @@ export default function HomePage() {
                   <div className="bg-black rounded-lg overflow-hidden border border-red-900/40 hover:border-red-600/60 transition-colors">
                     <div className="relative h-32 overflow-hidden">
                       <img 
-                        src="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=400&h=250&fit=crop" 
+                        src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=800&h=500&fit=crop&crop=center&q=80" 
                         alt="Modern house"
                         className="w-full h-full object-cover"
                       />
@@ -171,7 +171,7 @@ export default function HomePage() {
                   <div className="bg-black rounded-lg overflow-hidden border border-red-900/40 hover:border-red-600/60 transition-colors">
                     <div className="relative h-32 overflow-hidden">
                       <img 
-                        src="https://images.unsplash.com/photo-1613490493576-7fde63acd811?w=400&h=250&fit=crop" 
+                        src="https://images.unsplash.com/photo-1605276374104-dee2a0ed3cd6?w=800&h=500&fit=crop&crop=center&q=80" 
                         alt="Luxury house"
                         className="w-full h-full object-cover"
                       />
@@ -415,7 +415,7 @@ export default function HomePage() {
         <div className="grid md:grid-cols-3 gap-8">
           <div className="bg-neutral-900 rounded-xl p-8 border border-red-900/30">
             <div className="flex items-center gap-3 mb-4">
-              <img src="https://images.unsplash.com/photo-1494790108755-2616b612b786?w=50&h=50&fit=crop&crop=faces" alt="Sarah" className="w-12 h-12 rounded-full" />
+              <img src="https://images.unsplash.com/photo-1494790108755-2616b612b786?w=100&h=100&fit=crop&crop=faces&q=80" alt="Sarah" className="w-12 h-12 rounded-full" />
               <div>
                 <h4 className="font-semibold text-white">Sarah Chen</h4>
                 <p className="text-sm text-gray-400">Toronto, ON</p>
@@ -431,7 +431,7 @@ export default function HomePage() {
 
           <div className="bg-neutral-900 rounded-xl p-8 border border-red-900/30">
             <div className="flex items-center gap-3 mb-4">
-              <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=50&h=50&fit=crop&crop=faces" alt="Mike" className="w-12 h-12 rounded-full" />
+              <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=100&h=100&fit=crop&crop=faces&q=80" alt="Mike" className="w-12 h-12 rounded-full" />
               <div>
                 <h4 className="font-semibold text-white">Mike Rodriguez</h4>
                 <p className="text-sm text-gray-400">Vancouver, BC</p>
@@ -447,7 +447,7 @@ export default function HomePage() {
 
           <div className="bg-neutral-900 rounded-xl p-8 border border-red-900/30">
             <div className="flex items-center gap-3 mb-4">
-              <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=50&h=50&fit=crop&crop=faces" alt="Lisa" className="w-12 h-12 rounded-full" />
+              <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=100&h=100&fit=crop&crop=faces&q=80" alt="Lisa" className="w-12 h-12 rounded-full" />
               <div>
                 <h4 className="font-semibold text-white">Lisa Thompson</h4>
                 <p className="text-sm text-gray-400">Calgary, AB</p>
