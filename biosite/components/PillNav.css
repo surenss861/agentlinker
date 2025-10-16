@@ -66,7 +66,7 @@
   list-style: none;
   display: flex;
   align-items: stretch;
-  gap: var(--pill-gap);
+  gap: 3px;
   margin: 0;
   padding: 3px;
   height: 100%;
@@ -276,11 +276,16 @@
   background: #000000;
   border: 1px solid #ef4444;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
-  padding: 4px;
+  padding: 3px;
   border-radius: 25px;
   height: 42px;
   display: flex;
   align-items: center;
+}
+
+.custom-nav .pill-list {
+  gap: 3px;
+  padding: 3px;
 }
 
 .custom-nav .pill {
@@ -288,7 +293,7 @@
   color: #000000;
   font-weight: 600;
   font-size: 14px;
-  padding: 0 20px;
+  padding: 0 18px;
   height: 34px;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   position: relative;
@@ -330,19 +335,19 @@
   .custom-nav {
     gap: 0.8rem;
   }
-  
+
   .custom-nav .pill {
     font-size: 13px;
     padding: 0 18px;
     height: 32px;
   }
-  
+
   .custom-nav .pill-logo {
     width: 45px;
     height: 45px;
     padding: 6px;
   }
-  
+
   .custom-nav .pill-nav-items {
     padding: 3px;
     height: 38px;
