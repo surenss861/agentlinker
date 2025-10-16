@@ -1,7 +1,7 @@
 import Link from 'next/link'
 import { ArrowRight, Home, Calendar, TrendingUp, Star, Check } from 'lucide-react'
 import DarkVeil from '@/components/DarkVeil'
-import PillNav from '@/components/PillNav'
+import CardNav from '@/components/CardNav'
 
 export default function HomePage() {
   return (
@@ -23,22 +23,44 @@ export default function HomePage() {
         {/* Subtle overlay for better text readability */}
         <div className="fixed inset-0 bg-black/20 pointer-events-none z-10"></div>
         
-        {/* Pill Navigation */}
-        <PillNav
+        {/* Card Navigation */}
+        <CardNav
           logo="/agentlinkerpfp.png"
           logoAlt="AgentLinker Logo"
           items={[
-            { label: 'Sign In', href: '/login' },
-            { label: 'Get Started', href: '/signup' }
+            {
+              label: "About",
+              bgColor: "#0D0716",
+              textColor: "#fff",
+              links: [
+                { label: "Company", ariaLabel: "About Company", href: "/about" },
+                { label: "Careers", ariaLabel: "About Careers", href: "/careers" }
+              ]
+            },
+            {
+              label: "Features", 
+              bgColor: "#170D27",
+              textColor: "#fff",
+              links: [
+                { label: "Analytics", ariaLabel: "Analytics Features", href: "/features/analytics" },
+                { label: "Bookings", ariaLabel: "Booking Features", href: "/features/bookings" }
+              ]
+            },
+            {
+              label: "Contact",
+              bgColor: "#271E37", 
+              textColor: "#fff",
+              links: [
+                { label: "Email", ariaLabel: "Email us", href: "mailto:support@agentlinker.ca" },
+                { label: "Support", ariaLabel: "Support", href: "/support" }
+              ]
+            }
           ]}
-          activeHref="/"
-          className="custom-nav centered-nav"
-          ease="power2.easeOut"
           baseColor="#000000"
-          pillColor="#ffffff"
-          hoveredPillTextColor="#ffffff"
-          pillTextColor="#000000"
-          initialLoadAnimation={true}
+          menuColor="#ffffff"
+          buttonBgColor="#ef4444"
+          buttonTextColor="#ffffff"
+          ease="power3.out"
         />
 
         {/* Hero Section */}
