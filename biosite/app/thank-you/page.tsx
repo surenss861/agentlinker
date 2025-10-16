@@ -1,11 +1,11 @@
 'use client'
 
-import { useEffect, useState } from 'react'
+import { useEffect, useState, Suspense } from 'react'
 import { useRouter, useSearchParams } from 'next/navigation'
 import { CheckCircle, ArrowRight, Crown, Zap } from 'lucide-react'
 import { motion } from 'framer-motion'
 
-export default function ThankYouPage() {
+function ThankYouContent() {
   const router = useRouter()
   const searchParams = useSearchParams()
   const [tier, setTier] = useState<string>('')
@@ -155,5 +155,17 @@ export default function ThankYouPage() {
         </motion.p>
       </motion.div>
     </div>
+  )
+}
+
+export default function ThankYouPage() {
+  return (
+    <Suspense fallback={
+      <div className="min-h-screen bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 flex items-center justify-center">
+        <div className="animate-spin rounded-full h-32 w-32 border-b-2 border-[#F3C77E]"></div>
+      </div>
+    }>
+      <ThankYouContent />
+    </Suspense>
   )
 }
