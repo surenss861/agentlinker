@@ -1,9 +1,26 @@
 import Link from 'next/link'
 import { ArrowRight, Home, Calendar, TrendingUp, Star, Check } from 'lucide-react'
+import DarkVeil from '@/components/DarkVeil'
 
 export default function HomePage() {
   return (
-    <div className="min-h-screen bg-black">
+    <div className="min-h-screen bg-black relative">
+      {/* Dark Veil Background for entire page */}
+      <div className="fixed inset-0 z-0">
+        <DarkVeil 
+          speed={0.5}
+          hueShift={237}
+          noiseIntensity={0}
+          scanlineIntensity={0}
+          scanlineFrequency={0}
+          warpAmount={0}
+        />
+      </div>
+      
+      {/* Page Content */}
+      <div className="relative z-20">
+        {/* Subtle overlay for better text readability */}
+        <div className="fixed inset-0 bg-black/20 pointer-events-none z-10"></div>
       {/* Navigation */}
       <nav className="border-b border-red-900/30 bg-black/95 backdrop-blur-sm sticky top-0 z-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -77,8 +94,21 @@ export default function HomePage() {
 
         {/* Hero Image/Demo */}
         <div className="mt-16 relative">
-          <div className="bg-gradient-to-r from-red-950 to-black rounded-2xl p-8 shadow-2xl border border-red-900/30">
-            <div className="bg-neutral-900 rounded-xl shadow-lg p-6 border border-red-900/20">
+          <div className="relative rounded-2xl p-8 shadow-2xl border border-red-900/30 overflow-hidden">
+            {/* Dark Veil Background */}
+            <div className="absolute inset-0 z-0">
+              <DarkVeil 
+                speed={1.1}
+                hueShift={237}
+                noiseIntensity={0}
+                scanlineIntensity={0}
+                scanlineFrequency={0}
+                warpAmount={0}
+              />
+            </div>
+            
+            {/* Demo Content */}
+            <div className="relative z-10 bg-neutral-900/90 backdrop-blur-sm rounded-xl shadow-lg p-6 border border-red-900/20">
               <div className="flex items-center gap-2 mb-4">
                 <div className="flex gap-1.5">
                   <div className="w-3 h-3 rounded-full bg-red-600"></div>
@@ -494,6 +524,7 @@ export default function HomePage() {
           </div>
         </div>
       </footer>
+      </div>
     </div>
   )
 }

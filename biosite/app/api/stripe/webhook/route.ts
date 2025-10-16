@@ -47,9 +47,9 @@ export async function POST(request: NextRequest) {
       if (session.payment_status !== 'paid') {
         console.log('❌ Payment not successful, skipping subscription update')
         console.log('Payment status:', session.payment_status)
-        return NextResponse.json({ 
+        return NextResponse.json({
           message: 'Payment not successful, subscription not updated',
-          payment_status: session.payment_status 
+          payment_status: session.payment_status
         })
       }
 
