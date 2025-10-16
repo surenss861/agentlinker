@@ -5,6 +5,7 @@ import { useRouter } from 'next/navigation'
 import { createClient } from '@/lib/supabase'
 import { Home, Globe } from 'lucide-react'
 import { COUNTRIES } from '@/lib/utils/locations'
+import Beams from '@/components/Beams'
 
 export default function OnboardingPage() {
   const [loading, setLoading] = useState(false)
@@ -74,8 +75,24 @@ export default function OnboardingPage() {
   }
 
   return (
-    <div className="min-h-screen bg-black py-12 px-4">
-      <div className="max-w-2xl mx-auto">
+    <div className="min-h-screen bg-black relative overflow-hidden">
+      {/* Beams Background */}
+      <div className="absolute inset-0">
+        <Beams 
+          beamWidth={3}
+          beamHeight={30}
+          beamNumber={20}
+          lightColor="#ffffff"
+          speed={2}
+          noiseIntensity={1.75}
+          scale={0.2}
+          rotation={30}
+        />
+      </div>
+      
+      {/* Content */}
+      <div className="relative z-10 py-12 px-4">
+        <div className="max-w-2xl mx-auto">
         <div className="text-center mb-8">
           <Home className="h-12 w-12 text-red-600 mx-auto mb-4" />
           <h1 className="text-3xl font-bold text-white mb-2">Complete Your Profile</h1>
