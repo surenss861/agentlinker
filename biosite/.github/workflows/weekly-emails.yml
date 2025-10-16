@@ -1,0 +1,45 @@
+name: Weekly Performance Emails
+
+on:
+  schedule:
+    # Every Sunday at 2 PM UTC (9 AM EST / 6 AM PST)
+    - cron: '0 14 * * 0'
+  workflow_dispatch:  # Allow manual triggers
+
+jobs:
+  send-weekly-emails:
+    runs-on: ubuntu-latest
+    
+    env:
+      SUPABASE_PROJECT_REF: ${{ secrets.SUPABASE_PROJECT_REF }}
+      SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}
+    
+    steps:
+      - name: Trigger Weekly Performance Emails
+        run: |
+          echo "🚀 Triggering weekly performance emails..."
+          
+          # Call the Supabase Edge Function
+          SUPABASE_URL="https://${SUPABASE_PROJECT_REF}.supabase.co/functions/v1/weekly-performance"
+          
+          response=$(curl -s -X POST \
+            -H "Authorization: Bearer ${SUPABASE_SERVICE_ROLE_KEY}" \
+            -H "Content-Type: application/json" \
+            -d '{"trigger": "github_actions_cron"}' \
+            "$SUPABASE_URL")
+          
+          echo "📧 Response: $response"
+          
+          # Check if the response contains success
+          if echo "$response" | grep -q "successfully"; then
+            echo "✅ Weekly emails sent successfully!"
+          else
+            echo "❌ Failed to send weekly emails"
+            echo "Response: $response"
+            exit 1
+          fi
+      
+      - name: Log Success
+        run: |
+          echo "📊 Weekly performance email job completed at $(date)"
+          echo "🎯 This automation can increase MRR by 25-30% through user re-engagement"

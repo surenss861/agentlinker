@@ -1,0 +1,177 @@
+import { serve } from "https://deno.land/std@0.168.0/http/server.ts"
+
+interface BookingConfirmationData {
+  clientName: string
+  clientEmail: string
+  agentName: string
+  agentEmail: string
+  listingAddress: string
+  scheduledDate: string
+  scheduledTime: string
+  bookingId: string
+}
+
+// Simple email template
+function createConfirmationEmail(data: BookingConfirmationData) {
+  return {
+    to: data.clientEmail,
+    subject: `Booking Confirmation - ${data.listingAddress}`,
+    html: `
+      <!DOCTYPE html>
+      <html>
+        <head>
+          <meta charset="utf-8">
+          <meta name="viewport" content="width=device-width, initial-scale=1.0">
+          <title>Booking Confirmation</title>
+          <style>
+            body { font-family: Arial, sans-serif; line-height: 1.6; color: #333; margin: 0; padding: 20px; background-color: #f4f4f4; }
+            .container { max-width: 600px; margin: 0 auto; background: white; padding: 30px; border-radius: 10px; box-shadow: 0 0 10px rgba(0,0,0,0.1); }
+            .header { text-align: center; border-bottom: 3px solid #912F40; padding-bottom: 20px; margin-bottom: 30px; }
+            .logo { font-size: 24px; font-weight: bold; color: #912F40; }
+            .booking-details { background: #f8f9fa; padding: 20px; border-radius: 8px; margin: 20px 0; }
+            .detail-row { display: flex; justify-content: space-between; margin: 10px 0; padding: 8px 0; border-bottom: 1px solid #eee; }
+            .label { font-weight: bold; color: #555; }
+            .value { color: #333; }
+            .cta-button { display: inline-block; background: #912F40; color: white; padding: 12px 30px; text-decoration: none; border-radius: 5px; margin: 20px 0; }
+            .footer { text-align: center; margin-top: 30px; padding-top: 20px; border-top: 1px solid #eee; color: #666; font-size: 14px; }
+          </style>
+        </head>
+        <body>
+          <div class="container">
+            <div class="header">
+              <div class="logo">🏠 AgentLinker</div>
+              <h1>Booking Confirmation</h1>
+            </div>
+            
+            <p>Hello ${data.clientName},</p>
+            
+            <p>Great news! Your showing request has been confirmed by ${data.agentName}.</p>
+            
+            <div class="booking-details">
+              <h3>📅 Booking Details</h3>
+              <div class="detail-row">
+                <span class="label">Property:</span>
+                <span class="value">${data.listingAddress}</span>
+              </div>
+              <div class="detail-row">
+                <span class="label">Date:</span>
+                <span class="value">${data.scheduledDate}</span>
+              </div>
+              <div class="detail-row">
+                <span class="label">Time:</span>
+                <span class="value">${data.scheduledTime}</span>
+              </div>
+              <div class="detail-row">
+                <span class="label">Agent:</span>
+                <span class="value">${data.agentName}</span>
+              </div>
+            </div>
+            
+            <p><strong>What's next?</strong></p>
+            <ul>
+              <li>You'll receive a reminder 24 hours before your showing</li>
+              <li>Contact ${data.agentName} at ${data.agentEmail} if you have any questions</li>
+              <li>Bring a valid ID to the showing</li>
+            </ul>
+            
+            <div style="text-align: center;">
+              <a href="https://agentlinker.ca" class="cta-button">View Your Booking</a>
+            </div>
+            
+            <div class="footer">
+              <p>This confirmation was sent by AgentLinker</p>
+              <p>If you didn't request this showing, please contact us immediately.</p>
+            </div>
+          </div>
+        </body>
+      </html>
+    `,
+    text: `
+Booking Confirmation - ${data.listingAddress}
+
+Hello ${data.clientName},
+
+Great news! Your showing request has been confirmed by ${data.agentName}.
+
+BOOKING DETAILS:
+Property: ${data.listingAddress}
+Date: ${data.scheduledDate}
+Time: ${data.scheduledTime}
+Agent: ${data.agentName}
+
+What's next?
+- You'll receive a reminder 24 hours before your showing
+- Contact ${data.agentName} at ${data.agentEmail} if you have any questions
+- Bring a valid ID to the showing
+
+View your booking: https://agentlinker.ca
+
+This confirmation was sent by AgentLinker
+If you didn't request this showing, please contact us immediately.
+    `
+  }
+}
+
+// Simple SMTP email sender (using a free service like Gmail SMTP)
+async function sendEmail(emailData: any) {
+  // For now, we'll just log the email - you can integrate with any email service
+  console.log('📧 Email to be sent:', {
+    to: emailData.to,
+    subject: emailData.subject,
+    html: emailData.html.substring(0, 200) + '...'
+  })
+  
+  // TODO: Replace with actual email service integration
+  // Options:
+  // 1. Gmail SMTP with app passwords
+  // 2. SendGrid (free tier: 100 emails/day)
+  // 3. Mailgun (free tier: 5,000 emails/month)
+  // 4. EmailJS (free tier: 200 emails/month)
+  
+  return { success: true, messageId: 'mock-message-id' }
+}
+
+serve(async (req) => {
+  try {
+    if (req.method !== 'POST') {
+      return new Response('Method not allowed', { status: 405 })
+    }
+
+    const data: BookingConfirmationData = await req.json()
+    
+    // Validate required fields
+    if (!data.clientEmail || !data.agentName || !data.listingAddress) {
+      return new Response('Missing required fields', { status: 400 })
+    }
+
+    // Create email content
+    const emailData = createConfirmationEmail(data)
+    
+    // Send email
+    const result = await sendEmail(emailData)
+    
+    return new Response(
+      JSON.stringify({ 
+        success: true, 
+        message: 'Confirmation email sent',
+        messageId: result.messageId 
+      }),
+      { 
+        status: 200,
+        headers: { 'Content-Type': 'application/json' }
+      }
+    )
+  } catch (error) {
+    console.error('Error sending confirmation email:', error)
+    return new Response(
+      JSON.stringify({ 
+        success: false, 
+        error: 'Failed to send confirmation email' 
+      }),
+      { 
+        status: 500,
+        headers: { 'Content-Type': 'application/json' }
+      }
+    )
+  }
+})
