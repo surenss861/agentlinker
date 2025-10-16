@@ -161,9 +161,9 @@ export default function ListingsPage() {
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-gradient-to-b from-[#080705] to-[#1A0E10] flex items-center justify-center">
+      <div className="min-h-screen flex items-center justify-center">
         <div className="text-center">
-          <div className="w-16 h-16 border-4 border-[#F3C77E] border-t-transparent rounded-full animate-spin mx-auto mb-4" />
+          <div className="w-16 h-16 border-4 border-red-500 border-t-transparent rounded-full animate-spin mx-auto mb-4" />
           <div className="text-white">Loading listings...</div>
         </div>
       </div>
@@ -172,10 +172,9 @@ export default function ListingsPage() {
 
   return (
     <>
-      <div className="min-h-screen bg-gradient-to-b from-[#080705] to-[#1A0E10]">
-        <NavBar />
-        
-        <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+      <NavBar />
+      
+      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
           <div className="flex items-center justify-between mb-8">
             <div>
               <div className="flex items-center gap-3 mb-2">
@@ -230,7 +229,7 @@ export default function ListingsPage() {
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.5, delay: index * 0.1 }}
                   whileHover={{ scale: 1.01 }}
-                  className="bg-white/5 backdrop-blur-md rounded-xl shadow-lg border border-white/10 overflow-hidden hover:bg-white/8 transition-all duration-200 hover:shadow-[0_0_15px_rgba(145,47,64,0.15)] group"
+                  className="relative bg-black/90 backdrop-blur-sm rounded-xl shadow-xl border border-red-500/30 overflow-hidden hover:bg-black/95 transition-all duration-200 hover:shadow-[0_0_20px_rgba(239,68,68,0.2)] group"
                 >
                   {/* Image */}
                   {listing.images && listing.images.length > 0 ? (
@@ -355,7 +354,7 @@ export default function ListingsPage() {
               initial={{ opacity: 0, scale: 0.95 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.5 }}
-              className="bg-white/5 backdrop-blur-md rounded-2xl shadow-xl border border-white/10 p-16 text-center"
+              className="relative bg-black/90 backdrop-blur-sm rounded-2xl shadow-xl border border-red-500/30 p-16 text-center"
             >
               <motion.div 
                 animate={{ 
@@ -385,8 +384,7 @@ export default function ListingsPage() {
               </motion.button>
             </motion.div>
           )}
-        </main>
-      </div>
+      </main>
 
       {/* Add Listing Modal */}
       <AddListingModal

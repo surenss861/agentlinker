@@ -26,9 +26,7 @@ export default async function DashboardPage() {
   return (
     <>
       <NavBar />
-      <div className="min-h-screen bg-gradient-to-br from-[#080705] via-[#0D0B09] to-[#080705]">
-        <DashboardWithHooks userId={user.id} agentSlug={agent.slug} />
-      </div>
+      <DashboardWithHooks userId={user.id} agentSlug={agent.slug} />
     </>
   )
 }

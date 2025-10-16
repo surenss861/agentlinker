@@ -45,7 +45,11 @@ export default function NavBar() {
         <div className="flex justify-between h-16">
           <div className="flex">
             <Link href="/dashboard" className="flex items-center">
-              <Home className="h-8 w-8 text-red-600" />
+              <img 
+                src="/agentlinkerpfp.png" 
+                alt="AgentLinker" 
+                className="h-8 w-8 rounded-full"
+              />
               <span className="ml-2 text-xl font-bold bg-gradient-to-r from-red-600 to-red-400 bg-clip-text text-transparent">
                 AgentLinker
               </span>
