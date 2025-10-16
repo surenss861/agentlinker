@@ -89,6 +89,32 @@ export default function BillingPage() {
     }
   }
 
+  const handleFixSubscription = async () => {
+    if (!agent?.id) return
+    
+    try {
+      const response = await fetch('/api/admin/fix-subscription', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ userId: agent.id, tier: 'pro' })
+      })
+
+      if (response.ok) {
+        const result = await response.json()
+        console.log('✅ Subscription fixed:', result)
+        alert('✅ Subscription updated to Pro! Please refresh the page.')
+        window.location.reload()
+      } else {
+        const error = await response.json()
+        console.error('Fix failed:', error)
+        alert('Failed to fix subscription: ' + error.error)
+      }
+    } catch (error) {
+      console.error('Fix error:', error)
+      alert('Error fixing subscription: ' + error)
+    }
+  }
+
   if (loading) {
     return (
       <div className="min-h-screen bg-gray-50">
@@ -156,6 +182,28 @@ export default function BillingPage() {
             Current plan: <span className="font-semibold capitalize text-[#F3C77E]">{agent?.subscription_tier || 'Free'}</span>
           </p>
         </div>
+
+        {/* Debug Section - Remove after fixing */}
+        {agent?.subscription_tier !== 'pro' && (
+          <div className="bg-yellow-500/20 backdrop-blur-md rounded-2xl p-6 mb-8 border border-yellow-500/30">
+            <div className="flex items-center justify-between">
+              <div>
+                <h3 className="text-lg font-semibold text-yellow-200 mb-2">
+                  🔧 Debug: Subscription Not Updating
+                </h3>
+                <p className="text-yellow-100 text-sm">
+                  If you just purchased Pro but it's not showing, click the button below to manually fix your subscription.
+                </p>
+              </div>
+              <button 
+                onClick={handleFixSubscription}
+                className="px-6 py-3 bg-yellow-500 text-black rounded-xl hover:bg-yellow-400 transition-all font-medium"
+              >
+                Fix My Subscription
+              </button>
+            </div>
+          </div>
+        )}
 
         {/* Current Plan Info */}
         {agent?.subscription_tier === 'pro' && (
