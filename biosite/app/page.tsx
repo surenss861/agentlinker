@@ -2,6 +2,7 @@ import Link from 'next/link'
 import { ArrowRight, Home, Calendar, TrendingUp, Star, Check } from 'lucide-react'
 import DarkVeil from '@/components/DarkVeil'
 import CardNav from '@/components/CardNav'
+import TiltedCard from '@/components/TiltedCard'
 
 export default function HomePage() {
   return (
@@ -302,90 +303,74 @@ export default function HomePage() {
           <h2 className="text-4xl font-bold text-center mb-4 text-white">Simple, Transparent Pricing</h2>
           <p className="text-center text-gray-400 mb-12">One plan. Everything included. No hidden fees.</p>
 
-          <div className="max-w-2xl mx-auto">
-            {/* Single Pro Plan */}
-            <div className="bg-gradient-to-br from-red-600 to-red-800 rounded-2xl shadow-2xl p-12 text-white relative border-2 border-red-500">
-              <div className="absolute -top-4 left-1/2 -translate-x-1/2 bg-black text-red-500 px-6 py-2 rounded-full text-sm font-bold border border-red-500">
-                ⚡ EVERYTHING INCLUDED
-              </div>
-
-              <div className="text-center mb-8">
-                <h3 className="text-3xl font-bold mb-4">AgentLinker Pro</h3>
-                <div className="text-6xl font-bold mb-2">$20<span className="text-2xl opacity-90">/mo</span></div>
-                <p className="text-red-100 text-lg">Your complete real estate growth platform</p>
-              </div>
-
-              <div className="grid md:grid-cols-2 gap-x-8 gap-y-4 mb-10">
-                <div className="flex items-start gap-3">
-                  <Check className="h-6 w-6 mt-0.5 flex-shrink-0" />
-                  <div>
-                    <p className="font-semibold">Unlimited Listings</p>
-                    <p className="text-sm opacity-90">Showcase all your properties</p>
+          <div className="flex justify-center">
+            <TiltedCard
+              imageSrc="https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=400&h=500&fit=crop&crop=center&q=80"
+              altText="AgentLinker Pro Pricing Card"
+              captionText="AgentLinker Pro - $20/month"
+              containerHeight="500px"
+              containerWidth="400px"
+              imageHeight="500px"
+              imageWidth="400px"
+              rotateAmplitude={12}
+              scaleOnHover={1.05}
+              showMobileWarning={false}
+              showTooltip={true}
+              displayOverlayContent={true}
+              overlayContent={
+                <div className="absolute inset-0 bg-gradient-to-br from-red-600/90 to-red-800/90 rounded-2xl flex flex-col items-center justify-center p-8 text-white">
+                  <div className="text-center">
+                    <div className="absolute -top-4 left-1/2 -translate-x-1/2 bg-black text-red-500 px-6 py-2 rounded-full text-sm font-bold border border-red-500">
+                      ⚡ EVERYTHING INCLUDED
+                    </div>
+                    
+                    <h3 className="text-3xl font-bold mb-4">AgentLinker Pro</h3>
+                    <div className="text-6xl font-bold mb-2">$20<span className="text-2xl opacity-90">/mo</span></div>
+                    <p className="text-red-100 text-lg mb-8">Your complete real estate growth platform</p>
+                    
+                    <div className="grid grid-cols-2 gap-4 mb-8 text-sm">
+                      <div className="flex items-center gap-2">
+                        <Check className="h-4 w-4 flex-shrink-0" />
+                        <span>Unlimited Listings</span>
+                      </div>
+                      <div className="flex items-center gap-2">
+                        <Check className="h-4 w-4 flex-shrink-0" />
+                        <span>Premium Templates</span>
+                      </div>
+                      <div className="flex items-center gap-2">
+                        <Check className="h-4 w-4 flex-shrink-0" />
+                        <span>Booking Scheduler</span>
+                      </div>
+                      <div className="flex items-center gap-2">
+                        <Check className="h-4 w-4 flex-shrink-0" />
+                        <span>Lead Capture</span>
+                      </div>
+                      <div className="flex items-center gap-2">
+                        <Check className="h-4 w-4 flex-shrink-0" />
+                        <span>Analytics Dashboard</span>
+                      </div>
+                      <div className="flex items-center gap-2">
+                        <Check className="h-4 w-4 flex-shrink-0" />
+                        <span>Custom Domain</span>
+                      </div>
+                    </div>
+                    
+                    <Link 
+                      href="/signup" 
+                      className="block text-center bg-black text-red-500 px-8 py-4 rounded-full hover:bg-neutral-900 transition-all font-bold text-lg border-2 border-red-500 shadow-xl"
+                    >
+                      Get Started →
+                    </Link>
+                    
+                    <p className="text-center text-red-100 text-sm mt-4">
+                      No credit card required • Cancel anytime • Setup in 5 minutes
+                    </p>
                   </div>
                 </div>
-                <div className="flex items-start gap-3">
-                  <Check className="h-6 w-6 mt-0.5 flex-shrink-0" />
-                  <div>
-                    <p className="font-semibold">Premium Templates</p>
-                    <p className="text-sm opacity-90">Luxury, Modern & Minimalist</p>
-                  </div>
-                </div>
-                <div className="flex items-start gap-3">
-                  <Check className="h-6 w-6 mt-0.5 flex-shrink-0" />
-                  <div>
-                    <p className="font-semibold">Booking Scheduler</p>
-                    <p className="text-sm opacity-90">Automated showing bookings</p>
-                  </div>
-                </div>
-                <div className="flex items-start gap-3">
-                  <Check className="h-6 w-6 mt-0.5 flex-shrink-0" />
-                  <div>
-                    <p className="font-semibold">Lead Capture</p>
-                    <p className="text-sm opacity-90">Instant email notifications</p>
-                  </div>
-                </div>
-                <div className="flex items-start gap-3">
-                  <Check className="h-6 w-6 mt-0.5 flex-shrink-0" />
-                  <div>
-                    <p className="font-semibold">Analytics Dashboard</p>
-                    <p className="text-sm opacity-90">Track views, clicks & leads</p>
-                  </div>
-                </div>
-                <div className="flex items-start gap-3">
-                  <Check className="h-6 w-6 mt-0.5 flex-shrink-0" />
-                  <div>
-                    <p className="font-semibold">Custom Domain</p>
-                    <p className="text-sm opacity-90">Use your own domain name</p>
-                  </div>
-                </div>
-                <div className="flex items-start gap-3">
-                  <Check className="h-6 w-6 mt-0.5 flex-shrink-0" />
-                  <div>
-                    <p className="font-semibold">No Watermark</p>
-                    <p className="text-sm opacity-90">100% your brand</p>
-                  </div>
-                </div>
-                <div className="flex items-start gap-3">
-                  <Check className="h-6 w-6 mt-0.5 flex-shrink-0" />
-                  <div>
-                    <p className="font-semibold">Priority Support</p>
-                    <p className="text-sm opacity-90">Direct help when you need it</p>
-                  </div>
-                </div>
-              </div>
-
-              <Link
-                href="/signup"
-                className="block text-center bg-black text-red-500 px-8 py-4 rounded-full hover:bg-neutral-900 transition-all font-bold text-lg border-2 border-red-500 shadow-xl"
-              >
-                Get Started →
-              </Link>
-
-              <p className="text-center text-red-100 text-sm mt-4">
-                No credit card required • Cancel anytime • Setup in 5 minutes
-              </p>
-            </div>
+              }
+            />
           </div>
+        </section>
 
           {/* Verification Badge Card */}
           <div className="mt-12 flex justify-center">
