@@ -50,34 +50,6 @@ export default function BillingPage() {
     }
   }, [])
 
-  const handleManualFix = async () => {
-    if (!agent?.id) return
-    
-    try {
-      const response = await fetch('/api/debug/fix-subscription', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ 
-          userId: agent.id, 
-          tier: 'pro' 
-        }),
-      })
-
-      const data = await response.json()
-      
-      if (response.ok) {
-        alert('Subscription fixed! Please refresh the page.')
-        window.location.reload()
-      } else {
-        alert(`Failed to fix subscription: ${data.error}`)
-      }
-    } catch (error) {
-      console.error('Manual fix error:', error)
-      alert('Failed to fix subscription. Please try again.')
-    }
-  }
 
   const handleUpgrade = async (tier: string) => {
     console.log('🚀 Starting upgrade process for tier:', tier)
@@ -188,30 +160,6 @@ export default function BillingPage() {
         </div>
 
 
-        {/* Debug Section - Only show if user is not Pro */}
-        {agent?.subscription_tier !== 'pro' && (
-          <div className="bg-yellow-500/20 backdrop-blur-sm rounded-2xl p-6 mb-8 border border-yellow-500/30">
-            <div className="flex items-center justify-between">
-              <div>
-                <h3 className="text-lg font-semibold text-yellow-200 mb-2">
-                  🔧 Debug: Subscription Issue
-                </h3>
-                <p className="text-yellow-100 text-sm mb-2">
-                  If you just purchased Pro but it's not showing, click the button below to manually fix your subscription.
-                </p>
-                <p className="text-yellow-200 text-xs">
-                  User ID: {agent?.id} | Current Tier: {agent?.subscription_tier || 'null'}
-                </p>
-              </div>
-              <button
-                onClick={handleManualFix}
-                className="px-6 py-3 bg-yellow-500 text-black rounded-xl hover:bg-yellow-400 transition-all font-medium"
-              >
-                Fix My Subscription
-              </button>
-            </div>
-          </div>
-        )}
         {agent?.subscription_tier === 'pro' && (
           <div className="bg-gradient-to-r from-[#F3C77E]/20 to-[#912F40]/20 backdrop-blur-md rounded-2xl p-8 mb-8 border border-[#F3C77E]/30">
             <div className="flex items-center justify-between">
