@@ -67,7 +67,7 @@ export async function POST(request: NextRequest) {
       const isSubscription = tier === 'pro'
       const billingCycle = isSubscription ? 'monthly' : 'one_time'
       const amountPaid = isSubscription ? 2000 : 2500 // $20 for pro, $25 for business
-      
+
       // Calculate period dates
       const now = new Date()
       const periodStart = now
@@ -102,7 +102,7 @@ export async function POST(request: NextRequest) {
         return NextResponse.json({ error: 'Failed to create subscription record' }, { status: 500 })
       }
 
-      console.log(`✅ Subscription record created for user ${agent_id} (${tier} plan, $${amountPaid/100})`)
+      console.log(`✅ Subscription record created for user ${agent_id} (${tier} plan, $${amountPaid / 100})`)
     }
 
     // Handle payment failures
@@ -129,20 +129,20 @@ export async function POST(request: NextRequest) {
         .single()
 
       if (user) {
-        const newStatus = subscription.status === 'active' ? 'active' : 
-                         subscription.status === 'canceled' ? 'canceled' :
-                         subscription.status === 'past_due' ? 'past_due' :
-                         subscription.status === 'unpaid' ? 'unpaid' : 'incomplete'
+        const newStatus = subscription.status === 'active' ? 'active' :
+          subscription.status === 'canceled' ? 'canceled' :
+            subscription.status === 'past_due' ? 'past_due' :
+              subscription.status === 'unpaid' ? 'unpaid' : 'incomplete'
 
         // Update subscription record
         const { error } = await supabase
           .from('subscriptions')
           .update({
             status: newStatus,
-            current_period_start: new Date(subscription.current_period_start * 1000).toISOString(),
-            current_period_end: new Date(subscription.current_period_end * 1000).toISOString(),
+            current_period_start: subscription.current_period_start ? new Date(subscription.current_period_start * 1000).toISOString() : null,
+            current_period_end: subscription.current_period_end ? new Date(subscription.current_period_end * 1000).toISOString() : null,
             canceled_at: subscription.canceled_at ? new Date(subscription.canceled_at * 1000).toISOString() : null,
-            cancel_at_period_end: subscription.cancel_at_period_end,
+            cancel_at_period_end: subscription.cancel_at_period_end || false,
             updated_at: new Date().toISOString()
           })
           .eq('stripe_subscription_id', subscription.id)
