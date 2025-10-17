@@ -5,9 +5,9 @@ import DashboardWithHooks from '@/components/DashboardWithHooks'
 
 export default async function DashboardPage() {
   const supabase = await createServerSupabaseClient()
-  
+
   const { data: { user } } = await supabase.auth.getUser()
-  
+
   if (!user) {
     redirect('/login')
   }

@@ -63,7 +63,7 @@ export default function AnalyticsPage() {
       // Fetch analytics
       const response = await fetch(`/api/analytics?days=${days}`)
       const data = await response.json()
-      
+
       if (response.ok) {
         setAnalytics(data)
       }
@@ -100,14 +100,14 @@ export default function AnalyticsPage() {
 
   // Limit data for free users
   const maxDataPointsForFree = 7
-  const displayDailyTrends = hasFeature('analytics') 
-    ? dailyTrends 
+  const displayDailyTrends = hasFeature('analytics')
+    ? dailyTrends
     : dailyTrends.slice(0, maxDataPointsForFree)
-  const displayTopListings = hasFeature('analytics') 
-    ? topListings 
+  const displayTopListings = hasFeature('analytics')
+    ? topListings
     : topListings.slice(0, 3)
-  const displayRecentEvents = hasFeature('analytics') 
-    ? recentEvents 
+  const displayRecentEvents = hasFeature('analytics')
+    ? recentEvents
     : recentEvents.slice(0, 5)
 
   const COLORS = ['#F3C77E', '#912F40', '#4A90E2', '#50E3C2', '#F5A623', '#BD10E0']
@@ -120,26 +120,25 @@ export default function AnalyticsPage() {
   return (
     <>
       <NavBar />
-      
+
       <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         {/* Subscription Status */}
         {subscription && (
           <div className="mb-6 p-4 bg-white/5 rounded-xl border border-white/10">
             <div className="flex items-center justify-between">
               <div className="flex items-center gap-3">
-                <div className={`px-3 py-1 rounded-full text-sm font-medium ${
-                  subscription.tier === 'free' 
-                    ? 'bg-gray-600 text-gray-300' 
+                <div className={`px-3 py-1 rounded-full text-sm font-medium ${subscription.tier === 'free'
+                    ? 'bg-gray-600 text-gray-300'
                     : subscription.tier === 'pro'
-                    ? 'bg-[#912F40] text-white'
-                    : 'bg-[#F3C77E] text-black'
-                }`}>
-                  {subscription.tier === 'free' ? 'Free Plan' : 
-                   subscription.tier === 'pro' ? 'Pro Plan' : 'Business Plan'}
+                      ? 'bg-[#912F40] text-white'
+                      : 'bg-[#F3C77E] text-black'
+                  }`}>
+                  {subscription.tier === 'free' ? 'Free Plan' :
+                    subscription.tier === 'pro' ? 'Pro Plan' : 'Business Plan'}
                   {subscription.tier !== 'free' && <Crown className="w-4 h-4 inline ml-1" />}
                 </div>
                 <span className="text-gray-400">
-                  {subscription.tier === 'free' 
+                  {subscription.tier === 'free'
                     ? 'Analytics preview only - upgrade for full access'
                     : 'Full analytics access enabled'
                   }
@@ -197,15 +196,14 @@ export default function AnalyticsPage() {
                   }
                   setDays(d)
                 }}
-                className={`px-4 py-2 rounded-lg font-medium transition-all ${
-                  days === d
-                    ? hasFeature('analytics') 
+                className={`px-4 py-2 rounded-lg font-medium transition-all ${days === d
+                    ? hasFeature('analytics')
                       ? 'bg-[#F3C77E] text-[#080705]'
                       : 'bg-gray-500/20 text-gray-500'
                     : hasFeature('analytics')
-                    ? 'bg-white/5 text-gray-400 hover:bg-white/10'
-                    : 'bg-gray-500/20 text-gray-500 cursor-not-allowed'
-                }`}
+                      ? 'bg-white/5 text-gray-400 hover:bg-white/10'
+                      : 'bg-gray-500/20 text-gray-500 cursor-not-allowed'
+                  }`}
                 disabled={!hasFeature('analytics')}
               >
                 {hasFeature('analytics') ? `${d} Days` : `🔒 ${d} Days`}
@@ -232,8 +230,8 @@ export default function AnalyticsPage() {
               <div className="text-5xl font-bold mb-2">{metrics.totalLeads}</div>
               <div className="text-sm text-[#FFFFFA]/75 mb-3">Lead Requests</div>
               <div className="w-full bg-white/20 rounded-full h-2">
-                <div className="bg-[#F3C77E] h-2 rounded-full" 
-                     style={{ width: metrics.pageViews > 0 ? `${(metrics.totalLeads / metrics.pageViews) * 100}%` : '0%' }}>
+                <div className="bg-[#F3C77E] h-2 rounded-full"
+                  style={{ width: metrics.pageViews > 0 ? `${(metrics.totalLeads / metrics.pageViews) * 100}%` : '0%' }}>
                 </div>
               </div>
             </div>
@@ -242,7 +240,7 @@ export default function AnalyticsPage() {
               <div className="text-sm text-[#FFFFFA]/75 mb-3">Bookings</div>
               <div className="w-full bg-white/20 rounded-full h-2">
                 <div className="bg-[#F3C77E] h-2 rounded-full"
-                     style={{ width: metrics.pageViews > 0 ? `${(metrics.totalBookings / metrics.pageViews) * 100}%` : '0%' }}>
+                  style={{ width: metrics.pageViews > 0 ? `${(metrics.totalBookings / metrics.pageViews) * 100}%` : '0%' }}>
                 </div>
               </div>
             </div>
@@ -250,8 +248,8 @@ export default function AnalyticsPage() {
               <div className="text-5xl font-bold mb-2">{metrics.conversionRate.toFixed(1)}%</div>
               <div className="text-sm text-[#FFFFFA]/75 mb-3">Conversion Rate</div>
               <div className="w-full bg-white/20 rounded-full h-2">
-                <div className="bg-[#F3C77E] h-2 rounded-full" 
-                     style={{ width: `${Math.min(metrics.conversionRate * 10, 100)}%` }}>
+                <div className="bg-[#F3C77E] h-2 rounded-full"
+                  style={{ width: `${Math.min(metrics.conversionRate * 10, 100)}%` }}>
                 </div>
               </div>
             </div>
@@ -292,12 +290,12 @@ export default function AnalyticsPage() {
               <AreaChart data={displayDailyTrends}>
                 <defs>
                   <linearGradient id="colorViews" x1="0" y1="0" x2="0" y2="1">
-                    <stop offset="5%" stopColor="#F3C77E" stopOpacity={0.8}/>
-                    <stop offset="95%" stopColor="#F3C77E" stopOpacity={0}/>
+                    <stop offset="5%" stopColor="#F3C77E" stopOpacity={0.8} />
+                    <stop offset="95%" stopColor="#F3C77E" stopOpacity={0} />
                   </linearGradient>
                   <linearGradient id="colorLeads" x1="0" y1="0" x2="0" y2="1">
-                    <stop offset="5%" stopColor="#4A90E2" stopOpacity={0.8}/>
-                    <stop offset="95%" stopColor="#4A90E2" stopOpacity={0}/>
+                    <stop offset="5%" stopColor="#4A90E2" stopOpacity={0.8} />
+                    <stop offset="95%" stopColor="#4A90E2" stopOpacity={0} />
                   </linearGradient>
                 </defs>
                 <CartesianGrid strokeDasharray="3 3" stroke="#ffffff10" />
@@ -356,7 +354,7 @@ export default function AnalyticsPage() {
                   booking_click: Calendar,
                 }
                 const Icon = eventIcons[event.event_type] || Eye
-                
+
                 return (
                   <div key={event.id} className="flex items-center gap-3 py-2 border-b border-white/5 last:border-0">
                     <Icon className="h-4 w-4 text-gray-400" />

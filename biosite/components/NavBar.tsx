@@ -45,9 +45,9 @@ export default function NavBar() {
         <div className="flex justify-between h-16">
           <div className="flex">
             <Link href="/dashboard" className="flex items-center">
-              <img 
-                src="/agentlinkerpfp.png" 
-                alt="AgentLinker" 
+              <img
+                src="/agentlinkerpfp.png"
+                alt="AgentLinker"
                 className="h-8 w-8 rounded-full"
               />
               <span className="ml-2 text-xl font-bold bg-gradient-to-r from-red-600 to-red-400 bg-clip-text text-transparent">
@@ -59,19 +59,18 @@ export default function NavBar() {
                 const isActive = pathname === item.href
                 const Icon = item.icon
                 const isRestricted = item.requiresPro && !hasFeature('analytics')
-                
+
                 return (
                   <Link
                     key={item.name}
                     href={item.href}
                     onClick={(e) => handleNavClick(item, e)}
-                    className={`inline-flex items-center px-3 py-2 text-sm font-medium rounded-lg transition-all duration-300 ${
-                      isActive
+                    className={`inline-flex items-center px-3 py-2 text-sm font-medium rounded-lg transition-all duration-300 ${isActive
                         ? 'text-red-500 bg-red-950/30'
                         : isRestricted
-                        ? 'text-gray-500 hover:text-gray-400 hover:bg-neutral-900'
-                        : 'text-gray-400 hover:text-white hover:bg-neutral-900'
-                    }`}
+                          ? 'text-gray-500 hover:text-gray-400 hover:bg-neutral-900'
+                          : 'text-gray-400 hover:text-white hover:bg-neutral-900'
+                      }`}
                   >
                     <Icon className="h-4 w-4 mr-2" />
                     {item.name}

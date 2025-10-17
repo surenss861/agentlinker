@@ -70,10 +70,10 @@ export default function SignupPage() {
         <div className="max-w-md w-full">
           <div className="text-center mb-8">
             <Link href="/" className="inline-flex items-center justify-center mb-6">
-              <img 
-                src="/agentlinkerpfp.png" 
-                alt="AgentLinker" 
-                className="h-24 w-24 rounded-full"
+              <img
+                src="/agentlinkerpfp.png"
+                alt="AgentLinker"
+                className="h-20 w-20 rounded-full"
               />
             </Link>
             <h1 className="text-4xl font-bold text-white mb-2">Get Started with AgentLinker</h1>

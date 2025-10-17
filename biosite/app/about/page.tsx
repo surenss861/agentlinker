@@ -113,246 +113,246 @@ export default function AboutPage() {
                         <p className="text-xl text-gray-400">Everything you need to grow your real estate business online</p>
                     </div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {/* Professional Bio Pages */}
-            <div className="relative h-[400px]">
-              <div className="absolute inset-0 rounded-xl overflow-hidden">
-                <DarkVeil 
-                  speed={0.8}
-                  hueShift={237}
-                  noiseIntensity={0.1}
-                  scanlineIntensity={0.05}
-                  scanlineFrequency={0.5}
-                  warpAmount={0.02}
-                />
-              </div>
-              
-              <div className="relative bg-black/90 backdrop-blur-sm rounded-xl border border-red-500/30 p-8 shadow-xl h-full flex flex-col">
-                <div className="text-4xl mb-4">👤</div>
-                <h3 className="text-2xl font-bold mb-4">Professional Bio Pages</h3>
-                <p className="text-gray-300 mb-6 flex-grow">
-                  Customizable agent profiles with premium templates, high-quality photos, and lead-optimized layouts.
-                </p>
-                <ul className="space-y-2 text-sm">
-                  <li className="flex items-center gap-2">
-                    <Check className="h-4 w-4 text-red-500 flex-shrink-0" />
-                    <span>Premium templates</span>
-                  </li>
-                  <li className="flex items-center gap-2">
-                    <Check className="h-4 w-4 text-red-500 flex-shrink-0" />
-                    <span>Custom branding</span>
-                  </li>
-                  <li className="flex items-center gap-2">
-                    <Check className="h-4 w-4 text-red-500 flex-shrink-0" />
-                    <span>Mobile optimized</span>
-                  </li>
-                  <li className="flex items-center gap-2">
-                    <Check className="h-4 w-4 text-red-500 flex-shrink-0" />
-                    <span>SEO friendly</span>
-                  </li>
-                </ul>
-              </div>
-            </div>
+                    <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                        {/* Professional Bio Pages */}
+                        <div className="relative h-[400px]">
+                            <div className="absolute inset-0 rounded-xl overflow-hidden">
+                                <DarkVeil
+                                    speed={0.8}
+                                    hueShift={237}
+                                    noiseIntensity={0.1}
+                                    scanlineIntensity={0.05}
+                                    scanlineFrequency={0.5}
+                                    warpAmount={0.02}
+                                />
+                            </div>
 
-            {/* Listing Management */}
-            <div className="relative h-[400px]">
-              <div className="absolute inset-0 rounded-xl overflow-hidden">
-                <DarkVeil 
-                  speed={0.8}
-                  hueShift={237}
-                  noiseIntensity={0.1}
-                  scanlineIntensity={0.05}
-                  scanlineFrequency={0.5}
-                  warpAmount={0.02}
-                />
-              </div>
-              
-              <div className="relative bg-black/90 backdrop-blur-sm rounded-xl border border-red-500/30 p-8 shadow-xl h-full flex flex-col">
-                <div className="text-4xl mb-4">🏠</div>
-                <h3 className="text-2xl font-bold mb-4">Listing Management</h3>
-                <p className="text-gray-300 mb-6 flex-grow">
-                  Unlimited property listings with drag-and-drop management, high-res photos, and public pages.
-                </p>
-                <ul className="space-y-2 text-sm">
-                  <li className="flex items-center gap-2">
-                    <Check className="h-4 w-4 text-red-500 flex-shrink-0" />
-                    <span>Unlimited listings</span>
-                  </li>
-                  <li className="flex items-center gap-2">
-                    <Check className="h-4 w-4 text-red-500 flex-shrink-0" />
-                    <span>Drag-and-drop editor</span>
-                  </li>
-                  <li className="flex items-center gap-2">
-                    <Check className="h-4 w-4 text-red-500 flex-shrink-0" />
-                    <span>Public listing pages</span>
-                  </li>
-                  <li className="flex items-center gap-2">
-                    <Check className="h-4 w-4 text-red-500 flex-shrink-0" />
-                    <span>Image galleries</span>
-                  </li>
-                </ul>
-              </div>
-            </div>
+                            <div className="relative bg-black/90 backdrop-blur-sm rounded-xl border border-red-500/30 p-8 shadow-xl h-full flex flex-col">
+                                <div className="text-4xl mb-4">👤</div>
+                                <h3 className="text-2xl font-bold mb-4">Professional Bio Pages</h3>
+                                <p className="text-gray-300 mb-6 flex-grow">
+                                    Customizable agent profiles with premium templates, high-quality photos, and lead-optimized layouts.
+                                </p>
+                                <ul className="space-y-2 text-sm">
+                                    <li className="flex items-center gap-2">
+                                        <Check className="h-4 w-4 text-red-500 flex-shrink-0" />
+                                        <span>Premium templates</span>
+                                    </li>
+                                    <li className="flex items-center gap-2">
+                                        <Check className="h-4 w-4 text-red-500 flex-shrink-0" />
+                                        <span>Custom branding</span>
+                                    </li>
+                                    <li className="flex items-center gap-2">
+                                        <Check className="h-4 w-4 text-red-500 flex-shrink-0" />
+                                        <span>Mobile optimized</span>
+                                    </li>
+                                    <li className="flex items-center gap-2">
+                                        <Check className="h-4 w-4 text-red-500 flex-shrink-0" />
+                                        <span>SEO friendly</span>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
 
-            {/* Booking Scheduler */}
-            <div className="relative h-[400px]">
-              <div className="absolute inset-0 rounded-xl overflow-hidden">
-                <DarkVeil 
-                  speed={0.8}
-                  hueShift={237}
-                  noiseIntensity={0.1}
-                  scanlineIntensity={0.05}
-                  scanlineFrequency={0.5}
-                  warpAmount={0.02}
-                />
-              </div>
-              
-              <div className="relative bg-black/90 backdrop-blur-sm rounded-xl border border-red-500/30 p-8 shadow-xl h-full flex flex-col">
-                <div className="text-4xl mb-4">📅</div>
-                <h3 className="text-2xl font-bold mb-4">Booking Scheduler</h3>
-                <p className="text-gray-300 mb-6 flex-grow">
-                  Real-time appointment booking with status workflows, automated reminders, and calendar sync.
-                </p>
-                <ul className="space-y-2 text-sm">
-                  <li className="flex items-center gap-2">
-                    <Check className="h-4 w-4 text-red-500 flex-shrink-0" />
-                    <span>Real-time booking</span>
-                  </li>
-                  <li className="flex items-center gap-2">
-                    <Check className="h-4 w-4 text-red-500 flex-shrink-0" />
-                    <span>Status workflows</span>
-                  </li>
-                  <li className="flex items-center gap-2">
-                    <Check className="h-4 w-4 text-red-500 flex-shrink-0" />
-                    <span>Automated reminders</span>
-                  </li>
-                  <li className="flex items-center gap-2">
-                    <Check className="h-4 w-4 text-red-500 flex-shrink-0" />
-                    <span>Calendar integration</span>
-                  </li>
-                </ul>
-              </div>
-            </div>
+                        {/* Listing Management */}
+                        <div className="relative h-[400px]">
+                            <div className="absolute inset-0 rounded-xl overflow-hidden">
+                                <DarkVeil
+                                    speed={0.8}
+                                    hueShift={237}
+                                    noiseIntensity={0.1}
+                                    scanlineIntensity={0.05}
+                                    scanlineFrequency={0.5}
+                                    warpAmount={0.02}
+                                />
+                            </div>
 
-            {/* Lead Management */}
-            <div className="relative h-[400px]">
-              <div className="absolute inset-0 rounded-xl overflow-hidden">
-                <DarkVeil 
-                  speed={0.8}
-                  hueShift={237}
-                  noiseIntensity={0.1}
-                  scanlineIntensity={0.05}
-                  scanlineFrequency={0.5}
-                  warpAmount={0.02}
-                />
-              </div>
-              
-              <div className="relative bg-black/90 backdrop-blur-sm rounded-xl border border-red-500/30 p-8 shadow-xl h-full flex flex-col">
-                <div className="text-4xl mb-4">🎯</div>
-                <h3 className="text-2xl font-bold mb-4">Lead Management</h3>
-                <p className="text-gray-300 mb-6 flex-grow">
-                  Real-time lead capture with status tracking, contact management, and automated follow-up.
-                </p>
-                <ul className="space-y-2 text-sm">
-                  <li className="flex items-center gap-2">
-                    <Check className="h-4 w-4 text-red-500 flex-shrink-0" />
-                    <span>Real-time capture</span>
-                  </li>
-                  <li className="flex items-center gap-2">
-                    <Check className="h-4 w-4 text-red-500 flex-shrink-0" />
-                    <span>Status tracking</span>
-                  </li>
-                  <li className="flex items-center gap-2">
-                    <Check className="h-4 w-4 text-red-500 flex-shrink-0" />
-                    <span>Contact management</span>
-                  </li>
-                  <li className="flex items-center gap-2">
-                    <Check className="h-4 w-4 text-red-500 flex-shrink-0" />
-                    <span>Automated follow-up</span>
-                  </li>
-                </ul>
-              </div>
-            </div>
+                            <div className="relative bg-black/90 backdrop-blur-sm rounded-xl border border-red-500/30 p-8 shadow-xl h-full flex flex-col">
+                                <div className="text-4xl mb-4">🏠</div>
+                                <h3 className="text-2xl font-bold mb-4">Listing Management</h3>
+                                <p className="text-gray-300 mb-6 flex-grow">
+                                    Unlimited property listings with drag-and-drop management, high-res photos, and public pages.
+                                </p>
+                                <ul className="space-y-2 text-sm">
+                                    <li className="flex items-center gap-2">
+                                        <Check className="h-4 w-4 text-red-500 flex-shrink-0" />
+                                        <span>Unlimited listings</span>
+                                    </li>
+                                    <li className="flex items-center gap-2">
+                                        <Check className="h-4 w-4 text-red-500 flex-shrink-0" />
+                                        <span>Drag-and-drop editor</span>
+                                    </li>
+                                    <li className="flex items-center gap-2">
+                                        <Check className="h-4 w-4 text-red-500 flex-shrink-0" />
+                                        <span>Public listing pages</span>
+                                    </li>
+                                    <li className="flex items-center gap-2">
+                                        <Check className="h-4 w-4 text-red-500 flex-shrink-0" />
+                                        <span>Image galleries</span>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
 
-            {/* Analytics Dashboard */}
-            <div className="relative h-[400px]">
-              <div className="absolute inset-0 rounded-xl overflow-hidden">
-                <DarkVeil 
-                  speed={0.8}
-                  hueShift={237}
-                  noiseIntensity={0.1}
-                  scanlineIntensity={0.05}
-                  scanlineFrequency={0.5}
-                  warpAmount={0.02}
-                />
-              </div>
-              
-              <div className="relative bg-black/90 backdrop-blur-sm rounded-xl border border-red-500/30 p-8 shadow-xl h-full flex flex-col">
-                <div className="text-4xl mb-4">📊</div>
-                <h3 className="text-2xl font-bold mb-4">Analytics Dashboard</h3>
-                <p className="text-gray-300 mb-6 flex-grow">
-                  Comprehensive tracking of views, leads, bookings, and ROI with real-time insights.
-                </p>
-                <ul className="space-y-2 text-sm">
-                  <li className="flex items-center gap-2">
-                    <Check className="h-4 w-4 text-red-500 flex-shrink-0" />
-                    <span>View tracking</span>
-                  </li>
-                  <li className="flex items-center gap-2">
-                    <Check className="h-4 w-4 text-red-500 flex-shrink-0" />
-                    <span>Lead analytics</span>
-                  </li>
-                  <li className="flex items-center gap-2">
-                    <Check className="h-4 w-4 text-red-500 flex-shrink-0" />
-                    <span>ROI reporting</span>
-                  </li>
-                  <li className="flex items-center gap-2">
-                    <Check className="h-4 w-4 text-red-500 flex-shrink-0" />
-                    <span>Real-time updates</span>
-                  </li>
-                </ul>
-              </div>
-            </div>
+                        {/* Booking Scheduler */}
+                        <div className="relative h-[400px]">
+                            <div className="absolute inset-0 rounded-xl overflow-hidden">
+                                <DarkVeil
+                                    speed={0.8}
+                                    hueShift={237}
+                                    noiseIntensity={0.1}
+                                    scanlineIntensity={0.05}
+                                    scanlineFrequency={0.5}
+                                    warpAmount={0.02}
+                                />
+                            </div>
 
-            {/* Custom Domain */}
-            <div className="relative h-[400px]">
-              <div className="absolute inset-0 rounded-xl overflow-hidden">
-                <DarkVeil 
-                  speed={0.8}
-                  hueShift={237}
-                  noiseIntensity={0.1}
-                  scanlineIntensity={0.05}
-                  scanlineFrequency={0.5}
-                  warpAmount={0.02}
-                />
-              </div>
-              
-              <div className="relative bg-black/90 backdrop-blur-sm rounded-xl border border-red-500/30 p-8 shadow-xl h-full flex flex-col">
-                <div className="text-4xl mb-4">🌐</div>
-                <h3 className="text-2xl font-bold mb-4">Custom Domain</h3>
-                <p className="text-gray-300 mb-6 flex-grow">
-                  Professional custom domain setup with SSL certificates and seamless integration.
-                </p>
-                <ul className="space-y-2 text-sm">
-                  <li className="flex items-center gap-2">
-                    <Check className="h-4 w-4 text-red-500 flex-shrink-0" />
-                    <span>Custom domain</span>
-                  </li>
-                  <li className="flex items-center gap-2">
-                    <Check className="h-4 w-4 text-red-500 flex-shrink-0" />
-                    <span>SSL certificates</span>
-                  </li>
-                  <li className="flex items-center gap-2">
-                    <Check className="h-4 w-4 text-red-500 flex-shrink-0" />
-                    <span>Easy setup</span>
-                  </li>
-                  <li className="flex items-center gap-2">
-                    <Check className="h-4 w-4 text-red-500 flex-shrink-0" />
-                    <span>Professional branding</span>
-                  </li>
-                </ul>
-              </div>
-            </div>
+                            <div className="relative bg-black/90 backdrop-blur-sm rounded-xl border border-red-500/30 p-8 shadow-xl h-full flex flex-col">
+                                <div className="text-4xl mb-4">📅</div>
+                                <h3 className="text-2xl font-bold mb-4">Booking Scheduler</h3>
+                                <p className="text-gray-300 mb-6 flex-grow">
+                                    Real-time appointment booking with status workflows, automated reminders, and calendar sync.
+                                </p>
+                                <ul className="space-y-2 text-sm">
+                                    <li className="flex items-center gap-2">
+                                        <Check className="h-4 w-4 text-red-500 flex-shrink-0" />
+                                        <span>Real-time booking</span>
+                                    </li>
+                                    <li className="flex items-center gap-2">
+                                        <Check className="h-4 w-4 text-red-500 flex-shrink-0" />
+                                        <span>Status workflows</span>
+                                    </li>
+                                    <li className="flex items-center gap-2">
+                                        <Check className="h-4 w-4 text-red-500 flex-shrink-0" />
+                                        <span>Automated reminders</span>
+                                    </li>
+                                    <li className="flex items-center gap-2">
+                                        <Check className="h-4 w-4 text-red-500 flex-shrink-0" />
+                                        <span>Calendar integration</span>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        {/* Lead Management */}
+                        <div className="relative h-[400px]">
+                            <div className="absolute inset-0 rounded-xl overflow-hidden">
+                                <DarkVeil
+                                    speed={0.8}
+                                    hueShift={237}
+                                    noiseIntensity={0.1}
+                                    scanlineIntensity={0.05}
+                                    scanlineFrequency={0.5}
+                                    warpAmount={0.02}
+                                />
+                            </div>
+
+                            <div className="relative bg-black/90 backdrop-blur-sm rounded-xl border border-red-500/30 p-8 shadow-xl h-full flex flex-col">
+                                <div className="text-4xl mb-4">🎯</div>
+                                <h3 className="text-2xl font-bold mb-4">Lead Management</h3>
+                                <p className="text-gray-300 mb-6 flex-grow">
+                                    Real-time lead capture with status tracking, contact management, and automated follow-up.
+                                </p>
+                                <ul className="space-y-2 text-sm">
+                                    <li className="flex items-center gap-2">
+                                        <Check className="h-4 w-4 text-red-500 flex-shrink-0" />
+                                        <span>Real-time capture</span>
+                                    </li>
+                                    <li className="flex items-center gap-2">
+                                        <Check className="h-4 w-4 text-red-500 flex-shrink-0" />
+                                        <span>Status tracking</span>
+                                    </li>
+                                    <li className="flex items-center gap-2">
+                                        <Check className="h-4 w-4 text-red-500 flex-shrink-0" />
+                                        <span>Contact management</span>
+                                    </li>
+                                    <li className="flex items-center gap-2">
+                                        <Check className="h-4 w-4 text-red-500 flex-shrink-0" />
+                                        <span>Automated follow-up</span>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        {/* Analytics Dashboard */}
+                        <div className="relative h-[400px]">
+                            <div className="absolute inset-0 rounded-xl overflow-hidden">
+                                <DarkVeil
+                                    speed={0.8}
+                                    hueShift={237}
+                                    noiseIntensity={0.1}
+                                    scanlineIntensity={0.05}
+                                    scanlineFrequency={0.5}
+                                    warpAmount={0.02}
+                                />
+                            </div>
+
+                            <div className="relative bg-black/90 backdrop-blur-sm rounded-xl border border-red-500/30 p-8 shadow-xl h-full flex flex-col">
+                                <div className="text-4xl mb-4">📊</div>
+                                <h3 className="text-2xl font-bold mb-4">Analytics Dashboard</h3>
+                                <p className="text-gray-300 mb-6 flex-grow">
+                                    Comprehensive tracking of views, leads, bookings, and ROI with real-time insights.
+                                </p>
+                                <ul className="space-y-2 text-sm">
+                                    <li className="flex items-center gap-2">
+                                        <Check className="h-4 w-4 text-red-500 flex-shrink-0" />
+                                        <span>View tracking</span>
+                                    </li>
+                                    <li className="flex items-center gap-2">
+                                        <Check className="h-4 w-4 text-red-500 flex-shrink-0" />
+                                        <span>Lead analytics</span>
+                                    </li>
+                                    <li className="flex items-center gap-2">
+                                        <Check className="h-4 w-4 text-red-500 flex-shrink-0" />
+                                        <span>ROI reporting</span>
+                                    </li>
+                                    <li className="flex items-center gap-2">
+                                        <Check className="h-4 w-4 text-red-500 flex-shrink-0" />
+                                        <span>Real-time updates</span>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        {/* Custom Domain */}
+                        <div className="relative h-[400px]">
+                            <div className="absolute inset-0 rounded-xl overflow-hidden">
+                                <DarkVeil
+                                    speed={0.8}
+                                    hueShift={237}
+                                    noiseIntensity={0.1}
+                                    scanlineIntensity={0.05}
+                                    scanlineFrequency={0.5}
+                                    warpAmount={0.02}
+                                />
+                            </div>
+
+                            <div className="relative bg-black/90 backdrop-blur-sm rounded-xl border border-red-500/30 p-8 shadow-xl h-full flex flex-col">
+                                <div className="text-4xl mb-4">🌐</div>
+                                <h3 className="text-2xl font-bold mb-4">Custom Domain</h3>
+                                <p className="text-gray-300 mb-6 flex-grow">
+                                    Professional custom domain setup with SSL certificates and seamless integration.
+                                </p>
+                                <ul className="space-y-2 text-sm">
+                                    <li className="flex items-center gap-2">
+                                        <Check className="h-4 w-4 text-red-500 flex-shrink-0" />
+                                        <span>Custom domain</span>
+                                    </li>
+                                    <li className="flex items-center gap-2">
+                                        <Check className="h-4 w-4 text-red-500 flex-shrink-0" />
+                                        <span>SSL certificates</span>
+                                    </li>
+                                    <li className="flex items-center gap-2">
+                                        <Check className="h-4 w-4 text-red-500 flex-shrink-0" />
+                                        <span>Easy setup</span>
+                                    </li>
+                                    <li className="flex items-center gap-2">
+                                        <Check className="h-4 w-4 text-red-500 flex-shrink-0" />
+                                        <span>Professional branding</span>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </section>

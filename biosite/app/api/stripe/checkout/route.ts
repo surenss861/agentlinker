@@ -46,39 +46,39 @@ export async function POST(request: NextRequest) {
 
     // Create Stripe Checkout Session with dynamic pricing
     const stripe = getStripe()
-    
+
     // Determine mode and pricing based on tier
     const isSubscription = tier === 'pro'
     const mode = isSubscription ? 'subscription' : 'payment'
-    
+
     // Create line items based on tier
-    const lineItems: any = isSubscription 
+    const lineItems: any = isSubscription
       ? [{
-          price_data: {
-            currency: 'usd',
-            product_data: {
-              name: 'AgentLinker Pro',
-              description: 'Monthly subscription for unlimited listings, analytics, and premium features',
-            },
-            unit_amount: 2000, // $20.00 in cents
-            recurring: {
-              interval: 'month' as const,
-            },
+        price_data: {
+          currency: 'usd',
+          product_data: {
+            name: 'AgentLinker Pro',
+            description: 'Monthly subscription for unlimited listings, analytics, and premium features',
           },
-          quantity: 1,
-        }]
+          unit_amount: 2000, // $20.00 in cents
+          recurring: {
+            interval: 'month' as const,
+          },
+        },
+        quantity: 1,
+      }]
       : [{
-          price_data: {
-            currency: 'usd',
-            product_data: {
-              name: 'AgentLinker Business Verification',
-              description: 'One-time verification badge and lifetime access to all features',
-            },
-            unit_amount: 2500, // $25.00 in cents
+        price_data: {
+          currency: 'usd',
+          product_data: {
+            name: 'AgentLinker Business Verification',
+            description: 'One-time verification badge and lifetime access to all features',
           },
-          quantity: 1,
-        }]
-    
+          unit_amount: 2500, // $25.00 in cents
+        },
+        quantity: 1,
+      }]
+
     const session = await stripe.checkout.sessions.create({
       customer_email: userProfile.email,
       line_items: lineItems,
