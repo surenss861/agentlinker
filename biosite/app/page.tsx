@@ -28,35 +28,7 @@ export default function HomePage() {
         <CardNav
           logo="/agentlinkerpfp.png"
           logoAlt="AgentLinker Logo"
-          items={[
-            {
-              label: "About",
-              bgColor: "#0D0716",
-              textColor: "#fff",
-              links: [
-                { label: "Company", ariaLabel: "About Company", href: "/about" },
-                { label: "Careers", ariaLabel: "About Careers", href: "/careers" }
-              ]
-            },
-            {
-              label: "Features",
-              bgColor: "#170D27",
-              textColor: "#fff",
-              links: [
-                { label: "Analytics", ariaLabel: "Analytics Features", href: "/features/analytics" },
-                { label: "Bookings", ariaLabel: "Booking Features", href: "/features/bookings" }
-              ]
-            },
-            {
-              label: "Contact",
-              bgColor: "#271E37",
-              textColor: "#fff",
-              links: [
-                { label: "Email", ariaLabel: "Email us", href: "mailto:support@agentlinker.ca" },
-                { label: "Support", ariaLabel: "Support", href: "/support" }
-              ]
-            }
-          ]}
+          items={[]}
           baseColor="#000000"
           menuColor="#ffffff"
           buttonBgColor="#ef4444"

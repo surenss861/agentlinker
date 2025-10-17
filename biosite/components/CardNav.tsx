@@ -190,24 +190,62 @@ const CardNav = ({
         </div>
 
         <div className="card-nav-content" aria-hidden={!isExpanded}>
-          {(items || []).slice(0, 3).map((item, idx) => (
-            <div
-              key={`${item.label}-${idx}`}
-              className="nav-card"
-              ref={setCardRef(idx)}
-              style={{ backgroundColor: item.bgColor, color: item.textColor }}
-            >
-              <div className="nav-card-label">{item.label}</div>
-              <div className="nav-card-links">
-                {item.links?.map((lnk, i) => (
-                  <a key={`${lnk.label}-${i}`} className="nav-card-link" href={lnk.href} aria-label={lnk.ariaLabel}>
-                    <GoArrowUpRight className="nav-card-link-icon" aria-hidden="true" />
-                    {lnk.label}
-                  </a>
-                ))}
-              </div>
+          {/* Sign In */}
+          <div
+            className="nav-card"
+            ref={setCardRef(0)}
+            style={{ backgroundColor: '#0D0716', color: '#fff' }}
+          >
+            <div className="nav-card-label">Account</div>
+            <div className="nav-card-links">
+              <Link href="/login" className="nav-card-link">
+                <GoArrowUpRight className="nav-card-link-icon" aria-hidden="true" />
+                Sign In
+              </Link>
             </div>
-          ))}
+          </div>
+
+          {/* Features */}
+          <div
+            className="nav-card"
+            ref={setCardRef(1)}
+            style={{ backgroundColor: '#170D27', color: '#fff' }}
+          >
+            <div className="nav-card-label">Features</div>
+            <div className="nav-card-links">
+              <Link href="/demo" className="nav-card-link">
+                <GoArrowUpRight className="nav-card-link-icon" aria-hidden="true" />
+                Demo
+              </Link>
+              <Link href="/pricing" className="nav-card-link">
+                <GoArrowUpRight className="nav-card-link-icon" aria-hidden="true" />
+                Pricing
+              </Link>
+            </div>
+          </div>
+
+          {/* Company */}
+          <div
+            className="nav-card"
+            ref={setCardRef(2)}
+            style={{ backgroundColor: '#271E37', color: '#fff' }}
+          >
+            <div className="nav-card-label">Company</div>
+            <div className="nav-card-links">
+              <Link href="/about" className="nav-card-link">
+                <GoArrowUpRight className="nav-card-link-icon" aria-hidden="true" />
+                About
+              </Link>
+              <Link href="/terms" className="nav-card-link">
+                <GoArrowUpRight className="nav-card-link-icon" aria-hidden="true" />
+                Terms
+              </Link>
+              <Link href="/privacy" className="nav-card-link">
+                <GoArrowUpRight className="nav-card-link-icon" aria-hidden="true" />
+                Privacy
+              </Link>
+            </div>
+          </div>
         </div>
       </nav>
     </div>
