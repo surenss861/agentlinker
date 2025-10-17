@@ -216,6 +216,7 @@ export default function LiquidEther({
             onDocumentMouseMove(event: MouseEvent) {
                 if (this.onInteract) this.onInteract();
                 if (this.isAutoActive && !this.hasUserControl && !this.takeoverActive) {
+                    if (!this.container) return;
                     const rect = this.container.getBoundingClientRect();
                     const nx = (event.clientX - rect.left) / rect.width;
                     const ny = (event.clientY - rect.top) / rect.height;
@@ -1002,13 +1003,13 @@ export default function LiquidEther({
             }
             resize() {
                 Common.resize();
-                this.output.resize();
+                if (this.output) this.output.resize();
             }
             render() {
                 if (this.autoDriver) this.autoDriver.update();
                 Mouse.update();
                 Common.update();
-                this.output.update();
+                if (this.output) this.output.update();
             }
             loop() {
                 if (!this.running) return; // safety
