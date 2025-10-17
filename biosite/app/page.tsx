@@ -49,7 +49,7 @@ export default function HomePage() {
               <strong>One link replaces 4 tools.</strong> Get 5-10 showing requests monthly — automatically.
             </p>
             <p className="text-lg text-red-400 mb-8 font-semibold">
-              One extra deal = $10K+ commission. AgentLinker costs $600/year.
+              One extra deal = $10K+ commission. AgentLinker costs $240/year.
             </p>
 
             {/* ROI Stats */}
