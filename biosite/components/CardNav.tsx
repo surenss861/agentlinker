@@ -194,7 +194,7 @@ const CardNav = ({
           <div
             className="nav-card"
             ref={setCardRef(0)}
-            style={{ backgroundColor: '#0D0716', color: '#fff' }}
+            style={{ backgroundColor: '#1a0000', color: '#fff' }}
           >
             <div className="nav-card-label">Account</div>
             <div className="nav-card-links">
@@ -209,7 +209,7 @@ const CardNav = ({
           <div
             className="nav-card"
             ref={setCardRef(1)}
-            style={{ backgroundColor: '#170D27', color: '#fff' }}
+            style={{ backgroundColor: '#2d0000', color: '#fff' }}
           >
             <div className="nav-card-label">Features</div>
             <div className="nav-card-links">
@@ -228,7 +228,7 @@ const CardNav = ({
           <div
             className="nav-card"
             ref={setCardRef(2)}
-            style={{ backgroundColor: '#271E37', color: '#fff' }}
+            style={{ backgroundColor: '#400000', color: '#fff' }}
           >
             <div className="nav-card-label">Company</div>
             <div className="nav-card-links">
