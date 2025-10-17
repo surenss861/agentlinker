@@ -139,10 +139,10 @@ export async function POST(request: NextRequest) {
           .from('subscriptions')
           .update({
             status: newStatus,
-            current_period_start: subscription.current_period_start ? new Date(subscription.current_period_start * 1000).toISOString() : null,
-            current_period_end: subscription.current_period_end ? new Date(subscription.current_period_end * 1000).toISOString() : null,
-            canceled_at: subscription.canceled_at ? new Date(subscription.canceled_at * 1000).toISOString() : null,
-            cancel_at_period_end: subscription.cancel_at_period_end || false,
+            current_period_start: (subscription as any).current_period_start ? new Date((subscription as any).current_period_start * 1000).toISOString() : null,
+            current_period_end: (subscription as any).current_period_end ? new Date((subscription as any).current_period_end * 1000).toISOString() : null,
+            canceled_at: (subscription as any).canceled_at ? new Date((subscription as any).canceled_at * 1000).toISOString() : null,
+            cancel_at_period_end: (subscription as any).cancel_at_period_end || false,
             updated_at: new Date().toISOString()
           })
           .eq('stripe_subscription_id', subscription.id)
