@@ -123,8 +123,10 @@ export default function LiquidEther({
                 if (this.renderer) this.renderer.setSize(this.width, this.height, false);
             }
             update() {
-                this.delta = this.clock.getDelta();
-                this.time += this.delta;
+                if (this.clock) {
+                    this.delta = this.clock.getDelta();
+                    this.time += this.delta;
+                }
             }
         }
         const Common = new CommonClass();
