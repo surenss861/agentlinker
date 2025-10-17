@@ -70,6 +70,20 @@ export default function LiquidEther({
         const bgVec4 = new THREE.Vector4(0, 0, 0, 0); // always transparent
 
         class CommonClass {
+            width: number;
+            height: number;
+            aspect: number;
+            pixelRatio: number;
+            isMobile: boolean;
+            breakpoint: number;
+            fboWidth: any;
+            fboHeight: any;
+            time: number;
+            delta: number;
+            container: HTMLElement | null;
+            renderer: THREE.WebGLRenderer | null;
+            clock: THREE.Clock | null;
+
             constructor() {
                 this.width = 0;
                 this.height = 0;
@@ -116,6 +130,29 @@ export default function LiquidEther({
         const Common = new CommonClass();
 
         class MouseClass {
+            mouseMoved: boolean;
+            coords: THREE.Vector2;
+            coords_old: THREE.Vector2;
+            diff: THREE.Vector2;
+            timer: any;
+            container: HTMLElement | null;
+            _onMouseMove: (event: MouseEvent) => void;
+            _onTouchStart: (event: TouchEvent) => void;
+            _onTouchMove: (event: TouchEvent) => void;
+            _onMouseEnter: () => void;
+            _onMouseLeave: () => void;
+            _onTouchEnd: () => void;
+            isHoverInside: boolean;
+            hasUserControl: boolean;
+            isAutoActive: boolean;
+            autoIntensity: number;
+            takeoverActive: boolean;
+            takeoverStartTime: number;
+            takeoverDuration: number;
+            takeoverFrom: THREE.Vector2;
+            takeoverTo: THREE.Vector2;
+            onInteract: (() => void) | null;
+
             constructor() {
                 this.mouseMoved = false;
                 this.coords = new THREE.Vector2();
@@ -237,6 +274,20 @@ export default function LiquidEther({
         const Mouse = new MouseClass();
 
         class AutoDriver {
+            mouse: any;
+            manager: any;
+            enabled: boolean;
+            speed: number;
+            resumeDelay: number;
+            rampDurationMs: number;
+            active: boolean;
+            current: THREE.Vector2;
+            target: THREE.Vector2;
+            lastTime: number;
+            activationTime: number;
+            margin: number;
+            _tmpDir: THREE.Vector2;
+
             constructor(mouse: any, manager: any, opts: any) {
                 this.mouse = mouse;
                 this.manager = manager;
@@ -475,6 +526,14 @@ export default function LiquidEther({
 `;
 
         class ShaderPass {
+            props: any;
+            uniforms: any;
+            scene: THREE.Scene | null;
+            camera: THREE.Camera | null;
+            material: THREE.RawShaderMaterial | null;
+            geometry: THREE.PlaneGeometry | null;
+            plane: THREE.Mesh | null;
+
             constructor(props: any) {
                 this.props = props || {};
                 this.uniforms = this.props.material?.uniforms;
