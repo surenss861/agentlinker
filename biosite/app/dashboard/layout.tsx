@@ -1,6 +1,5 @@
 import { redirect } from 'next/navigation'
 import { createServerSupabaseClient } from '@/lib/supabase-server'
-import LiquidEther from '@/components/LiquidEther'
 
 export default async function DashboardLayout({
   children,
@@ -15,28 +14,13 @@ export default async function DashboardLayout({
   }
 
   return (
-        <div className="min-h-screen bg-black relative overflow-hidden">
-          {/* Liquid Ether Background */}
-          <div className="absolute inset-0">
-            <LiquidEther
-              colors={['#000000', '#FF0000', '#800000']}
-              mouseForce={20}
-              cursorSize={100}
-              isViscous={false}
-              viscous={30}
-              iterationsViscous={32}
-              iterationsPoisson={32}
-              resolution={0.5}
-              isBounce={false}
-              autoDemo={true}
-              autoSpeed={0.5}
-              autoIntensity={2.2}
-              takeoverDuration={0.25}
-              autoResumeDelay={1000}
-              autoRampDuration={0.6}
-            />
-          </div>
-      
+    <div className="min-h-screen bg-black relative overflow-hidden">
+      {/* Gradient Background */}
+      <div className="absolute inset-0 bg-gradient-to-br from-black via-red-900/20 to-black">
+        <div className="absolute inset-0 bg-gradient-to-tl from-red-800/10 via-transparent to-red-600/5"></div>
+        <div className="absolute inset-0 bg-gradient-to-r from-transparent via-red-900/5 to-transparent"></div>
+      </div>
+
       {/* Content */}
       <div className="relative z-10">
         {children}
