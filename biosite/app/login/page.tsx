@@ -53,7 +53,7 @@ export default function LoginPage() {
     try {
       console.log('🔍 Starting password reset for:', email)
       console.log('🔍 Redirect URL:', `${process.env.NEXT_PUBLIC_APP_URL || window.location.origin}/reset-password`)
-      
+
       // Use Supabase's password reset but with custom redirect
       const { error } = await supabase.auth.resetPasswordForEmail(email, {
         redirectTo: `${process.env.NEXT_PUBLIC_APP_URL || window.location.origin}/reset-password`,
@@ -63,8 +63,7 @@ export default function LoginPage() {
         console.error('❌ Password reset error:', error)
         console.error('❌ Error details:', {
           message: error.message,
-          status: error.status,
-          statusText: error.statusText
+          status: error.status
         })
         throw error
       }
