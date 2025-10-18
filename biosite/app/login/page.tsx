@@ -4,7 +4,7 @@ import { useState } from 'react'
 import { useRouter } from 'next/navigation'
 import Link from 'next/link'
 import { createClient } from '@/lib/supabase'
-import { ArrowRight } from 'lucide-react'
+import { ArrowRight, Mail, CheckCircle } from 'lucide-react'
 import DarkVeil from '@/components/DarkVeil'
 
 export default function LoginPage() {
@@ -23,15 +23,16 @@ export default function LoginPage() {
     setError('')
 
     try {
-      const { error } = await supabase.auth.signInWithPassword({
+      const { data, error } = await supabase.auth.signInWithPassword({
         email,
         password,
       })
 
       if (error) throw error
 
-      router.push('/dashboard')
-      router.refresh()
+      if (data.user) {
+        router.push('/dashboard')
+      }
     } catch (err: any) {
       setError(err.message || 'Failed to sign in')
     } finally {
@@ -51,8 +52,8 @@ export default function LoginPage() {
 
     try {
       console.log('Sending password reset email to:', email)
-      console.log('Redirect URL:', `${process.env.NEXT_PUBLIC_APP_URL || window.location.origin}/reset-password`)
-
+      
+      // Use Supabase's password reset but with custom redirect
       const { error } = await supabase.auth.resetPasswordForEmail(email, {
         redirectTo: `${process.env.NEXT_PUBLIC_APP_URL || window.location.origin}/reset-password`,
       })
@@ -63,7 +64,7 @@ export default function LoginPage() {
       }
 
       console.log('Password reset email sent successfully')
-      setResetMessage('Password reset email sent! Check your inbox and spam folder. If you don\'t receive it, your email might need to be confirmed first.')
+      setResetMessage('Password reset email sent! Check your inbox and spam folder.')
     } catch (err: any) {
       console.error('Password reset failed:', err)
       setError(err.message || 'Failed to send reset email')
@@ -97,26 +98,7 @@ export default function LoginPage() {
               />
             </Link>
             <h1 className="text-4xl font-bold text-white mb-2">Welcome Back</h1>
-            <p className="text-gray-300">Continue growing your real estate business</p>
-          </div>
-
-          {/* ROI Reminder */}
-          <div className="relative mb-6">
-            <div className="absolute inset-0 rounded-xl overflow-hidden">
-              <DarkVeil
-                speed={0.8}
-                hueShift={200}
-                noiseIntensity={0.1}
-                scanlineIntensity={0.05}
-                scanlineFrequency={0.5}
-                warpAmount={0.02}
-              />
-            </div>
-            <div className="relative bg-black/90 backdrop-blur-sm rounded-xl border border-red-500/30 p-6 shadow-xl">
-              <p className="text-center text-sm text-gray-300">
-                <span className="text-red-500 font-semibold">Agents using AgentLinker</span> get 5-10 showing requests monthly
-              </p>
-            </div>
+            <p className="text-gray-300">Sign in to your AgentLinker account</p>
           </div>
 
           <div className="relative">
@@ -140,14 +122,17 @@ export default function LoginPage() {
 
               {resetMessage && (
                 <div className="bg-green-500/20 text-green-200 p-4 rounded-lg mb-6 text-sm border border-green-500/30">
-                  {resetMessage}
+                  <div className="flex items-center gap-2">
+                    <CheckCircle className="h-4 w-4" />
+                    {resetMessage}
+                  </div>
                 </div>
               )}
 
               <form onSubmit={handleLogin} className="space-y-6">
                 <div>
                   <label htmlFor="email" className="block text-sm font-medium text-gray-300 mb-2">
-                    Email
+                    Email Address
                   </label>
                   <input
                     id="email"
@@ -156,7 +141,7 @@ export default function LoginPage() {
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                     className="w-full px-4 py-3 bg-black/50 border border-red-500/30 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-red-500 text-white placeholder-gray-400 transition-all"
-                    placeholder="you@example.com"
+                    placeholder="john@example.com"
                   />
                 </div>
 
@@ -190,7 +175,7 @@ export default function LoginPage() {
                   disabled={loading}
                   className="w-full bg-red-600 text-white py-3 rounded-lg hover:bg-red-700 transition-all font-medium disabled:opacity-50 flex items-center justify-center gap-2 shadow-xl"
                 >
-                  {loading ? 'Signing in...' : 'Sign In'}
+                  {loading ? 'Signing In...' : 'Sign In'}
                   {!loading && <ArrowRight className="h-4 w-4" />}
                 </button>
               </form>
@@ -210,4 +195,3 @@ export default function LoginPage() {
     </div>
   )
 }
-
