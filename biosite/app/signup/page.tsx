@@ -4,8 +4,9 @@ import { useState } from 'react'
 import { useRouter } from 'next/navigation'
 import Link from 'next/link'
 import { createClient } from '@/lib/supabase'
-import { ArrowRight, Check } from 'lucide-react'
+import { ArrowRight, Check, Mail } from 'lucide-react'
 import DarkVeil from '@/components/DarkVeil'
+import { useAuthEmail } from '@/lib/hooks/useAuthEmail'
 
 export default function SignupPage() {
   const [email, setEmail] = useState('')
