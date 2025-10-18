@@ -36,7 +36,7 @@ export default function SignupPage() {
         password,
         options: {
           // Completely disable email confirmation
-          emailRedirectTo: null,
+          emailRedirectTo: undefined,
           data: {
             full_name: fullName,
           },
@@ -45,11 +45,11 @@ export default function SignupPage() {
 
       if (error) {
         console.error('Supabase signup error:', error)
-        
+
         // Handle different types of errors
-        if (error.message.includes('rate limit') || 
-            error.message.includes('too many') || 
-            error.message.includes('email rate limit')) {
+        if (error.message.includes('rate limit') ||
+          error.message.includes('too many') ||
+          error.message.includes('email rate limit')) {
           setRetryCount(prev => prev + 1)
           setError('Signup temporarily unavailable due to high demand. Please try again in 5 minutes.')
         } else if (error.message.includes('already registered')) {

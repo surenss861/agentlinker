@@ -69,7 +69,7 @@ export default function LoginPage() {
       }
 
       console.log('✅ Password reset email sent successfully')
-      setResetMessage('Password reset email sent! Check your inbox and spam folder.')
+      setResetMessage('Password reset email sent! ⚠️ IMPORTANT: Check your SPAM/JUNK folder - emails often go there first!')
     } catch (err: any) {
       console.error('❌ Password reset failed:', err)
       setError(err.message || 'Failed to send reset email')
@@ -126,10 +126,13 @@ export default function LoginPage() {
               )}
 
               {resetMessage && (
-                <div className="bg-green-500/20 text-green-200 p-4 rounded-lg mb-6 text-sm border border-green-500/30">
+                <div className="bg-yellow-500/20 text-yellow-200 p-4 rounded-lg mb-6 text-sm border border-yellow-500/30">
                   <div className="flex items-center gap-2">
                     <CheckCircle className="h-4 w-4" />
-                    {resetMessage}
+                    <div>
+                      <div className="font-semibold">Password reset email sent!</div>
+                      <div className="text-xs mt-1">⚠️ IMPORTANT: Check your SPAM/JUNK folder - emails often go there first!</div>
+                    </div>
                   </div>
                 </div>
               )}
