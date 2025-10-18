@@ -669,8 +669,8 @@ export default function HomePage() {
 
                   {contactMessage && (
                     <div className={`p-4 rounded-lg mb-6 text-sm border ${contactMessage.includes('Thank you')
-                        ? 'bg-green-500/20 text-green-200 border-green-500/30'
-                        : 'bg-red-500/20 text-red-200 border-red-500/30'
+                      ? 'bg-green-500/20 text-green-200 border-green-500/30'
+                      : 'bg-red-500/20 text-red-200 border-red-500/30'
                       }`}>
                       {contactMessage}
                     </div>

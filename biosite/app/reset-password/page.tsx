@@ -24,7 +24,7 @@ function ResetPasswordForm() {
     useEffect(() => {
         if (accessToken && refreshToken) {
             console.log('🔍 Setting session with tokens:', { accessToken: accessToken.substring(0, 20) + '...', refreshToken: refreshToken.substring(0, 20) + '...' })
-            
+
             // Set the session with the tokens from the URL
             supabase.auth.setSession({
                 access_token: accessToken,
@@ -62,7 +62,7 @@ function ResetPasswordForm() {
         try {
             // First check if we have a valid session
             const { data: { user }, error: userError } = await supabase.auth.getUser()
-            
+
             if (userError || !user) {
                 console.error('❌ No valid session found:', userError)
                 setError('Session expired. Please request a new password reset link.')
@@ -82,7 +82,7 @@ function ResetPasswordForm() {
 
             console.log('✅ Password updated successfully')
             setSuccess(true)
-            
+
             // Redirect to dashboard after 2 seconds
             setTimeout(() => {
                 router.push('/dashboard')
