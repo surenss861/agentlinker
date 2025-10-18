@@ -50,14 +50,22 @@ export default function LoginPage() {
     setResetMessage('')
 
     try {
+      console.log('Sending password reset email to:', email)
+      console.log('Redirect URL:', `${process.env.NEXT_PUBLIC_APP_URL || window.location.origin}/reset-password`)
+      
       const { error } = await supabase.auth.resetPasswordForEmail(email, {
         redirectTo: `${process.env.NEXT_PUBLIC_APP_URL || window.location.origin}/reset-password`,
       })
 
-      if (error) throw error
+      if (error) {
+        console.error('Password reset error:', error)
+        throw error
+      }
 
-      setResetMessage('Password reset email sent! Check your inbox.')
+      console.log('Password reset email sent successfully')
+      setResetMessage('Password reset email sent! Check your inbox and spam folder.')
     } catch (err: any) {
+      console.error('Password reset failed:', err)
       setError(err.message || 'Failed to send reset email')
     } finally {
       setResetLoading(false)
