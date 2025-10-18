@@ -23,21 +23,24 @@ export default function HomePage() {
     setContactMessage('')
 
     try {
-      const response = await fetch('/api/contact', {
+      const response = await fetch('https://surens.app.n8n.cloud/webhook/contact-form', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify(contactForm),
+        body: JSON.stringify({
+          fullName: contactForm.name,
+          email: contactForm.email,
+          subject: contactForm.subject,
+          message: contactForm.message
+        }),
       })
 
-      const data = await response.json()
-
-      if (data.success) {
+      if (response.ok) {
         setContactMessage('Thank you! Your message has been sent. We\'ll get back to you within 24 hours.')
         setContactForm({ name: '', email: '', subject: '', message: '' })
       } else {
-        setContactMessage(`Error: ${data.error}`)
+        setContactMessage('Sorry, there was an error sending your message. Please try again.')
       }
     } catch (error) {
       setContactMessage('Sorry, there was an error sending your message. Please try again.')
@@ -663,13 +666,12 @@ export default function HomePage() {
                 </div>
                 <div className="relative bg-black/90 backdrop-blur-sm rounded-2xl border border-red-500/30 shadow-2xl p-8">
                   <h3 className="text-2xl font-bold mb-6 text-red-500">Send us a Message</h3>
-                  
+
                   {contactMessage && (
-                    <div className={`p-4 rounded-lg mb-6 text-sm border ${
-                      contactMessage.includes('Thank you') 
-                        ? 'bg-green-500/20 text-green-200 border-green-500/30' 
+                    <div className={`p-4 rounded-lg mb-6 text-sm border ${contactMessage.includes('Thank you')
+                        ? 'bg-green-500/20 text-green-200 border-green-500/30'
                         : 'bg-red-500/20 text-red-200 border-red-500/30'
-                    }`}>
+                      }`}>
                       {contactMessage}
                     </div>
                   )}
