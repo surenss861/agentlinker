@@ -52,7 +52,7 @@ export default function LoginPage() {
     try {
       console.log('Sending password reset email to:', email)
       console.log('Redirect URL:', `${process.env.NEXT_PUBLIC_APP_URL || window.location.origin}/reset-password`)
-      
+
       const { error } = await supabase.auth.resetPasswordForEmail(email, {
         redirectTo: `${process.env.NEXT_PUBLIC_APP_URL || window.location.origin}/reset-password`,
       })
@@ -63,7 +63,7 @@ export default function LoginPage() {
       }
 
       console.log('Password reset email sent successfully')
-      setResetMessage('Password reset email sent! Check your inbox and spam folder.')
+      setResetMessage('Password reset email sent! Check your inbox and spam folder. If you don\'t receive it, your email might need to be confirmed first.')
     } catch (err: any) {
       console.error('Password reset failed:', err)
       setError(err.message || 'Failed to send reset email')
