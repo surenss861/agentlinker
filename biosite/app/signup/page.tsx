@@ -14,6 +14,7 @@ export default function SignupPage() {
   const [agreeToTerms, setAgreeToTerms] = useState(false)
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState('')
+  const [retryCount, setRetryCount] = useState(0)
   const router = useRouter()
   const supabase = createClient()
 
@@ -29,12 +30,13 @@ export default function SignupPage() {
     setError('')
 
     try {
-      // Sign up without email confirmation to avoid rate limits
+      // Try to sign up with minimal options to avoid rate limits
       const { data, error } = await supabase.auth.signUp({
         email,
         password,
         options: {
-          emailRedirectTo: undefined, // Disable email confirmation
+          // Completely disable email confirmation
+          emailRedirectTo: null,
           data: {
             full_name: fullName,
           },
@@ -42,22 +44,30 @@ export default function SignupPage() {
       })
 
       if (error) {
-        // Handle specific rate limit error
-        if (error.message.includes('rate limit') || error.message.includes('too many')) {
-          setError('Too many signup attempts. Please wait a few minutes and try again.')
+        console.error('Supabase signup error:', error)
+        
+        // Handle different types of errors
+        if (error.message.includes('rate limit') || 
+            error.message.includes('too many') || 
+            error.message.includes('email rate limit')) {
+          setRetryCount(prev => prev + 1)
+          setError('Signup temporarily unavailable due to high demand. Please try again in 5 minutes.')
+        } else if (error.message.includes('already registered')) {
+          setError('An account with this email already exists. Please sign in instead.')
         } else {
-          throw error
+          setError('Unable to create account right now. Please try again later.')
         }
         return
       }
 
       if (data.user) {
-        // Redirect directly to onboarding since we're skipping email confirmation
+        console.log('User created successfully:', data.user.id)
+        // Redirect directly to onboarding
         router.push('/onboarding')
       }
     } catch (err: any) {
-      console.error('Signup error:', err)
-      setError(err.message || 'Failed to sign up')
+      console.error('Unexpected signup error:', err)
+      setError('Something went wrong. Please try again.')
     } finally {
       setLoading(false)
     }
@@ -139,7 +149,20 @@ export default function SignupPage() {
             <div className="relative bg-black/90 backdrop-blur-sm rounded-2xl border border-red-500/30 shadow-2xl p-8">
               {error && (
                 <div className="bg-red-500/20 text-red-200 p-4 rounded-lg mb-6 text-sm border border-red-500/30">
-                  {error}
+                  <div className="flex items-center justify-between">
+                    <span>{error}</span>
+                    {error.includes('temporarily unavailable') && retryCount > 0 && (
+                      <button
+                        onClick={() => {
+                          setError('')
+                          setRetryCount(0)
+                        }}
+                        className="ml-2 text-red-300 hover:text-red-100 underline text-xs"
+                      >
+                        Try Again
+                      </button>
+                    )}
+                  </div>
                 </div>
               )}
 
