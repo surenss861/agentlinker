@@ -76,7 +76,7 @@ Reset Your AgentLinker Password
             
             <p>If you didn't request a password reset, you can safely ignore this email. Your password will remain unchanged.</p>
             
-            <p>Need help? Contact us at <a href="mailto:support@agentlinker.ca">support@agentlinker.ca</a></p>
+            <p>Need help? Contact us at <a href="mailto:contact@agentlinker.ca">contact@agentlinker.ca</a></p>
         </div>
         
         <div class="footer">
@@ -98,7 +98,7 @@ Reset Your AgentLinker Password
 **SMTP Port:** `587`
 **SMTP User:** `noreply@agentlinker.ca` (or your domain email)
 **SMTP Password:** Your email service password
-**SMTP Admin Email:** `support@agentlinker.ca`
+**SMTP Admin Email:** `contact@agentlinker.ca`
 
 ### 4. Email Rate Limiting
 

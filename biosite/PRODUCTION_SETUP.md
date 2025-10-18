@@ -32,7 +32,7 @@ STRIPE_WEBHOOK_SECRET=[Your Webhook Secret - starts with whsec_]
 #### SendGrid Configuration
 ```
 SENDGRID_API_KEY=[Your SendGrid API Key]
-SENDGRID_FROM_EMAIL=noreply@agentlinker.ca
+SENDGRID_FROM_EMAIL=contact@agentlinker.ca
 ```
 
 #### EmailJS Configuration (Optional)

@@ -114,7 +114,7 @@ Try password reset with:
    SMTP Port: 587
    SMTP User: apikey
    SMTP Password: [your_sendgrid_api_key]
-   SMTP Admin Email: support@agentlinker.ca
+   SMTP Admin Email: contact@agentlinker.ca
    ```
 
 ### Option 2: Gmail SMTP
@@ -127,7 +127,7 @@ Try password reset with:
    SMTP Port: 587
    SMTP User: your_email@gmail.com
    SMTP Password: [app_password]
-   SMTP Admin Email: your_email@gmail.com
+   SMTP Admin Email: contact@agentlinker.ca
    ```
 
 ## 🧪 Testing Checklist
