@@ -11,7 +11,9 @@ export default function LoginPage() {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [loading, setLoading] = useState(false)
+  const [resetLoading, setResetLoading] = useState(false)
   const [error, setError] = useState('')
+  const [resetMessage, setResetMessage] = useState('')
   const router = useRouter()
   const supabase = createClient()
 
@@ -34,6 +36,31 @@ export default function LoginPage() {
       setError(err.message || 'Failed to sign in')
     } finally {
       setLoading(false)
+    }
+  }
+
+  const handlePasswordReset = async () => {
+    if (!email) {
+      setError('Please enter your email address first')
+      return
+    }
+
+    setResetLoading(true)
+    setError('')
+    setResetMessage('')
+
+    try {
+      const { error } = await supabase.auth.resetPasswordForEmail(email, {
+        redirectTo: `${window.location.origin}/reset-password`,
+      })
+
+      if (error) throw error
+
+      setResetMessage('Password reset email sent! Check your inbox.')
+    } catch (err: any) {
+      setError(err.message || 'Failed to send reset email')
+    } finally {
+      setResetLoading(false)
     }
   }
 
@@ -103,6 +130,12 @@ export default function LoginPage() {
                 </div>
               )}
 
+              {resetMessage && (
+                <div className="bg-green-500/20 text-green-200 p-4 rounded-lg mb-6 text-sm border border-green-500/30">
+                  {resetMessage}
+                </div>
+              )}
+
               <form onSubmit={handleLogin} className="space-y-6">
                 <div>
                   <label htmlFor="email" className="block text-sm font-medium text-gray-300 mb-2">
@@ -132,6 +165,16 @@ export default function LoginPage() {
                     className="w-full px-4 py-3 bg-black/50 border border-red-500/30 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-red-500 text-white placeholder-gray-400 transition-all"
                     placeholder="••••••••"
                   />
+                  <div className="mt-2 text-right">
+                    <button
+                      type="button"
+                      onClick={handlePasswordReset}
+                      disabled={resetLoading}
+                      className="text-sm text-red-400 hover:text-red-300 transition-colors disabled:opacity-50"
+                    >
+                      {resetLoading ? 'Sending...' : 'Forgot password?'}
+                    </button>
+                  </div>
                 </div>
 
                 <button
