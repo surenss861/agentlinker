@@ -37,7 +37,7 @@ export default function HomePage() {
       })
 
       if (response.ok) {
-        setContactMessage('Thank you! Your message has been sent. We\'ll get back to you within 24 hours.')
+        setContactMessage('Thank you! Your message has been sent successfully. We\'ll get back to you within 24 hours.')
         setContactForm({ name: '', email: '', subject: '', message: '' })
       } else {
         setContactMessage('Sorry, there was an error sending your message. Please try again.')
