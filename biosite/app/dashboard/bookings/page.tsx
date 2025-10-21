@@ -7,7 +7,6 @@ import NavBar from '@/components/NavBar'
 import BookingsManager from '@/components/BookingsManager'
 import { useRealtimeBookings } from '@/lib/hooks/useRealtimeBookings'
 import { useSubscription } from '@/lib/hooks/useSubscription'
-import ProSoftwall, { UpgradeModal } from '@/components/ProSoftwall'
 import { Crown } from 'lucide-react'
 
 export default function BookingsPage() {
@@ -15,8 +14,7 @@ export default function BookingsPage() {
   const supabase = createClient()
   const [userId, setUserId] = useState<string | null>(null)
   const [loading, setLoading] = useState(true)
-  const [showUpgradeModal, setShowUpgradeModal] = useState(false)
-  const { subscription, hasFeature, getUpgradeText } = useSubscription()
+  const { subscription } = useSubscription()
 
   useEffect(() => {
     const fetchUser = async () => {
@@ -136,25 +134,31 @@ export default function BookingsPage() {
           </div>
         )}
 
-        {/* Upgrade Banner for Free Users */}
+        {/* Single Consolidated Upgrade Banner */}
         {subscription?.tier === 'free' && (
-          <div className="mb-6 p-4 bg-gradient-to-r from-[#F3C77E]/20 to-[#912F40]/20 border border-[#F3C77E]/30 rounded-xl">
-            <div className="flex items-center justify-between">
-              <div className="flex items-center gap-3">
-                <div className="w-8 h-8 bg-gradient-to-br from-[#F3C77E] to-[#912F40] rounded-full flex items-center justify-center">
-                  <Crown className="w-4 h-4 text-white" />
+          <div className="mb-6 p-6 bg-gradient-to-r from-[#F3C77E]/20 to-[#912F40]/20 border border-[#F3C77E]/30 rounded-xl">
+            <div className="flex items-center justify-between flex-wrap gap-4">
+              <div className="flex items-center gap-4">
+                <div className="w-12 h-12 bg-gradient-to-br from-[#F3C77E] to-[#912F40] rounded-full flex items-center justify-center flex-shrink-0">
+                  <Crown className="w-6 h-6 text-white" />
                 </div>
                 <div>
-                  <h3 className="text-white font-semibold">Unlock Advanced Booking Scheduler</h3>
-                  <p className="text-gray-300 text-sm">Get real-time scheduling, availability calendar, and automated confirmations</p>
+                  <div className="flex items-center gap-2 mb-1">
+                    <span className="px-2 py-0.5 bg-gray-700 text-gray-300 rounded-full text-xs font-medium">
+                      Free Plan
+                    </span>
+                    <span className="text-gray-400 text-sm">Preview Only</span>
+                  </div>
+                  <h3 className="text-white font-semibold text-lg">Unlock Advanced Booking Scheduler</h3>
+                  <p className="text-gray-300 text-sm mt-1">Get real-time scheduling, availability calendar, automated confirmations, and email notifications for $50/month</p>
                 </div>
               </div>
-              <button
-                onClick={() => setShowUpgradeModal(true)}
-                className="px-6 py-2 bg-gradient-to-r from-[#F3C77E] to-[#912F40] text-white rounded-lg font-medium hover:from-[#F3C77E]/80 hover:to-[#912F40]/80 transition-all"
+              <a
+                href="/dashboard/billing"
+                className="px-6 py-3 bg-gradient-to-r from-[#F3C77E] to-[#912F40] text-white rounded-lg font-semibold hover:from-[#F3C77E]/80 hover:to-[#912F40]/80 transition-all shadow-lg"
               >
                 Upgrade to Pro
-              </button>
+              </a>
             </div>
           </div>
         )}
@@ -168,13 +172,6 @@ export default function BookingsPage() {
         />
       </main>
 
-      <UpgradeModal
-        isOpen={showUpgradeModal}
-        onClose={() => setShowUpgradeModal(false)}
-        feature="Advanced Booking Scheduler"
-        description="Get real-time scheduling, availability calendar, automated confirmations, email notifications, and advanced booking management features."
-        requiredTier="pro"
-      />
     </>
   )
 }

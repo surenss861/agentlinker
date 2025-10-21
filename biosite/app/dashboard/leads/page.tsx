@@ -8,17 +8,14 @@ import LeadsManagerSimple from '@/components/LeadsManagerSimple'
 import { useRealtimeLeads } from '@/lib/hooks/useRealtimeLeads'
 import { useResponseTimeTracking } from '@/lib/utils/response-tracking'
 import { useSubscription } from '@/lib/hooks/useSubscription'
-import ProSoftwall, { UpgradeModal } from '@/components/ProSoftwall'
 import { Crown } from 'lucide-react'
 
 export default function LeadsPage() {
   const [userId, setUserId] = useState<string>('')
   const [loading, setLoading] = useState(true)
-  const [isProUser, setIsProUser] = useState(false)
-  const [showUpgradeModal, setShowUpgradeModal] = useState(false)
   const router = useRouter()
   const supabase = createClient()
-  const { subscription, hasFeature, getUpgradeText } = useSubscription()
+  const { subscription } = useSubscription()
 
   useEffect(() => {
     const fetchUser = async () => {
@@ -32,9 +29,6 @@ export default function LeadsPage() {
         }
 
         setUserId(user.id)
-
-        // Check if user is Pro (mock for now)
-        setIsProUser(true) // TODO: Check actual subscription status
       } catch (error) {
         console.error('Error in fetchUser:', error)
         router.push('/login')
@@ -108,36 +102,31 @@ export default function LeadsPage() {
       <NavBar />
 
       <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        {/* Subscription Status */}
-        {subscription && (
-          <div className="mb-6 p-4 bg-white/5 rounded-xl border border-white/10">
-            <div className="flex items-center justify-between">
-              <div className="flex items-center gap-3">
-                <div className={`px-3 py-1 rounded-full text-sm font-medium ${subscription.tier === 'free'
-                    ? 'bg-gray-600 text-gray-300'
-                    : subscription.tier === 'pro'
-                      ? 'bg-[#912F40] text-white'
-                      : 'bg-[#F3C77E] text-black'
-                  }`}>
-                  {subscription.tier === 'free' ? 'Free Plan' :
-                    subscription.tier === 'pro' ? 'Pro Plan' : 'Business Plan'}
-                  {subscription.tier !== 'free' && <Crown className="w-4 h-4 inline ml-1" />}
+        {/* Single Consolidated Upgrade Banner */}
+        {subscription?.tier === 'free' && (
+          <div className="mb-6 p-6 bg-gradient-to-r from-[#F3C77E]/20 to-[#912F40]/20 border border-[#F3C77E]/30 rounded-xl">
+            <div className="flex items-center justify-between flex-wrap gap-4">
+              <div className="flex items-center gap-4">
+                <div className="w-12 h-12 bg-gradient-to-br from-[#F3C77E] to-[#912F40] rounded-full flex items-center justify-center flex-shrink-0">
+                  <Crown className="w-6 h-6 text-white" />
                 </div>
-                <span className="text-gray-400">
-                  {subscription.tier === 'free'
-                    ? 'Leads preview only - upgrade for full access'
-                    : 'Full leads management enabled'
-                  }
-                </span>
+                <div>
+                  <div className="flex items-center gap-2 mb-1">
+                    <span className="px-2 py-0.5 bg-gray-700 text-gray-300 rounded-full text-xs font-medium">
+                      Free Plan
+                    </span>
+                    <span className="text-gray-400 text-sm">Preview Only</span>
+                  </div>
+                  <h3 className="text-white font-semibold text-lg">Unlock Full Leads Management</h3>
+                  <p className="text-gray-300 text-sm mt-1">Get real-time tracking, status updates, analytics, and conversion tools for $50/month</p>
+                </div>
               </div>
-              {subscription.tier === 'free' && (
-                <button
-                  onClick={() => setShowUpgradeModal(true)}
-                  className="px-4 py-2 bg-gradient-to-r from-[#F3C77E] to-[#912F40] text-white rounded-lg font-medium hover:from-[#F3C77E]/80 hover:to-[#912F40]/80 transition-all"
-                >
-                  Upgrade Now
-                </button>
-              )}
+              <a
+                href="/dashboard/billing"
+                className="px-6 py-3 bg-gradient-to-r from-[#F3C77E] to-[#912F40] text-white rounded-lg font-semibold hover:from-[#F3C77E]/80 hover:to-[#912F40]/80 transition-all shadow-lg"
+              >
+                Upgrade to Pro
+              </a>
             </div>
           </div>
         )}
@@ -155,29 +144,6 @@ export default function LeadsPage() {
           </div>
         )}
 
-        {/* Upgrade Banner for Free Users */}
-        {subscription?.tier === 'free' && (
-          <div className="mb-6 p-4 bg-gradient-to-r from-[#F3C77E]/20 to-[#912F40]/20 border border-[#F3C77E]/30 rounded-xl">
-            <div className="flex items-center justify-between">
-              <div className="flex items-center gap-3">
-                <div className="w-8 h-8 bg-gradient-to-br from-[#F3C77E] to-[#912F40] rounded-full flex items-center justify-center">
-                  <Crown className="w-4 h-4 text-white" />
-                </div>
-                <div>
-                  <h3 className="text-white font-semibold">Unlock Full Leads Management</h3>
-                  <p className="text-gray-300 text-sm">Get real-time tracking, advanced analytics, and conversion tools</p>
-                </div>
-              </div>
-              <button
-                onClick={() => setShowUpgradeModal(true)}
-                className="px-6 py-2 bg-gradient-to-r from-[#F3C77E] to-[#912F40] text-white rounded-lg font-medium hover:from-[#F3C77E]/80 hover:to-[#912F40]/80 transition-all"
-              >
-                Upgrade to Pro
-              </button>
-            </div>
-          </div>
-        )}
-
         <LeadsManagerSimple
           leads={leads}
           stats={stats}
@@ -187,13 +153,6 @@ export default function LeadsPage() {
         />
       </main>
 
-      <UpgradeModal
-        isOpen={showUpgradeModal}
-        onClose={() => setShowUpgradeModal(false)}
-        feature="Leads Management"
-        description="Get full leads management, real-time tracking, status updates, and advanced conversion tools to grow your real estate business."
-        requiredTier="pro"
-      />
     </>
   )
 }

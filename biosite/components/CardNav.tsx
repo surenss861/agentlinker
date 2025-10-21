@@ -194,13 +194,13 @@ const CardNav = ({
           <div
             className="nav-card"
             ref={setCardRef(0)}
-            style={{ backgroundColor: '#1a0000', color: '#fff' }}
+            style={{ backgroundColor: '#8B0000', color: '#fff' }}
           >
             <div className="nav-card-label">Account</div>
             <div className="nav-card-links">
-              <Link href="/login" className="nav-card-link">
+              <Link href="/login" className="nav-card-link" aria-label="Sign in to your account">
                 <GoArrowUpRight className="nav-card-link-icon" aria-hidden="true" />
-                Sign In
+                <span>Sign In</span>
               </Link>
             </div>
           </div>
@@ -209,17 +209,17 @@ const CardNav = ({
           <div
             className="nav-card"
             ref={setCardRef(1)}
-            style={{ backgroundColor: '#2d0000', color: '#fff' }}
+            style={{ backgroundColor: '#B22222', color: '#fff' }}
           >
             <div className="nav-card-label">Features</div>
             <div className="nav-card-links">
-              <Link href="/demo" className="nav-card-link">
+              <Link href="/demo" className="nav-card-link" aria-label="View live demo">
                 <GoArrowUpRight className="nav-card-link-icon" aria-hidden="true" />
-                Demo
+                <span>Demo</span>
               </Link>
-              <Link href="/pricing" className="nav-card-link">
+              <Link href="/pricing" className="nav-card-link" aria-label="View pricing plans">
                 <GoArrowUpRight className="nav-card-link-icon" aria-hidden="true" />
-                Pricing
+                <span>Pricing</span>
               </Link>
             </div>
           </div>
@@ -228,21 +228,21 @@ const CardNav = ({
           <div
             className="nav-card"
             ref={setCardRef(2)}
-            style={{ backgroundColor: '#400000', color: '#fff' }}
+            style={{ backgroundColor: '#DC143C', color: '#fff' }}
           >
             <div className="nav-card-label">Company</div>
             <div className="nav-card-links">
-              <Link href="/about" className="nav-card-link">
+              <Link href="/about" className="nav-card-link" aria-label="Learn about AgentLinker">
                 <GoArrowUpRight className="nav-card-link-icon" aria-hidden="true" />
-                About
+                <span>About</span>
               </Link>
-              <Link href="/terms" className="nav-card-link">
+              <Link href="/terms" className="nav-card-link" aria-label="Read terms of service">
                 <GoArrowUpRight className="nav-card-link-icon" aria-hidden="true" />
-                Terms
+                <span>Terms</span>
               </Link>
-              <Link href="/privacy" className="nav-card-link">
+              <Link href="/privacy" className="nav-card-link" aria-label="Read privacy policy">
                 <GoArrowUpRight className="nav-card-link-icon" aria-hidden="true" />
-                Privacy
+                <span>Privacy</span>
               </Link>
             </div>
           </div>
