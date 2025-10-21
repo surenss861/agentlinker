@@ -194,7 +194,7 @@ export default function DashboardWithHooks({ userId, agentSlug }: DashboardWithH
                 </Link>
                 <div className="pt-2">
                   <p className="text-gray-400 text-xs mb-2">Share your profile:</p>
-                  <CopyLinkButton agentSlug={agentSlug} />
+                  <CopyLinkButton url={`https://www.agentlinker.ca/${agentSlug}`} />
                 </div>
               </div>
             </div>
