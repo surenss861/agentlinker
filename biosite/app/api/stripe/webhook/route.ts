@@ -12,22 +12,47 @@ const webhookSecret = process.env.STRIPE_WEBHOOK_SECRET
 export async function POST(request: NextRequest) {
   try {
     console.log('🔔 Webhook received')
+    console.log('🔍 Environment check:', {
+      hasStripeSecret: !!process.env.STRIPE_SECRET_KEY,
+      hasWebhookSecret: !!process.env.STRIPE_WEBHOOK_SECRET,
+      nodeEnv: process.env.NODE_ENV
+    })
 
     // Return early if Stripe is not configured
     if (!stripe || !webhookSecret) {
       console.log('❌ Stripe webhook not configured, skipping')
-      return NextResponse.json({ received: true })
+      console.log('❌ Stripe instance:', !!stripe)
+      console.log('❌ Webhook secret:', !!webhookSecret)
+      return NextResponse.json({ 
+        error: 'Stripe webhook not configured',
+        hasStripe: !!stripe,
+        hasWebhookSecret: !!webhookSecret
+      }, { status: 500 })
     }
 
     const body = await request.text()
-    const signature = request.headers.get('stripe-signature')!
+    const signature = request.headers.get('stripe-signature')
+
+    console.log('🔍 Request details:', {
+      bodyLength: body.length,
+      hasSignature: !!signature,
+      signatureLength: signature?.length
+    })
+
+    if (!signature) {
+      console.error('❌ No stripe-signature header found')
+      return NextResponse.json({ error: 'No signature header' }, { status: 400 })
+    }
 
     let event: Stripe.Event
 
     try {
       event = stripe.webhooks.constructEvent(body, signature, webhookSecret)
+      console.log('✅ Signature verified, event type:', event.type)
     } catch (err: any) {
-      console.error('Webhook signature verification failed:', err.message)
+      console.error('❌ Webhook signature verification failed:', err.message)
+      console.error('❌ Signature:', signature.substring(0, 20) + '...')
+      console.error('❌ Body preview:', body.substring(0, 100) + '...')
       return NextResponse.json({ error: 'Invalid signature' }, { status: 400 })
     }
 
