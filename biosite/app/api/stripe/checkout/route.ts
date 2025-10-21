@@ -44,22 +44,24 @@ export async function POST(request: NextRequest) {
     //   })
     // }
 
-    // Create Stripe Checkout Session with dynamic pricing
+    // Create Stripe Checkout Session with actual product IDs
     const stripe = getStripe()
 
     // Determine mode and pricing based on tier
     const isSubscription = tier === 'pro'
     const mode = isSubscription ? 'subscription' : 'payment'
 
-    // Create line items based on tier
+    // Use actual Stripe product IDs
+    const productId = isSubscription ? 'prod_THFS9HsX5axqua' : 'prod_THFSS3LO5nuhwX'
+    
+    console.log('🔍 Creating checkout for:', { tier, productId, mode })
+
+    // Create line items using actual product IDs
     const lineItems: any = isSubscription
       ? [{
         price_data: {
           currency: 'usd',
-          product_data: {
-            name: 'AgentLinker Pro',
-            description: 'Monthly subscription for unlimited listings, analytics, and premium features',
-          },
+          product: productId, // Use actual Stripe product ID
           unit_amount: 2000, // $20.00 in cents
           recurring: {
             interval: 'month' as const,
@@ -70,10 +72,7 @@ export async function POST(request: NextRequest) {
       : [{
         price_data: {
           currency: 'usd',
-          product_data: {
-            name: 'AgentLinker Business Verification',
-            description: 'One-time verification badge and lifetime access to all features',
-          },
+          product: productId, // Use actual Stripe product ID
           unit_amount: 2500, // $25.00 in cents
         },
         quantity: 1,

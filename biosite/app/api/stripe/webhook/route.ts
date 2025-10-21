@@ -23,7 +23,7 @@ export async function POST(request: NextRequest) {
       console.log('❌ Stripe webhook not configured, skipping')
       console.log('❌ Stripe instance:', !!stripe)
       console.log('❌ Webhook secret:', !!webhookSecret)
-      return NextResponse.json({ 
+      return NextResponse.json({
         error: 'Stripe webhook not configured',
         hasStripe: !!stripe,
         hasWebhookSecret: !!webhookSecret
@@ -85,7 +85,9 @@ export async function POST(request: NextRequest) {
 
       // Additional verification: Check if this is a test mode session
       if (session.livemode === false) {
-        console.log('🧪 Test mode session detected')
+        console.log('🧪 Test mode session detected - this is expected for debugging')
+      } else {
+        console.log('🚀 Live mode session detected')
       }
 
       // Determine billing cycle and amount
