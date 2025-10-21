@@ -142,16 +142,16 @@ export default function AddListingModal({ isOpen, onClose, onSuccess, userId }: 
   if (!isOpen) return null
 
   return (
-    <div className="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex items-center justify-center p-4">
-      <div className="bg-gradient-to-b from-[#080705] to-[#1A0E10] rounded-2xl shadow-2xl w-full max-w-6xl max-h-[90vh] overflow-hidden">
+    <div className="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex items-start md:items-center justify-center p-0 md:p-4 overflow-y-auto">
+      <div className="bg-gradient-to-b from-[#080705] to-[#1A0E10] rounded-none md:rounded-2xl shadow-2xl w-full max-w-6xl min-h-screen md:min-h-0 md:my-8">
         {/* Header */}
-        <div className="flex items-center justify-between p-6 border-b border-white/10">
+        <div className="flex items-center justify-between p-6 border-b border-white/10 sticky top-0 bg-[#080705] z-10">
           <div>
             <h2 className="text-2xl font-bold text-white">Add New Listing</h2>
-            <p className="text-gray-400">Create your property listing to attract buyers</p>
+            <p className="text-gray-400 text-sm md:text-base">Create your property listing to attract buyers</p>
           </div>
           <div className="flex items-center gap-4">
-            <div className="text-sm text-gray-400">
+            <div className="text-sm text-gray-400 hidden md:block">
               {autoSaveStatus === 'saving' && '💾 Saving...'}
               {autoSaveStatus === 'saved' && '✅ Saved'}
               {autoSaveStatus === 'unsaved' && '⚠️ Unsaved changes'}
@@ -159,15 +159,16 @@ export default function AddListingModal({ isOpen, onClose, onSuccess, userId }: 
             <button
               onClick={onClose}
               className="p-2 hover:bg-white/10 rounded-lg transition-colors"
+              aria-label="Close modal"
             >
               <X className="w-5 h-5 text-gray-400" />
             </button>
           </div>
         </div>
 
-        <div className="flex h-[calc(90vh-120px)]">
+        <div className="flex flex-col md:flex-row">
           {/* Form Section */}
-          <div className="flex-1 p-6 overflow-y-auto">
+          <div className="flex-1 p-6">
             {error && (
               <div className="bg-red-500/20 border border-red-500/30 rounded-xl p-4 mb-6">
                 <p className="text-red-300 text-sm">{error}</p>
@@ -186,7 +187,8 @@ export default function AddListingModal({ isOpen, onClose, onSuccess, userId }: 
                   value={formData.title}
                   onChange={(e) => handleInputChange('title', e.target.value)}
                   className="w-full px-4 py-3 bg-black/50 border border-white/10 rounded-lg focus:ring-2 focus:ring-[#F3C77E] focus:border-[#F3C77E] text-white placeholder-gray-500"
-                  placeholder="e.g., 2BR Condo at 123 Main St"
+                  placeholder="e.g., Beautiful 2-Bedroom Condo in Downtown"
+                  aria-label="Property title"
                 />
               </div>
 
@@ -203,7 +205,8 @@ export default function AddListingModal({ isOpen, onClose, onSuccess, userId }: 
                     value={formData.price}
                     onChange={(e) => handleInputChange('price', e.target.value)}
                     className="w-full pl-10 pr-4 py-3 bg-black/50 border border-white/10 rounded-lg focus:ring-2 focus:ring-[#F3C77E] focus:border-[#F3C77E] text-white placeholder-gray-500"
-                    placeholder="750000"
+                    placeholder="e.g., 750000"
+                    aria-label="Property price"
                   />
                 </div>
               </div>
@@ -221,7 +224,8 @@ export default function AddListingModal({ isOpen, onClose, onSuccess, userId }: 
                     value={formData.address}
                     onChange={(e) => handleInputChange('address', e.target.value)}
                     className="w-full pl-10 pr-4 py-3 bg-black/50 border border-white/10 rounded-lg focus:ring-2 focus:ring-[#F3C77E] focus:border-[#F3C77E] text-white placeholder-gray-500"
-                    placeholder="123 Main Street"
+                    placeholder="e.g., 123 Main Street"
+                    aria-label="Property street address"
                   />
                 </div>
               </div>
@@ -355,7 +359,7 @@ export default function AddListingModal({ isOpen, onClose, onSuccess, userId }: 
           </div>
 
           {/* Live Preview */}
-          <div className="w-96 bg-white/5 border-l border-white/10 p-6 overflow-y-auto">
+          <div className="w-full md:w-96 bg-white/5 border-t md:border-t-0 md:border-l border-white/10 p-6">
             <h3 className="text-lg font-semibold text-white mb-4 flex items-center gap-2">
               <Eye className="w-5 h-5 text-[#F3C77E]" />
               Live Preview
