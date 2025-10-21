@@ -51,6 +51,33 @@ export default function BillingPage() {
   }, [])
 
 
+  const handleManualActivation = async () => {
+    if (!confirm('Are you sure you want to manually activate Pro? Only use this if your payment succeeded but didn\'t activate.')) {
+      return
+    }
+
+    setProcessingUpgrade('manual')
+    try {
+      const response = await fetch('/api/subscription/manual-activate', {
+        method: 'POST',
+      })
+
+      const data = await response.json()
+
+      if (!response.ok) {
+        throw new Error(data.error || 'Failed to activate')
+      }
+
+      alert('✅ Pro subscription activated! Refreshing...')
+      window.location.reload()
+    } catch (error) {
+      console.error('Manual activation error:', error)
+      alert('Failed to activate. Please contact support.')
+    } finally {
+      setProcessingUpgrade(null)
+    }
+  }
+
   const handleUpgrade = async (tier: string) => {
     console.log('🚀 Starting upgrade process for tier:', tier)
     setProcessingUpgrade(tier)
@@ -158,6 +185,25 @@ export default function BillingPage() {
             Current plan: <span className="font-semibold capitalize text-[#F3C77E]">{agent?.subscription_tier || 'Free'}</span>
           </p>
         </div>
+
+        {/* Manual Activation Button - TEMPORARY FIX */}
+        {agent?.subscription_tier === 'free' && (
+          <div className="bg-yellow-500/10 border border-yellow-500/30 rounded-xl p-4 mb-8">
+            <div className="flex items-center justify-between flex-wrap gap-4">
+              <div>
+                <p className="text-yellow-400 font-semibold">Already paid but still on Free plan?</p>
+                <p className="text-gray-400 text-sm">If your payment succeeded but didn't activate, click here to activate manually.</p>
+              </div>
+              <button
+                onClick={handleManualActivation}
+                disabled={processingUpgrade === 'manual'}
+                className="px-6 py-3 bg-yellow-600 hover:bg-yellow-700 text-white rounded-lg font-semibold transition-all disabled:opacity-50"
+              >
+                {processingUpgrade === 'manual' ? 'Activating...' : '🔧 Activate Pro Now'}
+              </button>
+            </div>
+          </div>
+        )}
 
 
         {agent?.subscription_tier === 'pro' && (
