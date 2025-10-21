@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react'
 import { useRouter } from 'next/navigation'
 import { createClient } from '@/lib/supabase'
 import NavBar from '@/components/NavBar'
-import { Check, Crown, Zap, Star } from 'lucide-react'
+import { Check, Crown, Zap, Star, Users } from 'lucide-react'
 
 export default function BillingPage() {
   const [loading, setLoading] = useState(true)
@@ -146,6 +146,27 @@ export default function BillingPage() {
         'API access',
       ],
     },
+    {
+      tier: 'help',
+      name: 'Personal Help Pack',
+      price: 50,
+      billing: 'one-time service',
+      description: 'Personal assistance with listings and website setup',
+      icon: Users,
+      popular: false,
+      features: [
+        'Personal 1-on-1 consultation',
+        'Help updating your listings',
+        'Website setup assistance',
+        'Troubleshooting support',
+        'Custom listing optimization',
+        'Photo organization help',
+        'SEO guidance for listings',
+        'Mobile optimization tips',
+        'Lead generation strategies',
+        'Priority email support',
+      ],
+    },
   ]
 
   return (
@@ -214,6 +235,35 @@ export default function BillingPage() {
                   className="px-6 py-3 bg-[#F3C77E] text-[#080705] rounded-xl hover:bg-[#FFD89C] transition-all font-medium"
                 >
                   Add Pro Features
+                </button>
+              </div>
+            </div>
+          </div>
+        )}
+
+        {agent?.subscription_tier === 'help' && (
+          <div className="bg-gradient-to-r from-blue-500/20 to-purple-500/20 backdrop-blur-md rounded-2xl p-8 mb-8 border border-blue-500/30">
+            <div className="flex items-center justify-between">
+              <div>
+                <h3 className="text-xl font-semibold text-white mb-2">
+                  ✓ Personal Help Pack Purchased ($50 one-time)
+                </h3>
+                <p className="text-gray-300">
+                  Personal assistance service activated - Contact support to schedule your consultation
+                </p>
+              </div>
+              <div className="flex gap-3">
+                <button
+                  onClick={() => window.open('https://billing.stripe.com/p/login/test_123', '_blank')}
+                  className="px-6 py-3 bg-white/5 text-white rounded-xl hover:bg-white/10 transition-all font-medium border border-white/20"
+                >
+                  View Invoice
+                </button>
+                <button
+                  onClick={() => window.open('mailto:contact@agentlinker.ca?subject=Personal Help Pack - Schedule Consultation', '_blank')}
+                  className="px-6 py-3 bg-blue-600 text-white rounded-xl hover:bg-blue-700 transition-all font-medium"
+                >
+                  Schedule Consultation
                 </button>
               </div>
             </div>

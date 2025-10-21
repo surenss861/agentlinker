@@ -52,17 +52,31 @@ export async function POST(request: NextRequest) {
     const mode = isSubscription ? 'subscription' : 'payment'
 
     // Use actual Stripe product IDs
-    const productId = isSubscription ? 'prod_THFS9HsX5axqua' : 'prod_THFSS3LO5nuhwX'
+    let productId: string
+    let amount: number
     
-    console.log('🔍 Creating checkout for:', { tier, productId, mode })
+    if (tier === 'pro') {
+      productId = 'prod_THFS9HsX5axqua'
+      amount = 2000 // $20.00
+    } else if (tier === 'business') {
+      productId = 'prod_THFSS3LO5nuhwX'
+      amount = 2500 // $25.00
+    } else if (tier === 'help') {
+      productId = 'prod_THFYWsx8iM2Nq0'
+      amount = 5000 // $50.00
+    } else {
+      throw new Error(`Unknown tier: ${tier}`)
+    }
+    
+    console.log('🔍 Creating checkout for:', { tier, productId, amount, mode })
 
     // Create line items using actual product IDs
     const lineItems: any = isSubscription
       ? [{
         price_data: {
           currency: 'usd',
-          product: productId, // Use actual Stripe product ID
-          unit_amount: 2000, // $20.00 in cents
+          product: productId,
+          unit_amount: amount,
           recurring: {
             interval: 'month' as const,
           },
@@ -72,8 +86,8 @@ export async function POST(request: NextRequest) {
       : [{
         price_data: {
           currency: 'usd',
-          product: productId, // Use actual Stripe product ID
-          unit_amount: 2500, // $25.00 in cents
+          product: productId,
+          unit_amount: amount,
         },
         quantity: 1,
       }]

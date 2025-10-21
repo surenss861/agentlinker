@@ -2,7 +2,7 @@
 // Handles subscription status, feature access, and softwalls
 
 export interface SubscriptionStatus {
-  tier: 'free' | 'pro' | 'business'
+  tier: 'free' | 'pro' | 'business' | 'help'
   status: 'active' | 'inactive' | 'canceled' | 'past_due'
   features: {
     unlimitedListings: boolean
@@ -48,6 +48,18 @@ export const getSubscriptionFeatures = (tier: string): SubscriptionStatus['featu
         emailNotifications: true,
         googleCalendarSync: true,
       }
+    case 'help':
+      return {
+        unlimitedListings: true,
+        analytics: true,
+        bookingScheduler: true,
+        customDomain: true,
+        prioritySupport: true,
+        verifiedBadge: false,
+        advancedTemplates: true,
+        emailNotifications: true,
+        googleCalendarSync: true,
+      }
     default: // free
       return {
         unlimitedListings: false,
@@ -67,6 +79,7 @@ export const getSubscriptionLimits = (tier: string): SubscriptionStatus['limits'
   switch (tier) {
     case 'pro':
     case 'business':
+    case 'help':
       return {
         maxListings: -1, // unlimited
         maxBookingsPerMonth: -1, // unlimited
@@ -100,7 +113,8 @@ export const getUpgradeMessage = (tier: string, feature: string): string => {
   const messages = {
     free: `Upgrade to Pro to unlock ${feature}`,
     pro: `Upgrade to Business to unlock ${feature}`,
-    business: 'You have access to all features!'
+    business: 'You have access to all features!',
+    help: 'You have access to all features!'
   }
   
   return messages[tier as keyof typeof messages] || messages.free

@@ -92,8 +92,22 @@ export async function POST(request: NextRequest) {
 
       // Determine billing cycle and amount
       const isSubscription = tier === 'pro'
-      const billingCycle = isSubscription ? 'monthly' : 'one_time'
-      const amountPaid = isSubscription ? 2000 : 2500 // $20 for pro, $25 for business
+      let billingCycle: string
+      let amountPaid: number
+      
+      if (tier === 'pro') {
+        billingCycle = 'monthly'
+        amountPaid = 2000 // $20.00
+      } else if (tier === 'business') {
+        billingCycle = 'one_time'
+        amountPaid = 2500 // $25.00
+      } else if (tier === 'help') {
+        billingCycle = 'one_time'
+        amountPaid = 5000 // $50.00
+      } else {
+        console.error('❌ Unknown tier in webhook:', tier)
+        return NextResponse.json({ error: 'Unknown tier' }, { status: 400 })
+      }
 
       // Calculate period dates
       const now = new Date()
