@@ -2,7 +2,7 @@
 
 import { useDashboardStats } from '@/lib/hooks/useDashboardStats'
 import { useLeadsFeed } from '@/lib/hooks/useLeadsFeed'
-import { useSubscriptionStatus } from '@/lib/hooks/useSubscriptionStatus'
+import { useSubscription } from '@/lib/hooks/useSubscription'
 import CopyLinkButton from './CopyLinkButton'
 import { Calendar, MessageSquare, Plus } from 'lucide-react'
 import Link from 'next/link'
@@ -16,7 +16,7 @@ export default function DashboardWithHooks({ userId, agentSlug }: DashboardWithH
   // Real-time data hooks
   const stats = useDashboardStats(userId)
   const { leads, loading: leadsLoading } = useLeadsFeed(userId)
-  const subscription = useSubscriptionStatus(userId)
+  const { subscription } = useSubscription()
 
   return (
     <div className="py-8 px-4 sm:px-6 lg:px-8">
