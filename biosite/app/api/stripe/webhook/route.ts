@@ -76,7 +76,7 @@ export async function POST(request: NextRequest) {
       // CRITICAL: Update user's subscription_tier in users table
       const { error: userUpdateError } = await supabase
         .from('users')
-        .update({ 
+        .update({
           subscription_tier: tier,
           stripe_customer_id: session.customer as string
         })
