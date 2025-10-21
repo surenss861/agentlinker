@@ -1,11 +1,11 @@
 'use client'
 
-import { useEffect, useState } from 'react'
+import { useEffect, useState, Suspense } from 'react'
 import { useSearchParams, useRouter } from 'next/navigation'
 import { CheckCircle, Crown, Zap, Star, Users, ArrowRight, Home, Calendar } from 'lucide-react'
 import Link from 'next/link'
 
-export default function ThankYouPage() {
+function ThankYouContent() {
   const searchParams = useSearchParams()
   const router = useRouter()
   const [tier, setTier] = useState<string>('')
@@ -233,5 +233,17 @@ export default function ThankYouPage() {
         </div>
       </div>
     </div>
+  )
+}
+
+export default function ThankYouPage() {
+  return (
+    <Suspense fallback={
+      <div className="min-h-screen bg-black flex items-center justify-center">
+        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-red-500"></div>
+      </div>
+    }>
+      <ThankYouContent />
+    </Suspense>
   )
 }
