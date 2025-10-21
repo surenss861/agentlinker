@@ -30,6 +30,8 @@ export function useSubscription() {
           const features = getSubscriptionFeatures(tier)
           const limits = getSubscriptionLimits(tier)
           
+          console.log('🔍 useSubscription - fetched tier:', tier)
+          
           setSubscription({
             tier: tier as 'free' | 'pro' | 'business',
             status: 'active', // You can add actual status checking here
@@ -45,6 +47,11 @@ export function useSubscription() {
     }
 
     fetchSubscription()
+    
+    // Refresh subscription data every 30 seconds to catch updates
+    const interval = setInterval(fetchSubscription, 30000)
+    
+    return () => clearInterval(interval)
   }, [supabase])
 
   const hasFeature = (feature: keyof SubscriptionStatus['features']): boolean => {

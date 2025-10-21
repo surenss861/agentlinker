@@ -14,7 +14,12 @@ export default function BookingsPage() {
   const supabase = createClient()
   const [userId, setUserId] = useState<string | null>(null)
   const [loading, setLoading] = useState(true)
+  const [userProfile, setUserProfile] = useState<any>(null)
   const { subscription } = useSubscription()
+
+  // Debug subscription status
+  console.log('🔍 Bookings page - subscription:', subscription)
+  console.log('🔍 Bookings page - userProfile:', userProfile)
 
   useEffect(() => {
     const fetchUser = async () => {
@@ -36,6 +41,7 @@ export default function BookingsPage() {
       }
 
       setUserId(user.id)
+      setUserProfile(userProfile)
       setLoading(false)
     }
 
@@ -100,8 +106,8 @@ export default function BookingsPage() {
       <NavBar />
 
       <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        {/* Single Consolidated Upgrade Banner */}
-        {subscription?.tier === 'free' && (
+        {/* Single Consolidated Upgrade Banner - Use direct user profile data */}
+        {userProfile?.subscription_tier === 'free' && (
           <div className="mb-6 p-6 bg-gradient-to-r from-[#F3C77E]/20 to-[#912F40]/20 border border-[#F3C77E]/30 rounded-xl">
             <div className="flex items-center justify-between flex-wrap gap-4">
               <div className="flex items-center gap-4">
