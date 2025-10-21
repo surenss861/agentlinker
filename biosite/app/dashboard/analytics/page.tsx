@@ -36,7 +36,7 @@ export default function AnalyticsPage() {
   const [loading, setLoading] = useState(true)
   const [days, setDays] = useState(30)
   const [showUpgradeModal, setShowUpgradeModal] = useState(false)
-  const { hasFeature, isPro } = useSimpleSubscription()
+  const { subscription, hasFeature, isPro } = useSimpleSubscription()
 
   useEffect(() => {
     const fetchData = async () => {
