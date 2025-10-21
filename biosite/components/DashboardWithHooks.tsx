@@ -130,9 +130,10 @@ export default function DashboardWithHooks({ userId, agentSlug }: DashboardWithH
                           <p className="text-xs text-gray-400">{new Date(lead.created_at).toLocaleDateString()}</p>
                         </div>
                       </div>
-                      <div className={`px-2 py-1 rounded-full text-xs ${lead.status === 'new' ? 'bg-blue-500/20 text-blue-400' :
-                          lead.status === 'contacted' ? 'bg-green-500/20 text-green-400' :
-                            'bg-gray-500/20 text-gray-400'
+                      <div className={`px-2 py-1 rounded-full text-xs ${lead.status === 'pending' ? 'bg-yellow-500/20 text-yellow-400' :
+                        lead.status === 'confirmed' ? 'bg-green-500/20 text-green-400' :
+                        lead.status === 'completed' ? 'bg-blue-500/20 text-blue-400' :
+                          'bg-red-500/20 text-red-400'
                         }`}>
                         {lead.status}
                       </div>
