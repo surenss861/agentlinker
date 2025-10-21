@@ -176,12 +176,41 @@ export default function BookingsManager({
         <motion.div
           initial={{ opacity: 0, scale: 0.95 }}
           animate={{ opacity: 1, scale: 1 }}
-          className="bg-white/5 backdrop-blur-md rounded-xl p-12 text-center border border-white/10"
+          className="bg-white/5 backdrop-blur-md rounded-xl p-12 text-center border border-white/10 max-w-2xl mx-auto"
         >
-          <Calendar className="h-16 w-16 text-gray-400 mx-auto mb-4" />
-          <h3 className="text-xl font-semibold text-white mb-2">No bookings yet</h3>
-          <p className="text-gray-400">
-            Bookings will appear here when clients schedule with you
+          <div className="w-20 h-20 bg-gradient-to-br from-[#F3C77E]/20 to-[#912F40]/20 rounded-full flex items-center justify-center mx-auto mb-6">
+            <Calendar className="h-10 w-10 text-[#F3C77E]" />
+          </div>
+          <h3 className="text-2xl font-semibold text-white mb-3">Start Receiving Booking Requests</h3>
+          <p className="text-gray-300 mb-6 text-lg">
+            Bookings will appear here when clients schedule property showings with you
+          </p>
+          
+          {/* Onboarding Steps */}
+          <div className="bg-black/30 rounded-xl p-6 mb-6 text-left max-w-md mx-auto">
+            <h4 className="text-white font-semibold mb-3 text-center">How booking requests work:</h4>
+            <ol className="space-y-2 text-gray-300 text-sm">
+              <li className="flex items-start gap-3">
+                <span className="flex-shrink-0 w-6 h-6 bg-[#F3C77E]/20 rounded-full flex items-center justify-center text-[#F3C77E] text-xs font-bold">1</span>
+                <span>Clients visit your AgentLinker page and view your listings</span>
+              </li>
+              <li className="flex items-start gap-3">
+                <span className="flex-shrink-0 w-6 h-6 bg-[#F3C77E]/20 rounded-full flex items-center justify-center text-[#F3C77E] text-xs font-bold">2</span>
+                <span>They request a showing by selecting a date and time</span>
+              </li>
+              <li className="flex items-start gap-3">
+                <span className="flex-shrink-0 w-6 h-6 bg-[#F3C77E]/20 rounded-full flex items-center justify-center text-[#F3C77E] text-xs font-bold">3</span>
+                <span>Booking requests appear here in real-time</span>
+              </li>
+              <li className="flex items-start gap-3">
+                <span className="flex-shrink-0 w-6 h-6 bg-[#F3C77E]/20 rounded-full flex items-center justify-center text-[#F3C77E] text-xs font-bold">4</span>
+                <span>Confirm or reschedule appointments with one click</span>
+              </li>
+            </ol>
+          </div>
+
+          <p className="text-gray-400 text-sm">
+            💡 Make sure you've added listings and shared your AgentLinker profile link to start receiving bookings
           </p>
         </motion.div>
       ) : (

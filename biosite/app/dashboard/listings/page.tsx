@@ -352,7 +352,7 @@ export default function ListingsPage() {
             initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.5 }}
-            className="relative bg-black/90 backdrop-blur-sm rounded-2xl shadow-xl border border-red-500/30 p-16 text-center"
+            className="relative bg-black/90 backdrop-blur-sm rounded-2xl shadow-xl border border-red-500/30 p-12 text-center max-w-2xl mx-auto"
           >
             <motion.div
               animate={{
@@ -368,18 +368,42 @@ export default function ListingsPage() {
             >
               <Eye className="h-12 w-12 text-[#F3C77E]" />
             </motion.div>
-            <h3 className="text-2xl font-semibold text-white mb-3">No listings yet</h3>
-            <p className="text-gray-400 mb-2">Start showcasing your properties by adding your first listing</p>
-            <p className="text-xs text-gray-500 mb-8">Your listings appear on your public AgentLinker page</p>
+            <h3 className="text-3xl font-semibold text-white mb-4">Welcome to Your Listings</h3>
+            <p className="text-gray-300 text-lg mb-3">Start showcasing your properties to attract buyers and renters</p>
+            
+            {/* Onboarding Steps */}
+            <div className="bg-white/5 rounded-xl p-6 mb-8 text-left">
+              <h4 className="text-white font-semibold mb-3">What you can do with listings:</h4>
+              <ul className="space-y-2 text-gray-300 text-sm">
+                <li className="flex items-start gap-2">
+                  <span className="text-[#F3C77E] mt-0.5">✓</span>
+                  <span>Add photos, pricing, and details for your properties</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <span className="text-[#F3C77E] mt-0.5">✓</span>
+                  <span>Share your custom AgentLinker link with potential clients</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <span className="text-[#F3C77E] mt-0.5">✓</span>
+                  <span>Track views and showing requests in real-time</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <span className="text-[#F3C77E] mt-0.5">✓</span>
+                  <span>Manage active, draft, and sold property statuses</span>
+                </li>
+              </ul>
+            </div>
+
             <motion.button
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
               onClick={() => setShowModal(true)}
-              className="inline-flex items-center gap-2 bg-gradient-to-r from-[#912F40] to-[#702632] hover:from-[#702632] hover:to-[#912F40] text-white px-8 py-4 rounded-xl font-semibold transition-all shadow-[0_0_20px_rgba(145,47,64,0.3)]"
+              className="inline-flex items-center gap-2 bg-gradient-to-r from-[#912F40] to-[#702632] hover:from-[#702632] hover:to-[#912F40] text-white px-8 py-4 rounded-xl font-semibold transition-all shadow-[0_0_20px_rgba(145,47,64,0.3)] text-lg"
             >
               <Plus className="h-5 w-5" />
-              Add Your First Listing
+              Create Your First Listing
             </motion.button>
+            <p className="text-xs text-gray-500 mt-4">Takes just 2-3 minutes to set up</p>
           </motion.div>
         )}
       </main>

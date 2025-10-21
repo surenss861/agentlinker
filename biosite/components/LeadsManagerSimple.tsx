@@ -368,15 +368,42 @@ export default function LeadsManagerSimple({ leads, stats, loading, onStatusChan
             initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
             exit={{ opacity: 0, scale: 0.95 }}
-            className="text-center py-16"
+            className="text-center py-12 bg-white/5 rounded-2xl border border-white/10 max-w-2xl mx-auto"
           >
-            <div className="w-20 h-20 bg-white/5 rounded-full flex items-center justify-center mx-auto mb-6">
-              <MessageSquare className="w-10 h-10 text-gray-400" />
+            <div className="w-20 h-20 bg-gradient-to-br from-[#F3C77E]/20 to-[#912F40]/20 rounded-full flex items-center justify-center mx-auto mb-6">
+              <MessageSquare className="w-10 h-10 text-[#F3C77E]" />
             </div>
-            <h3 className="text-xl font-semibold text-white mb-2">No leads yet</h3>
-            <p className="text-gray-400 mb-6">
-              Share your AgentLinker page to start receiving showing requests
+            <h3 className="text-2xl font-semibold text-white mb-3">Start Receiving Leads</h3>
+            <p className="text-gray-300 mb-6 text-lg px-6">
+              Share your AgentLinker page to start receiving showing requests from interested buyers
             </p>
+            
+            {/* Onboarding Steps */}
+            <div className="bg-black/30 rounded-xl p-6 mb-6 text-left max-w-md mx-auto">
+              <h4 className="text-white font-semibold mb-3 text-center">How to get leads:</h4>
+              <ol className="space-y-2 text-gray-300 text-sm">
+                <li className="flex items-start gap-3">
+                  <span className="flex-shrink-0 w-6 h-6 bg-[#F3C77E]/20 rounded-full flex items-center justify-center text-[#F3C77E] text-xs font-bold">1</span>
+                  <span>Add your property listings in the Listings section</span>
+                </li>
+                <li className="flex items-start gap-3">
+                  <span className="flex-shrink-0 w-6 h-6 bg-[#F3C77E]/20 rounded-full flex items-center justify-center text-[#F3C77E] text-xs font-bold">2</span>
+                  <span>Share your unique AgentLinker profile link on social media, email signatures, and marketing materials</span>
+                </li>
+                <li className="flex items-start gap-3">
+                  <span className="flex-shrink-0 w-6 h-6 bg-[#F3C77E]/20 rounded-full flex items-center justify-center text-[#F3C77E] text-xs font-bold">3</span>
+                  <span>When buyers submit showing requests, they'll appear here in real-time</span>
+                </li>
+              </ol>
+            </div>
+
+            <a
+              href="/dashboard/listings"
+              className="inline-flex items-center gap-2 bg-gradient-to-r from-[#912F40] to-[#702632] hover:from-[#702632] hover:to-[#912F40] text-white px-6 py-3 rounded-lg font-semibold transition-all"
+            >
+              <Plus className="w-4 h-4" />
+              Add Your First Listing
+            </a>
           </motion.div>
         )}
       </AnimatePresence>
