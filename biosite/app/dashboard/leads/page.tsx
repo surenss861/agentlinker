@@ -7,7 +7,7 @@ import NavBar from '@/components/NavBar'
 import LeadsManagerSimple from '@/components/LeadsManagerSimple'
 import { useRealtimeLeads } from '@/lib/hooks/useRealtimeLeads'
 import { useResponseTimeTracking } from '@/lib/utils/response-tracking'
-import { useSubscription } from '@/lib/hooks/useSubscription'
+import { useSimpleSubscription } from '@/lib/hooks/useSimpleSubscription'
 import { Crown } from 'lucide-react'
 
 export default function LeadsPage() {
@@ -15,7 +15,7 @@ export default function LeadsPage() {
   const [loading, setLoading] = useState(true)
   const router = useRouter()
   const supabase = createClient()
-  const { subscription } = useSubscription()
+  const { subscription, isPro } = useSimpleSubscription()
 
   useEffect(() => {
     const fetchUser = async () => {
@@ -102,8 +102,8 @@ export default function LeadsPage() {
       <NavBar />
 
       <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        {/* Single Consolidated Upgrade Banner */}
-        {subscription?.tier === 'free' && (
+        {/* Simple Pro Check - No Upgrade Banner for Pro Users */}
+        {!isPro && (
           <div className="mb-6 p-6 bg-gradient-to-r from-[#F3C77E]/20 to-[#912F40]/20 border border-[#F3C77E]/30 rounded-xl">
             <div className="flex items-center justify-between flex-wrap gap-4">
               <div className="flex items-center gap-4">
@@ -118,7 +118,7 @@ export default function LeadsPage() {
                     <span className="text-gray-400 text-sm">Preview Only</span>
                   </div>
                   <h3 className="text-white font-semibold text-lg">Unlock Full Leads Management</h3>
-                  <p className="text-gray-300 text-sm mt-1">Get real-time tracking, status updates, analytics, and conversion tools for $50/month</p>
+                  <p className="text-gray-300 text-sm mt-1">Get real-time tracking, status updates, analytics, and conversion tools for $20/month</p>
                 </div>
               </div>
               <a

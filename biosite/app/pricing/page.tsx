@@ -53,7 +53,7 @@ export default function PricingPage() {
               <span className="text-red-500"> Pricing</span>
             </h1>
             <p className="text-xl text-gray-400 mb-12 max-w-3xl mx-auto">
-              Start your 7-day free trial. No credit card required. 
+              Start your 7-day free trial. No credit card required.
               Cancel anytime during your trial with no charges.
             </p>
           </div>
@@ -70,7 +70,7 @@ export default function PricingPage() {
                 </div>
                 <h2 className="text-4xl font-bold text-white mb-4">Pro Plan</h2>
                 <div className="flex items-baseline justify-center mb-6">
-                  <span className="text-6xl font-bold text-white">$97</span>
+                  <span className="text-6xl font-bold text-white">$20</span>
                   <span className="text-xl text-gray-400 ml-2">/month</span>
                 </div>
                 <p className="text-gray-400 text-lg">

@@ -14,6 +14,7 @@ export interface SubscriptionStatus {
     advancedTemplates: boolean
     emailNotifications: boolean
     googleCalendarSync: boolean
+    personalAssistance: boolean // New feature for Personal Help Pack
   }
   limits: {
     maxListings: number
@@ -35,6 +36,7 @@ export const getSubscriptionFeatures = (tier: string): SubscriptionStatus['featu
         advancedTemplates: true,
         emailNotifications: true,
         googleCalendarSync: true,
+        personalAssistance: false,
       }
     case 'business':
       return {
@@ -43,10 +45,11 @@ export const getSubscriptionFeatures = (tier: string): SubscriptionStatus['featu
         bookingScheduler: true,
         customDomain: true,
         prioritySupport: true,
-        verifiedBadge: true,
+        verifiedBadge: true, // Business gets verified badge
         advancedTemplates: true,
         emailNotifications: true,
         googleCalendarSync: true,
+        personalAssistance: false,
       }
     case 'help':
       return {
@@ -59,6 +62,7 @@ export const getSubscriptionFeatures = (tier: string): SubscriptionStatus['featu
         advancedTemplates: true,
         emailNotifications: true,
         googleCalendarSync: true,
+        personalAssistance: true, // Personal Help Pack gets personal assistance
       }
     default: // free
       return {
@@ -71,6 +75,7 @@ export const getSubscriptionFeatures = (tier: string): SubscriptionStatus['featu
         advancedTemplates: false,
         emailNotifications: false,
         googleCalendarSync: false,
+        personalAssistance: false,
       }
   }
 }
@@ -102,10 +107,10 @@ export const checkFeatureAccess = (tier: string, feature: keyof SubscriptionStat
 export const checkLimitExceeded = (tier: string, limitType: keyof SubscriptionStatus['limits'], currentCount: number): boolean => {
   const limits = getSubscriptionLimits(tier)
   const limit = limits[limitType]
-  
+
   // -1 means unlimited
   if (limit === -1) return false
-  
+
   return currentCount >= limit
 }
 
@@ -116,6 +121,6 @@ export const getUpgradeMessage = (tier: string, feature: string): string => {
     business: 'You have access to all features!',
     help: 'You have access to all features!'
   }
-  
+
   return messages[tier as keyof typeof messages] || messages.free
 }

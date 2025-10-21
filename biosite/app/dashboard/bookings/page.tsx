@@ -6,7 +6,7 @@ import { createClient } from '@/lib/supabase'
 import NavBar from '@/components/NavBar'
 import BookingsManager from '@/components/BookingsManager'
 import { useRealtimeBookings } from '@/lib/hooks/useRealtimeBookings'
-import { useSubscription } from '@/lib/hooks/useSubscription'
+import { useSimpleSubscription } from '@/lib/hooks/useSimpleSubscription'
 import { Crown } from 'lucide-react'
 
 export default function BookingsPage() {
@@ -15,11 +15,7 @@ export default function BookingsPage() {
   const [userId, setUserId] = useState<string | null>(null)
   const [loading, setLoading] = useState(true)
   const [userProfile, setUserProfile] = useState<any>(null)
-  const { subscription } = useSubscription()
-
-  // Debug subscription status
-  console.log('🔍 Bookings page - subscription:', subscription)
-  console.log('🔍 Bookings page - userProfile:', userProfile)
+  const { isPro } = useSimpleSubscription()
 
   useEffect(() => {
     const fetchUser = async () => {
@@ -106,8 +102,8 @@ export default function BookingsPage() {
       <NavBar />
 
       <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        {/* Single Consolidated Upgrade Banner - Use direct user profile data */}
-        {userProfile?.subscription_tier === 'free' && (
+        {/* Simple Pro Check - No Upgrade Banner for Pro Users */}
+        {!isPro && (
           <div className="mb-6 p-6 bg-gradient-to-r from-[#F3C77E]/20 to-[#912F40]/20 border border-[#F3C77E]/30 rounded-xl">
             <div className="flex items-center justify-between flex-wrap gap-4">
               <div className="flex items-center gap-4">
@@ -122,7 +118,7 @@ export default function BookingsPage() {
                     <span className="text-gray-400 text-sm">Preview Only</span>
                   </div>
                   <h3 className="text-white font-semibold text-lg">Unlock Advanced Booking Scheduler</h3>
-                  <p className="text-gray-300 text-sm mt-1">Get real-time scheduling, availability calendar, automated confirmations, and email notifications for $50/month</p>
+                  <p className="text-gray-300 text-sm mt-1">Get real-time scheduling, availability calendar, automated confirmations, and email notifications for $20/month</p>
                 </div>
               </div>
               <a

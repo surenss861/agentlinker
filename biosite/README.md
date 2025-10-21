@@ -46,6 +46,7 @@ Think of it as **Linktree meets Zillow**, built specifically for real estate pro
 **Add-ons**
 - Custom domain: $7/mo
 - Verified Agent badge: $25 one-time
+- Personal Help Pack: $50/month
 
 ---
 

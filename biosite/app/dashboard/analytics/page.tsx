@@ -6,7 +6,7 @@ import { createClient } from '@/lib/supabase'
 import NavBar from '@/components/NavBar'
 import { Eye, Users, Calendar, MousePointer, TrendingUp, ArrowUp, ArrowDown, Lock, Crown } from 'lucide-react'
 import { LineChart, Line, AreaChart, Area, BarChart, Bar, PieChart, Pie, Cell, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts'
-import { useSubscription } from '@/lib/hooks/useSubscription'
+import { useSimpleSubscription } from '@/lib/hooks/useSimpleSubscription'
 import ProSoftwall, { UpgradeModal } from '@/components/ProSoftwall'
 
 interface AnalyticsData {
@@ -36,7 +36,7 @@ export default function AnalyticsPage() {
   const [loading, setLoading] = useState(true)
   const [days, setDays] = useState(30)
   const [showUpgradeModal, setShowUpgradeModal] = useState(false)
-  const { subscription, hasFeature, getUpgradeText } = useSubscription()
+  const { hasFeature, isPro } = useSimpleSubscription()
 
   useEffect(() => {
     const fetchData = async () => {
@@ -128,10 +128,10 @@ export default function AnalyticsPage() {
             <div className="flex items-center justify-between">
               <div className="flex items-center gap-3">
                 <div className={`px-3 py-1 rounded-full text-sm font-medium ${subscription.tier === 'free'
-                    ? 'bg-gray-600 text-gray-300'
-                    : subscription.tier === 'pro'
-                      ? 'bg-[#912F40] text-white'
-                      : 'bg-[#F3C77E] text-black'
+                  ? 'bg-gray-600 text-gray-300'
+                  : subscription.tier === 'pro'
+                    ? 'bg-[#912F40] text-white'
+                    : 'bg-[#F3C77E] text-black'
                   }`}>
                   {subscription.tier === 'free' ? 'Free Plan' :
                     subscription.tier === 'pro' ? 'Pro Plan' : 'Business Plan'}
@@ -197,12 +197,12 @@ export default function AnalyticsPage() {
                   setDays(d)
                 }}
                 className={`px-4 py-2 rounded-lg font-medium transition-all ${days === d
-                    ? hasFeature('analytics')
-                      ? 'bg-[#F3C77E] text-[#080705]'
-                      : 'bg-gray-500/20 text-gray-500'
-                    : hasFeature('analytics')
-                      ? 'bg-white/5 text-gray-400 hover:bg-white/10'
-                      : 'bg-gray-500/20 text-gray-500 cursor-not-allowed'
+                  ? hasFeature('analytics')
+                    ? 'bg-[#F3C77E] text-[#080705]'
+                    : 'bg-gray-500/20 text-gray-500'
+                  : hasFeature('analytics')
+                    ? 'bg-white/5 text-gray-400 hover:bg-white/10'
+                    : 'bg-gray-500/20 text-gray-500 cursor-not-allowed'
                   }`}
                 disabled={!hasFeature('analytics')}
               >

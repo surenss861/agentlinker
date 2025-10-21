@@ -48,26 +48,29 @@ export async function POST(request: NextRequest) {
     const stripe = getStripe()
 
     // Determine mode and pricing based on tier
-    const isSubscription = tier === 'pro'
+    const isSubscription = tier === 'pro' || tier === 'help'
     const mode = isSubscription ? 'subscription' : 'payment'
 
     // Use actual Stripe product IDs
     let productId: string
     let amount: number
-    
+
     if (tier === 'pro') {
-      productId = 'prod_THFS9HsX5axqua'
+      // Professional Plan - LIVE
+      productId = 'prod_TE6YdCOmmzrhih'
       amount = 2000 // $20.00
-    } else if (tier === 'business') {
-      productId = 'prod_THFSS3LO5nuhwX'
+    } else if (tier === 'verified') {
+      // Verified badge ONLY - $25 one-time, NO Pro features - LIVE
+      productId = 'prod_TE6a1y9qHqNhXQ'
       amount = 2500 // $25.00
     } else if (tier === 'help') {
-      productId = 'prod_THFYWsx8iM2Nq0'
-      amount = 5000 // $50.00
+      // Personal Helper - LIVE
+      productId = 'prod_THId17ff4hibh9'
+      amount = 5000 // $50.00 per month
     } else {
       throw new Error(`Unknown tier: ${tier}`)
     }
-    
+
     console.log('🔍 Creating checkout for:', { tier, productId, amount, mode })
 
     // Create line items using actual product IDs
@@ -92,12 +95,17 @@ export async function POST(request: NextRequest) {
         quantity: 1,
       }]
 
+    // Determine the base URL for redirects
+    const baseUrl = process.env.NODE_ENV === 'development'
+      ? 'http://localhost:3000'
+      : process.env.NEXT_PUBLIC_APP_URL || 'https://www.agentlinker.ca'
+
     const session = await stripe.checkout.sessions.create({
       customer_email: userProfile.email,
       line_items: lineItems,
       mode: mode as any,
-      success_url: `${process.env.NEXT_PUBLIC_APP_URL}/thank-you?tier=${tier}`,
-      cancel_url: `${process.env.NEXT_PUBLIC_APP_URL}/dashboard/billing?canceled=true`,
+      success_url: `${baseUrl}/thank-you?tier=${tier}`,
+      cancel_url: `${baseUrl}/dashboard/billing?canceled=true`,
       metadata: {
         agent_id: userProfile.id,
         tier: tier,

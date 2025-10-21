@@ -1,13 +1,13 @@
 'use client'
 
-import { useEffect, useState, Suspense } from 'react'
-import { useRouter, useSearchParams } from 'next/navigation'
-import { CheckCircle, ArrowRight, Crown, Zap } from 'lucide-react'
-import { motion } from 'framer-motion'
+import { useEffect, useState } from 'react'
+import { useSearchParams, useRouter } from 'next/navigation'
+import { CheckCircle, Crown, Zap, Star, Users, ArrowRight, Home, Calendar } from 'lucide-react'
+import Link from 'next/link'
 
-function ThankYouContent() {
-  const router = useRouter()
+export default function ThankYouPage() {
   const searchParams = useSearchParams()
+  const router = useRouter()
   const [tier, setTier] = useState<string>('')
   const [loading, setLoading] = useState(true)
 
@@ -19,153 +19,219 @@ function ThankYouContent() {
     setLoading(false)
   }, [searchParams])
 
-  const handleGoToDashboard = () => {
-    router.push('/dashboard')
-  }
-
-  const getTierDisplayName = (tier: string) => {
+  const getTierInfo = (tier: string) => {
     switch (tier) {
       case 'pro':
-        return 'AgentLinker Pro'
+        return {
+          name: 'Pro Plan',
+          price: '$20/month',
+          icon: Crown,
+          color: 'from-blue-500 to-purple-600',
+          features: [
+            'Unlimited listings',
+            'Advanced analytics',
+            'Booking scheduler',
+            'Real-time leads',
+            'Priority support',
+            'Custom domain'
+          ],
+          nextSteps: [
+            'Access your dashboard',
+            'Add your first listing',
+            'Set up your booking calendar',
+            'Share your AgentLinker profile'
+          ]
+        }
       case 'business':
-        return 'AgentLinker Business'
+        return {
+          name: 'Business Plan',
+          price: '$25/month',
+          icon: Star,
+          color: 'from-green-500 to-blue-600',
+          features: [
+            'Everything in Pro',
+            'Verified badge',
+            'Advanced templates',
+            'Email notifications',
+            'Google Calendar sync',
+            'Priority support'
+          ],
+          nextSteps: [
+            'Access your dashboard',
+            'Enable verified badge',
+            'Set up email notifications',
+            'Connect Google Calendar'
+          ]
+        }
+      case 'help':
+        return {
+          name: 'Personal Help Pack',
+          price: '$50/month',
+          icon: Users,
+          color: 'from-purple-500 to-pink-600',
+          features: [
+            'Everything in Pro & Business',
+            'Personal 1-on-1 consultation',
+            'Help updating listings',
+            'Website setup assistance',
+            'Troubleshooting support',
+            'Priority email support'
+          ],
+          nextSteps: [
+            'Access your dashboard',
+            'Schedule your consultation',
+            'Get personal assistance',
+            'Optimize your listings'
+          ]
+        }
       default:
-        return 'Premium Plan'
+        return {
+          name: 'Subscription',
+          price: 'Active',
+          icon: CheckCircle,
+          color: 'from-gray-500 to-gray-600',
+          features: ['Your subscription is now active'],
+          nextSteps: ['Access your dashboard']
+        }
     }
   }
 
-  const getTierFeatures = (tier: string) => {
-    switch (tier) {
-      case 'pro':
-        return [
-          'Unlimited listings',
-          'Advanced analytics & ROI tracking',
-          'Real-time booking scheduler',
-          'Email notifications',
-          'Priority support'
-        ]
-      case 'business':
-        return [
-          'Everything in Pro plan',
-          'Verified agent badge',
-          'Lifetime access',
-          'No monthly fees',
-          'Premium support'
-        ]
-      default:
-        return ['Premium features unlocked']
-    }
-  }
+  const tierInfo = getTierInfo(tier)
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 flex items-center justify-center">
-        <div className="animate-spin rounded-full h-32 w-32 border-b-2 border-[#F3C77E]"></div>
+      <div className="min-h-screen bg-black flex items-center justify-center">
+        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-red-500"></div>
       </div>
     )
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 flex items-center justify-center p-4">
-      <motion.div
-        initial={{ opacity: 0, scale: 0.9 }}
-        animate={{ opacity: 1, scale: 1 }}
-        transition={{ duration: 0.5 }}
-        className="bg-white/10 backdrop-blur-md rounded-2xl border border-white/20 p-8 max-w-2xl w-full text-center"
-      >
-        {/* Success Icon */}
-        <motion.div
-          initial={{ scale: 0 }}
-          animate={{ scale: 1 }}
-          transition={{ delay: 0.2, type: "spring", stiffness: 200 }}
-          className="w-24 h-24 bg-gradient-to-br from-green-400 to-green-600 rounded-full flex items-center justify-center mx-auto mb-6"
-        >
-          <CheckCircle className="w-12 h-12 text-white" />
-        </motion.div>
-
-        {/* Success Message */}
-        <motion.h1
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.3 }}
-          className="text-4xl font-bold text-white mb-4"
-        >
-          🎉 Upgrade Successful!
-        </motion.h1>
-
-        <motion.p
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.4 }}
-          className="text-xl text-gray-300 mb-8"
-        >
-          Welcome to <span className="text-[#F3C77E] font-bold">{getTierDisplayName(tier)}</span>
-        </motion.p>
-
-        {/* Plan Details */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.5 }}
-          className="bg-white/5 backdrop-blur-sm rounded-xl p-6 mb-8 border border-white/10"
-        >
-          <div className="flex items-center justify-center gap-3 mb-4">
-            <div className="w-8 h-8 bg-gradient-to-br from-[#F3C77E] to-[#912F40] rounded-full flex items-center justify-center">
-              <Crown className="w-4 h-4 text-white" />
-            </div>
-            <h3 className="text-lg font-semibold text-white">Your New Features</h3>
-          </div>
-          
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-3 text-left">
-            {getTierFeatures(tier).map((feature, index) => (
-              <motion.div
-                key={feature}
-                initial={{ opacity: 0, x: -20 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ delay: 0.6 + index * 0.1 }}
-                className="flex items-center gap-2 text-gray-300"
-              >
-                <Zap className="w-4 h-4 text-[#F3C77E]" />
-                <span>{feature}</span>
-              </motion.div>
-            ))}
-          </div>
-        </motion.div>
-
-        {/* Action Button */}
-        <motion.button
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.8 }}
-          onClick={handleGoToDashboard}
-          className="w-full py-4 bg-gradient-to-r from-[#F3C77E] to-[#912F40] text-white rounded-xl font-semibold hover:from-[#F3C77E]/80 hover:to-[#912F40]/80 transition-all flex items-center justify-center gap-3 text-lg"
-        >
-          Go to Dashboard
-          <ArrowRight className="w-5 h-5" />
-        </motion.button>
-
-        {/* Additional Info */}
-        <motion.p
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 1 }}
-          className="text-gray-400 text-sm mt-6"
-        >
-          Your subscription is now active. You can manage your billing anytime from the dashboard.
-        </motion.p>
-      </motion.div>
-    </div>
-  )
-}
-
-export default function ThankYouPage() {
-  return (
-    <Suspense fallback={
-      <div className="min-h-screen bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 flex items-center justify-center">
-        <div className="animate-spin rounded-full h-32 w-32 border-b-2 border-[#F3C77E]"></div>
+    <div className="min-h-screen bg-black relative overflow-hidden">
+      {/* Gradient Background */}
+      <div className="absolute inset-0 bg-gradient-to-br from-black via-red-900/20 to-black">
+        <div className="absolute inset-0 bg-gradient-to-tl from-red-800/10 via-transparent to-red-600/5"></div>
+        <div className="absolute inset-0 bg-gradient-to-r from-transparent via-red-900/5 to-transparent"></div>
       </div>
-    }>
-      <ThankYouContent />
-    </Suspense>
+
+      {/* Content */}
+      <div className="relative z-10 min-h-screen flex items-center justify-center px-4 py-12">
+        <div className="max-w-4xl mx-auto text-center">
+          {/* Success Animation */}
+          <div className="mb-8">
+            <div className="relative inline-block">
+              <div className="w-24 h-24 bg-gradient-to-r from-green-500 to-emerald-600 rounded-full flex items-center justify-center mx-auto mb-6 shadow-2xl animate-pulse">
+                <CheckCircle className="w-12 h-12 text-white" />
+              </div>
+              <div className="absolute -inset-4 bg-gradient-to-r from-green-500/20 to-emerald-600/20 rounded-full blur-xl animate-ping"></div>
+            </div>
+          </div>
+
+          {/* Main Message */}
+          <div className="mb-12">
+            <h1 className="text-5xl md:text-6xl font-bold text-white mb-6">
+              🎉 Payment Successful!
+            </h1>
+            <p className="text-xl md:text-2xl text-gray-300 mb-4">
+              Welcome to <span className="text-red-400 font-semibold">AgentLinker</span>
+            </p>
+            <p className="text-lg text-gray-400">
+              Your {tierInfo.name} subscription is now active
+            </p>
+          </div>
+
+          {/* Subscription Card */}
+          <div className="bg-white/5 backdrop-blur-md rounded-2xl p-8 mb-12 border border-white/10 shadow-2xl">
+            <div className="flex items-center justify-center gap-4 mb-6">
+              <div className={`w-16 h-16 bg-gradient-to-r ${tierInfo.color} rounded-xl flex items-center justify-center shadow-lg`}>
+                <tierInfo.icon className="w-8 h-8 text-white" />
+              </div>
+              <div className="text-left">
+                <h2 className="text-3xl font-bold text-white">{tierInfo.name}</h2>
+                <p className="text-xl text-gray-300">{tierInfo.price}</p>
+              </div>
+            </div>
+
+            <div className="grid md:grid-cols-2 gap-6 mb-8">
+              <div>
+                <h3 className="text-lg font-semibold text-white mb-4">✅ What's Included:</h3>
+                <ul className="space-y-2 text-left">
+                  {tierInfo.features.map((feature, index) => (
+                    <li key={index} className="flex items-center gap-2 text-gray-300">
+                      <CheckCircle className="w-4 h-4 text-green-500 flex-shrink-0" />
+                      <span>{feature}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+              <div>
+                <h3 className="text-lg font-semibold text-white mb-4">🚀 Next Steps:</h3>
+                <ul className="space-y-2 text-left">
+                  {tierInfo.nextSteps.map((step, index) => (
+                    <li key={index} className="flex items-center gap-2 text-gray-300">
+                      <div className="w-4 h-4 bg-red-500 rounded-full flex items-center justify-center flex-shrink-0">
+                        <span className="text-white text-xs font-bold">{index + 1}</span>
+                      </div>
+                      <span>{step}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          {/* Action Buttons */}
+          <div className="flex flex-col sm:flex-row gap-4 justify-center mb-12">
+            <Link
+              href="/dashboard"
+              className="inline-flex items-center gap-3 bg-gradient-to-r from-red-600 to-red-700 hover:from-red-700 hover:to-red-800 text-white px-8 py-4 rounded-xl font-semibold text-lg transition-all shadow-xl hover:shadow-2xl hover:scale-105 transform duration-200"
+            >
+              <Home className="w-5 h-5" />
+              Go to Dashboard
+              <ArrowRight className="w-5 h-5" />
+            </Link>
+
+            {tier === 'help' && (
+              <Link
+                href="mailto:contact@agentlinker.ca?subject=Personal Help Pack - Schedule Consultation"
+                className="inline-flex items-center gap-3 bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white px-8 py-4 rounded-xl font-semibold text-lg transition-all shadow-xl hover:shadow-2xl hover:scale-105 transform duration-200"
+              >
+                <Calendar className="w-5 h-5" />
+                Schedule Consultation
+              </Link>
+            )}
+          </div>
+
+          {/* Additional Info */}
+          <div className="bg-white/5 backdrop-blur-md rounded-xl p-6 border border-white/10">
+            <h3 className="text-lg font-semibold text-white mb-3">📧 What happens next?</h3>
+            <div className="grid md:grid-cols-3 gap-4 text-sm text-gray-300">
+              <div className="flex items-center gap-2">
+                <div className="w-2 h-2 bg-green-500 rounded-full"></div>
+                <span>Subscription activated instantly</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <div className="w-2 h-2 bg-blue-500 rounded-full"></div>
+                <span>Receipt sent to your email</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <div className="w-2 h-2 bg-purple-500 rounded-full"></div>
+                <span>Full access to all features</span>
+              </div>
+            </div>
+          </div>
+
+          {/* Footer */}
+          <div className="mt-12 text-center">
+            <p className="text-gray-500 text-sm">
+              Need help? Contact us at{' '}
+              <a href="mailto:contact@agentlinker.ca" className="text-red-400 hover:text-red-300">
+                contact@agentlinker.ca
+              </a>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
   )
 }

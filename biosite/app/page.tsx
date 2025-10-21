@@ -99,7 +99,7 @@ export default function HomePage() {
               <strong>One link replaces 4 tools.</strong> Get 5-10 showing requests monthly — automatically.
             </p>
             <p className="text-lg text-red-400 mb-8 font-semibold">
-              One extra deal = $10K+ commission. AgentLinker costs $240/year.
+              One extra deal = $10K+ commission. AgentLinker costs $20/month.
             </p>
 
             {/* ROI Stats */}
@@ -460,6 +460,74 @@ export default function HomePage() {
               </div>
             </div>
           </div>
+
+          {/* Personal Help Pack Card */}
+          <div className="relative group">
+            <div className="absolute -inset-1 bg-gradient-to-r from-purple-600 via-pink-500 to-blue-600 rounded-xl blur opacity-30 group-hover:opacity-50 transition duration-1000 group-hover:duration-200"></div>
+            <div className="relative bg-black/95 backdrop-blur-sm rounded-xl border border-purple-400/40 p-6 text-white shadow-2xl">
+              <div className="text-center">
+                {/* Premium Badge */}
+                <div className="absolute -top-3 left-1/2 -translate-x-1/2 bg-gradient-to-r from-purple-600 to-pink-500 text-white px-4 py-1 rounded-full text-xs font-bold border border-purple-400/50">
+                  👨‍💼 PERSONAL ASSISTANCE
+                </div>
+
+                {/* Icon and Title */}
+                <div className="flex items-center justify-center gap-3 mb-4 mt-2">
+                  <div className="w-10 h-10 bg-gradient-to-br from-purple-500 to-pink-500 rounded-full flex items-center justify-center">
+                    <svg className="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 20 20">
+                      <path d="M13 6a3 3 0 11-6 0 3 3 0 016 0zM18 8a2 2 0 11-4 0 2 2 0 014 0zM14 15a4 4 0 00-8 0v3h8v-3zM6 8a2 2 0 11-4 0 2 2 0 014 0zM16 18v-3a5.972 5.972 0 00-.75-2.906A3.005 3.005 0 0119 15v3h-3zM4.75 12.094A5.973 5.973 0 004 15v3H1v-3a3 3 0 013.75-2.906z" />
+                    </svg>
+                  </div>
+                  <span className="font-bold text-xl bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">Personal Help Pack</span>
+                </div>
+
+                {/* Price */}
+                <div className="text-4xl font-bold mb-2 bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">
+                  $50<span className="text-xl opacity-90">/mo</span>
+                </div>
+                <p className="text-purple-200 text-sm mb-6 font-medium">Personal assistance with listings and setup</p>
+
+                {/* Features */}
+                <div className="text-left space-y-3 mb-6">
+                  <div className="flex items-center gap-3">
+                    <div className="w-5 h-5 bg-gradient-to-br from-purple-500 to-pink-500 rounded-full flex items-center justify-center flex-shrink-0">
+                      <Check className="h-3 w-3 text-white" />
+                    </div>
+                    <span className="text-sm text-gray-200">Personal 1-on-1 consultation</span>
+                  </div>
+                  <div className="flex items-center gap-3">
+                    <div className="w-5 h-5 bg-gradient-to-br from-purple-500 to-pink-500 rounded-full flex items-center justify-center flex-shrink-0">
+                      <Check className="h-3 w-3 text-white" />
+                    </div>
+                    <span className="text-sm text-gray-200">Help updating your listings</span>
+                  </div>
+                  <div className="flex items-center gap-3">
+                    <div className="w-5 h-5 bg-gradient-to-br from-purple-500 to-pink-500 rounded-full flex items-center justify-center flex-shrink-0">
+                      <Check className="h-3 w-3 text-white" />
+                    </div>
+                    <span className="text-sm text-gray-200">Website setup assistance</span>
+                  </div>
+                  <div className="flex items-center gap-3">
+                    <div className="w-5 h-5 bg-gradient-to-br from-purple-500 to-pink-500 rounded-full flex items-center justify-center flex-shrink-0">
+                      <Check className="h-3 w-3 text-white" />
+                    </div>
+                    <span className="text-sm text-gray-200">Priority email support</span>
+                  </div>
+                </div>
+
+                {/* CTA Button */}
+                <Link
+                  href="/signup"
+                  className="block bg-gradient-to-r from-purple-600 to-pink-600 text-white px-8 py-4 rounded-xl hover:from-purple-700 hover:to-pink-700 transition-all font-bold text-sm shadow-xl hover:shadow-2xl hover:scale-105 transform duration-200"
+                >
+                  Get Personal Help →
+                </Link>
+                <p className="text-purple-300 text-xs mt-3 font-medium">
+                  Monthly subscription • Personal assistance
+                </p>
+              </div>
+            </div>
+          </div>
         </div>
 
         {/* Social Proof Section */}
@@ -669,8 +737,8 @@ export default function HomePage() {
 
                   {contactMessage && (
                     <div className={`p-4 rounded-lg mb-6 text-sm border ${contactMessage.includes('Thank you')
-                        ? 'bg-green-500/20 text-green-200 border-green-500/30'
-                        : 'bg-red-500/20 text-red-200 border-red-500/30'
+                      ? 'bg-green-500/20 text-green-200 border-green-500/30'
+                      : 'bg-red-500/20 text-red-200 border-red-500/30'
                       }`}>
                       {contactMessage}
                     </div>

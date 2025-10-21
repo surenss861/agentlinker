@@ -36,7 +36,7 @@ All core features from your product spec have been successfully implemented.
 - [x] **Stripe Integration** - Checkout flow (ready for production)
 - [x] **Billing Page** - Plan management and upgrade flow
 - [x] **Feature Gating** - Free tier limited to 5 listings
-- [x] **Add-ons** - Custom domain ($7/mo), Verified badge ($25)
+- [x] **Add-ons** - Custom domain ($7/mo), Verified badge ($25), Personal Help Pack ($50/mo)
 
 ### Technical Infrastructure
 - [x] **Next.js 15** - Latest version with App Router
@@ -143,6 +143,7 @@ biosite/
 ### Add-ons
 - Custom Domain: $7/month
 - Verified Agent Badge: $25 (one-time)
+- Personal Help Pack: $50/month
 
 ---
 

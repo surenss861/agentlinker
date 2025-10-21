@@ -10,6 +10,7 @@ import DarkVeil from '@/components/DarkVeil'
 export default function SignupPage() {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
+  const [confirmPassword, setConfirmPassword] = useState('')
   const [fullName, setFullName] = useState('')
   const [agreeToTerms, setAgreeToTerms] = useState(false)
   const [loading, setLoading] = useState(false)
@@ -20,6 +21,18 @@ export default function SignupPage() {
 
   const handleSignup = async (e: React.FormEvent) => {
     e.preventDefault()
+
+    // Validate passwords match
+    if (password !== confirmPassword) {
+      setError('Passwords do not match. Please try again.')
+      return
+    }
+
+    // Validate password strength
+    if (password.length < 6) {
+      setError('Password must be at least 6 characters long.')
+      return
+    }
 
     if (!agreeToTerms) {
       setError('You must agree to the Terms of Service and Privacy Policy to continue.')
@@ -211,6 +224,29 @@ export default function SignupPage() {
                     placeholder="••••••••"
                     minLength={6}
                   />
+                  <p className="text-xs text-gray-400 mt-1">Must be at least 6 characters</p>
+                </div>
+
+                <div>
+                  <label htmlFor="confirmPassword" className="block text-sm font-medium text-gray-300 mb-2">
+                    Confirm Password
+                  </label>
+                  <input
+                    id="confirmPassword"
+                    type="password"
+                    required
+                    value={confirmPassword}
+                    onChange={(e) => setConfirmPassword(e.target.value)}
+                    className="w-full px-4 py-3 bg-black/50 border border-red-500/30 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-red-500 text-white placeholder-gray-400 transition-all"
+                    placeholder="••••••••"
+                    minLength={6}
+                  />
+                  {confirmPassword && password !== confirmPassword && (
+                    <p className="text-xs text-red-400 mt-1">Passwords do not match</p>
+                  )}
+                  {confirmPassword && password === confirmPassword && password.length >= 6 && (
+                    <p className="text-xs text-green-400 mt-1">✓ Passwords match</p>
+                  )}
                 </div>
 
                 <div className="flex items-start gap-3">

@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { createServerSupabaseClient } from '@/lib/supabase-server'
+import { createServiceSupabaseClient } from '@/lib/supabase-service'
 import Stripe from 'stripe'
 
 // Only initialize Stripe if environment variables are available
@@ -56,7 +56,7 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ error: 'Invalid signature' }, { status: 400 })
     }
 
-    const supabase = await createServerSupabaseClient()
+    const supabase = createServiceSupabaseClient()
 
     // Handle successful payment
     if (event.type === 'checkout.session.completed') {
@@ -91,75 +91,72 @@ export async function POST(request: NextRequest) {
       }
 
       // Determine billing cycle and amount
-      const isSubscription = tier === 'pro'
+      const isSubscription = tier === 'pro' || tier === 'help'
       let billingCycle: string
       let amountPaid: number
-      
+
       if (tier === 'pro') {
         billingCycle = 'monthly'
         amountPaid = 2000 // $20.00
-      } else if (tier === 'business') {
+      } else if (tier === 'verified') {
+        // Verified badge ONLY - one-time $25, NO tier change
         billingCycle = 'one_time'
         amountPaid = 2500 // $25.00
       } else if (tier === 'help') {
-        billingCycle = 'one_time'
-        amountPaid = 5000 // $50.00
+        billingCycle = 'monthly'
+        amountPaid = 5000 // $50.00 per month
       } else {
         console.error('❌ Unknown tier in webhook:', tier)
         return NextResponse.json({ error: 'Unknown tier' }, { status: 400 })
       }
 
-      // Calculate period dates
-      const now = new Date()
-      const periodStart = now
-      const periodEnd = isSubscription ? new Date(now.getTime() + 30 * 24 * 60 * 60 * 1000) : now
+      // Handle verified badge separately - it only activates the badge, NOT the tier
+      if (tier === 'verified') {
+        const { error: verifiedUpdateError } = await supabase
+          .from('users')
+          .update({
+            verified_badge: true,
+            stripe_customer_id: session.customer as string,
+            updated_at: new Date().toISOString()
+          })
+          .eq('id', agent_id)
 
-      // CRITICAL: Update user's subscription_tier in users table
-      const { error: userUpdateError } = await supabase
-        .from('users')
-        .update({
-          subscription_tier: tier,
-          stripe_customer_id: session.customer as string
+        if (verifiedUpdateError) {
+          console.error('❌ Error activating verified badge:', verifiedUpdateError)
+          return NextResponse.json({ error: 'Failed to activate verified badge' }, { status: 500 })
+        }
+
+        console.log(`✅ Verified badge activated for user ${agent_id}`)
+        console.log('🎉 VERIFIED BADGE PAYMENT SUCCESS:', {
+          userId: agent_id,
+          amount: amountPaid / 100,
+          customerId: session.customer,
+          sessionId: session.id
         })
-        .eq('id', agent_id)
-
-      if (userUpdateError) {
-        console.error('❌ Error updating user subscription tier:', userUpdateError)
-        return NextResponse.json({ error: 'Failed to update user subscription' }, { status: 500 })
-      }
-
-      console.log(`✅ User subscription tier updated to ${tier} for user ${agent_id}`)
-
-      // Insert subscription record
-      const { error: subscriptionError } = await supabase
-        .from('subscriptions')
-        .insert({
-          user_id: agent_id,
-          stripe_customer_id: session.customer as string,
-          stripe_subscription_id: session.subscription as string,
-          stripe_payment_intent_id: session.payment_intent as string,
-          stripe_checkout_session_id: session.id,
-          tier: tier,
-          status: 'active',
-          amount_paid: amountPaid,
-          currency: 'usd',
-          billing_cycle: billingCycle,
-          current_period_start: periodStart.toISOString(),
-          current_period_end: periodEnd.toISOString(),
-          metadata: {
-            session_id: session.id,
-            payment_status: session.payment_status,
-            livemode: session.livemode,
-            created_at: session.created
-          }
-        })
-
-      if (subscriptionError) {
-        console.error('❌ Error creating subscription record:', subscriptionError)
-        // Don't fail here since we already updated the users table
-        console.log('⚠️ User tier was updated but subscription record failed')
       } else {
-        console.log(`✅ Subscription record created for user ${agent_id} (${tier} plan, $${amountPaid / 100})`)
+        // For Pro and Help - update subscription tier
+        const { error: userUpdateError } = await supabase
+          .from('users')
+          .update({
+            subscription_tier: tier,
+            stripe_customer_id: session.customer as string,
+            updated_at: new Date().toISOString()
+          })
+          .eq('id', agent_id)
+
+        if (userUpdateError) {
+          console.error('❌ Error updating user subscription tier:', userUpdateError)
+          return NextResponse.json({ error: 'Failed to update user subscription' }, { status: 500 })
+        }
+
+        console.log(`✅ User subscription tier updated to ${tier} for user ${agent_id}`)
+        console.log('🎉 PAYMENT SUCCESS:', {
+          userId: agent_id,
+          tier: tier,
+          amount: amountPaid / 100,
+          customerId: session.customer,
+          sessionId: session.id
+        })
       }
     }
 

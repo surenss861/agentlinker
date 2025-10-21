@@ -59,9 +59,9 @@ All-in-one real estate CRM that replaces 5+ tools.
 | $15/mo | Zillow Flex | ✅ Lead capture |
 | $10/mo | Website hosting | ✅ Public pages |
 | $20/mo | CRM (HubSpot Starter) | ✅ Contact management |
-| **$74/mo total** | **4 separate tools** | **$50/mo - ONE platform** |
+| **$74/mo total** | **4 separate tools** | **$20/mo - ONE platform** |
 
-**You're saving them $24/month AND consolidating their workflow.**
+**You're saving them $54/month AND consolidating their workflow.**
 
 ### **Value Proposition**
 
@@ -75,23 +75,23 @@ All-in-one real estate CRM that replaces 5+ tools.
 
 | Month | Users | MRR | ARR |
 |-------|-------|-----|-----|
-| Month 1 | 10 | $500 | $6,000 |
-| Month 3 | 50 | $2,500 | $30,000 |
-| Month 6 | 150 | $7,500 | $90,000 |
-| Month 12 | 400 | $20,000 | $240,000 |
-| Year 2 | 1,000 | $50,000 | $600,000 |
+| Month 1 | 10 | $200 | $2,400 |
+| Month 3 | 50 | $1,000 | $12,000 |
+| Month 6 | 150 | $3,000 | $36,000 |
+| Month 12 | 400 | $8,000 | $96,000 |
+| Year 2 | 1,000 | $20,000 | $240,000 |
 
 ### **Aggressive Growth** (with marketing)
 
 | Month | Users | MRR | ARR |
 |-------|-------|-----|-----|
-| Month 1 | 25 | $1,250 | $15,000 |
-| Month 3 | 150 | $7,500 | $90,000 |
-| Month 6 | 500 | $25,000 | $300,000 |
-| Month 12 | 1,500 | $75,000 | $900,000 |
-| Year 2 | 5,000 | $250,000 | $3,000,000 |
+| Month 1 | 25 | $500 | $6,000 |
+| Month 3 | 150 | $3,000 | $36,000 |
+| Month 6 | 500 | $10,000 | $120,000 |
+| Month 12 | 1,500 | $30,000 | $360,000 |
+| Year 2 | 5,000 | $100,000 | $1,200,000 |
 
-**With just 100 paying users, you hit $60K ARR.**
+**With just 100 paying users, you hit $24K ARR.**
 
 ---
 
@@ -99,19 +99,19 @@ All-in-one real estate CRM that replaces 5+ tools.
 
 ### **Phase 1: Soft Launch (Weeks 1-4)**
 
-**Goal:** Get 25 beta users @ $25/mo (50% discount)
+**Goal:** Get 25 beta users @ $15/mo (25% discount)
 
 1. **Target:** Real estate agents in your network
-2. **Pitch:** "Beta access - $25/mo for life (normally $50)"
+2. **Pitch:** "Beta access - $15/mo for life (normally $20)"
 3. **Channel:** Direct outreach, Facebook groups, Instagram DMs
-4. **Win metric:** 25 paying users = $625 MRR
+4. **Win metric:** 25 paying users = $375 MRR
 
 **What to say:**
-> "Hey [Agent Name], I built AgentLinker - an all-in-one CRM for realtors. Listings, leads, and booking scheduler in one dashboard. I'm offering lifetime beta pricing at $25/mo (normally $50). Interested in trying it?"
+> "Hey [Agent Name], I built AgentLinker - an all-in-one CRM for realtors. Listings, leads, and booking scheduler in one dashboard. I'm offering lifetime beta pricing at $15/mo (normally $20). Interested in trying it?"
 
 ### **Phase 2: Public Launch (Weeks 5-12)**
 
-**Goal:** Scale to 200 users @ $50/mo
+**Goal:** Scale to 200 users @ $20/mo
 
 1. **Landing page** with clear value prop
 2. **Product Hunt launch** - aim for Product of the Day
@@ -119,11 +119,11 @@ All-in-one real estate CRM that replaces 5+ tools.
 4. **YouTube tutorials** - "How I built my real estate business with AgentLinker"
 5. **Referral program** - "Refer 3 agents, get 1 month free"
 
-**Win metric:** 200 users = $10K MRR
+**Win metric:** 200 users = $4K MRR
 
 ### **Phase 3: Scale (Month 4+)**
 
-**Goal:** Hit 1,000 users @ $50/mo = $50K MRR
+**Goal:** Hit 1,000 users @ $20/mo = $20K MRR
 
 1. **Content marketing** - SEO-optimized blogs
 2. **Webinars** - "5 Ways to Book 20% More Showings"
@@ -305,7 +305,7 @@ Try free for 14 days → [link]
 | Email (Resend) | $0.02 | ~$10/mo for 500 users |
 | **Total COGS** | **$0.11/user** | **98% gross margin** |
 
-**At $20/month, you keep $49.89 per user!**
+**At $20/month, you keep $19.89 per user!**
 
 ### **Customer Acquisition Cost (CAC)**
 
@@ -314,8 +314,8 @@ Try free for 14 days → [link]
 - **Target:** Recover CAC in Month 1
 
 **LTV:CAC Ratio Target:** 5:1 or better
-- LTV (12 months): $600
-- CAC: $100
+- LTV (12 months): $240
+- CAC: $40
 - Ratio: 6:1 ✅
 
 ---
@@ -326,7 +326,7 @@ Try free for 14 days → [link]
 Most founders launch with 1 feature. You have 3 integrated systems working together.
 
 ### **2. Clear Value Prop**
-Agents immediately understand: "Replace 5 tools with one dashboard for $50/mo."
+Agents immediately understand: "Replace 5 tools with one dashboard for $20/mo."
 
 ### **3. Network Effects**
 When agents share their booking links, you get free marketing.
@@ -335,7 +335,7 @@ When agents share their booking links, you get free marketing.
 Once agents have their listings + leads in your system, switching costs are high.
 
 ### **5. Simple Pricing**
-No confusing tiers. $50/mo. Everyone knows what they're getting.
+No confusing tiers. $20/mo. Everyone knows what they're getting.
 
 ---
 
@@ -347,7 +347,7 @@ No confusing tiers. $50/mo. Everyone knows what they're getting.
 2. **This week:** Get 5 beta users
 3. **This month:** Hit $1,000 MRR
 4. **This quarter:** Hit $10,000 MRR
-5. **This year:** Hit $50,000 MRR
+5. **This year:** Hit $20,000 MRR
 
 **You're sitting on a $1M+ ARR opportunity. All you need to do is execute.**
 
@@ -359,7 +359,7 @@ No confusing tiers. $50/mo. Everyone knows what they're getting.
 2. **Test `/dashboard/bookings` - verify everything works**
 3. **Deploy to production domain (Vercel)**
 4. **Set up Stripe subscription checkout**
-5. **Create landing page with $50/mo pricing**
+5. **Create landing page with $20/mo pricing**
 6. **Message 10 real estate agents today**
 
 **Stop building. Start selling.** 🚀
@@ -377,8 +377,8 @@ your listings, leads, and booking showings?
 I just built AgentLinker - an all-in-one dashboard that replaces 
 Calendly, your CRM, and your website. Everything syncs in real-time.
 
-Would you be interested in lifetime beta access at $25/mo 
-(normally $50)? I'm only offering this to the first 25 agents.
+Would you be interested in lifetime beta access at $15/mo 
+(normally $20)? I'm only offering this to the first 25 agents.
 
 Let me know if you want a quick demo!
 
