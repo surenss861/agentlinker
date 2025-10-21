@@ -73,6 +73,22 @@ export async function POST(request: NextRequest) {
       const periodStart = now
       const periodEnd = isSubscription ? new Date(now.getTime() + 30 * 24 * 60 * 60 * 1000) : now
 
+      // CRITICAL: Update user's subscription_tier in users table
+      const { error: userUpdateError } = await supabase
+        .from('users')
+        .update({ 
+          subscription_tier: tier,
+          stripe_customer_id: session.customer as string
+        })
+        .eq('id', agent_id)
+
+      if (userUpdateError) {
+        console.error('❌ Error updating user subscription tier:', userUpdateError)
+        return NextResponse.json({ error: 'Failed to update user subscription' }, { status: 500 })
+      }
+
+      console.log(`✅ User subscription tier updated to ${tier} for user ${agent_id}`)
+
       // Insert subscription record
       const { error: subscriptionError } = await supabase
         .from('subscriptions')
@@ -99,10 +115,11 @@ export async function POST(request: NextRequest) {
 
       if (subscriptionError) {
         console.error('❌ Error creating subscription record:', subscriptionError)
-        return NextResponse.json({ error: 'Failed to create subscription record' }, { status: 500 })
+        // Don't fail here since we already updated the users table
+        console.log('⚠️ User tier was updated but subscription record failed')
+      } else {
+        console.log(`✅ Subscription record created for user ${agent_id} (${tier} plan, $${amountPaid / 100})`)
       }
-
-      console.log(`✅ Subscription record created for user ${agent_id} (${tier} plan, $${amountPaid / 100})`)
     }
 
     // Handle payment failures
@@ -134,6 +151,15 @@ export async function POST(request: NextRequest) {
             subscription.status === 'past_due' ? 'past_due' :
               subscription.status === 'unpaid' ? 'unpaid' : 'incomplete'
 
+        // If subscription is no longer active, downgrade user to free
+        if (newStatus !== 'active') {
+          await supabase
+            .from('users')
+            .update({ subscription_tier: 'free' })
+            .eq('id', user.id)
+          console.log(`✅ User ${user.id} downgraded to free tier`)
+        }
+
         // Update subscription record
         const { error } = await supabase
           .from('subscriptions')
@@ -159,6 +185,21 @@ export async function POST(request: NextRequest) {
     if (event.type === 'customer.subscription.deleted') {
       const subscription = event.data.object as Stripe.Subscription
       const customerId = subscription.customer as string
+
+      // Find user by customer ID and downgrade to free
+      const { data: user } = await supabase
+        .from('users')
+        .select('id')
+        .eq('stripe_customer_id', customerId)
+        .single()
+
+      if (user) {
+        await supabase
+          .from('users')
+          .update({ subscription_tier: 'free' })
+          .eq('id', user.id)
+        console.log(`✅ User ${user.id} downgraded to free tier after cancellation`)
+      }
 
       // Update subscription record to canceled
       const { error } = await supabase

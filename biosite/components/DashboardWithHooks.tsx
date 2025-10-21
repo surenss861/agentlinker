@@ -34,7 +34,7 @@ export default function DashboardWithHooks({ userId, agentSlug }: DashboardWithH
                   ✓ Pro Plan Active
                 </div>
               )}
-              <Link 
+              <Link
                 href={`/${agentSlug}`}
                 className="bg-red-600 text-white px-4 py-2 rounded-lg text-sm hover:bg-red-700 transition-colors"
                 target="_blank"
@@ -130,11 +130,10 @@ export default function DashboardWithHooks({ userId, agentSlug }: DashboardWithH
                           <p className="text-xs text-gray-400">{new Date(lead.created_at).toLocaleDateString()}</p>
                         </div>
                       </div>
-                      <div className={`px-2 py-1 rounded-full text-xs ${
-                        lead.status === 'new' ? 'bg-blue-500/20 text-blue-400' :
-                        lead.status === 'contacted' ? 'bg-green-500/20 text-green-400' :
-                        'bg-gray-500/20 text-gray-400'
-                      }`}>
+                      <div className={`px-2 py-1 rounded-full text-xs ${lead.status === 'new' ? 'bg-blue-500/20 text-blue-400' :
+                          lead.status === 'contacted' ? 'bg-green-500/20 text-green-400' :
+                            'bg-gray-500/20 text-gray-400'
+                        }`}>
                         {lead.status}
                       </div>
                     </div>
@@ -173,20 +172,20 @@ export default function DashboardWithHooks({ userId, agentSlug }: DashboardWithH
             <div className="bg-gray-800/50 rounded-xl p-6 border border-gray-700">
               <h3 className="text-lg font-bold text-white mb-4">Quick Actions</h3>
               <div className="space-y-3">
-                <Link 
+                <Link
                   href="/dashboard/listings"
                   className="w-full bg-red-600 hover:bg-red-700 text-white py-3 rounded-lg font-medium transition-colors flex items-center justify-center gap-2"
                 >
                   <Plus className="h-4 w-4" />
                   Add New Listing
                 </Link>
-                <Link 
+                <Link
                   href="/dashboard/analytics"
                   className="w-full bg-gray-700 hover:bg-gray-600 text-white py-3 rounded-lg font-medium transition-colors block text-center"
                 >
                   📊 View Analytics
                 </Link>
-                <Link 
+                <Link
                   href="/dashboard/settings"
                   className="w-full bg-gray-700 hover:bg-gray-600 text-white py-3 rounded-lg font-medium transition-colors block text-center"
                 >
@@ -209,21 +208,21 @@ export default function DashboardWithHooks({ userId, agentSlug }: DashboardWithH
                 <span className="text-white font-bold">{stats.views}</span>
               </div>
               <div className="w-full bg-gray-700 rounded-full h-2">
-                <div className="bg-blue-500 h-2 rounded-full" style={{width: `${Math.min((stats.views / 100) * 100, 100)}%`}}></div>
+                <div className="bg-blue-500 h-2 rounded-full" style={{ width: `${Math.min((stats.views / 100) * 100, 100)}%` }}></div>
               </div>
               <div className="flex items-center justify-between">
                 <span className="text-gray-400">Lead Forms</span>
                 <span className="text-white font-bold">{stats.requests}</span>
               </div>
               <div className="w-full bg-gray-700 rounded-full h-2">
-                <div className="bg-green-500 h-2 rounded-full" style={{width: `${Math.min((stats.requests / 50) * 100, 100)}%`}}></div>
+                <div className="bg-green-500 h-2 rounded-full" style={{ width: `${Math.min((stats.requests / 50) * 100, 100)}%` }}></div>
               </div>
               <div className="flex items-center justify-between">
                 <span className="text-gray-400">Bookings</span>
                 <span className="text-white font-bold">{stats.bookings}</span>
               </div>
               <div className="w-full bg-gray-700 rounded-full h-2">
-                <div className="bg-purple-500 h-2 rounded-full" style={{width: `${Math.min((stats.bookings / 20) * 100, 100)}%`}}></div>
+                <div className="bg-purple-500 h-2 rounded-full" style={{ width: `${Math.min((stats.bookings / 20) * 100, 100)}%` }}></div>
               </div>
             </div>
           </div>
