@@ -99,17 +99,17 @@ export function getPostalCodeLabel(country: string) {
 // Format phone number based on country
 export function formatPhoneNumber(phone: string, country: string) {
   const cleaned = phone.replace(/\D/g, '')
-  
+
   // US/Canada format: (123) 456-7890
   if ((country === 'US' || country === 'CA') && cleaned.length === 10) {
     return `(${cleaned.slice(0, 3)}) ${cleaned.slice(3, 6)}-${cleaned.slice(6)}`
   }
-  
+
   // US/Canada format with country code: +1 (123) 456-7890
   if ((country === 'US' || country === 'CA') && cleaned.length === 11 && cleaned.startsWith('1')) {
     return `+1 (${cleaned.slice(1, 4)}) ${cleaned.slice(4, 7)}-${cleaned.slice(7)}`
   }
-  
+
   return phone
 }
 
@@ -117,5 +117,86 @@ export function formatPhoneNumber(phone: string, country: string) {
 export function getCurrencyInfo(country: string) {
   const countryInfo = COUNTRIES.find(c => c.code === country)
   return countryInfo || COUNTRIES[0]
+}
+
+// Cities mapped by state/province
+export const US_CITIES_BY_STATE: Record<string, string[]> = {
+  'Alabama': ['Birmingham', 'Montgomery', 'Mobile', 'Huntsville'],
+  'Alaska': ['Anchorage', 'Fairbanks', 'Juneau'],
+  'Arizona': ['Phoenix', 'Tucson', 'Mesa', 'Scottsdale'],
+  'Arkansas': ['Little Rock', 'Fort Smith', 'Fayetteville'],
+  'California': ['Los Angeles', 'San Francisco', 'San Diego', 'San Jose', 'Sacramento', 'Oakland', 'Fresno', 'Long Beach'],
+  'Colorado': ['Denver', 'Colorado Springs', 'Aurora', 'Fort Collins'],
+  'Connecticut': ['Hartford', 'New Haven', 'Stamford', 'Bridgeport'],
+  'Delaware': ['Wilmington', 'Dover', 'Newark'],
+  'Florida': ['Jacksonville', 'Miami', 'Tampa', 'Orlando', 'Fort Lauderdale', 'Tallahassee'],
+  'Georgia': ['Atlanta', 'Augusta', 'Columbus', 'Savannah'],
+  'Hawaii': ['Honolulu', 'Hilo', 'Kailua'],
+  'Idaho': ['Boise', 'Nampa', 'Meridian'],
+  'Illinois': ['Chicago', 'Aurora', 'Naperville', 'Rockford', 'Peoria'],
+  'Indiana': ['Indianapolis', 'Fort Wayne', 'Evansville', 'South Bend'],
+  'Iowa': ['Des Moines', 'Cedar Rapids', 'Davenport'],
+  'Kansas': ['Wichita', 'Overland Park', 'Kansas City'],
+  'Kentucky': ['Louisville', 'Lexington', 'Bowling Green'],
+  'Louisiana': ['New Orleans', 'Baton Rouge', 'Shreveport'],
+  'Maine': ['Portland', 'Lewiston', 'Bangor'],
+  'Maryland': ['Baltimore', 'Frederick', 'Rockville', 'Annapolis'],
+  'Massachusetts': ['Boston', 'Worcester', 'Springfield', 'Cambridge'],
+  'Michigan': ['Detroit', 'Grand Rapids', 'Warren', 'Ann Arbor'],
+  'Minnesota': ['Minneapolis', 'Saint Paul', 'Rochester', 'Duluth'],
+  'Mississippi': ['Jackson', 'Gulfport', 'Southaven'],
+  'Missouri': ['Kansas City', 'Saint Louis', 'Springfield', 'Columbia'],
+  'Montana': ['Billings', 'Missoula', 'Great Falls'],
+  'Nebraska': ['Omaha', 'Lincoln', 'Bellevue'],
+  'Nevada': ['Las Vegas', 'Reno', 'Henderson', 'Carson City'],
+  'New Hampshire': ['Manchester', 'Nashua', 'Concord'],
+  'New Jersey': ['Newark', 'Jersey City', 'Paterson', 'Elizabeth'],
+  'New Mexico': ['Albuquerque', 'Las Cruces', 'Santa Fe'],
+  'New York': ['New York', 'Buffalo', 'Rochester', 'Albany', 'Syracuse'],
+  'North Carolina': ['Charlotte', 'Raleigh', 'Greensboro', 'Durham'],
+  'North Dakota': ['Fargo', 'Bismarck', 'Grand Forks'],
+  'Ohio': ['Columbus', 'Cleveland', 'Cincinnati', 'Toledo', 'Akron'],
+  'Oklahoma': ['Oklahoma City', 'Tulsa', 'Norman'],
+  'Oregon': ['Portland', 'Eugene', 'Salem', 'Gresham'],
+  'Pennsylvania': ['Philadelphia', 'Pittsburgh', 'Allentown', 'Erie'],
+  'Rhode Island': ['Providence', 'Warwick', 'Cranston'],
+  'South Carolina': ['Charleston', 'Columbia', 'Greenville'],
+  'South Dakota': ['Sioux Falls', 'Rapid City', 'Aberdeen'],
+  'Tennessee': ['Nashville', 'Memphis', 'Knoxville', 'Chattanooga'],
+  'Texas': ['Houston', 'San Antonio', 'Dallas', 'Austin', 'Fort Worth', 'El Paso'],
+  'Utah': ['Salt Lake City', 'West Valley City', 'Provo'],
+  'Vermont': ['Burlington', 'Essex', 'South Burlington'],
+  'Virginia': ['Virginia Beach', 'Norfolk', 'Richmond', 'Newport News'],
+  'Washington': ['Seattle', 'Spokane', 'Tacoma', 'Vancouver'],
+  'West Virginia': ['Charleston', 'Huntington', 'Parkersburg'],
+  'Wisconsin': ['Milwaukee', 'Madison', 'Green Bay', 'Kenosha'],
+  'Wyoming': ['Cheyenne', 'Casper', 'Laramie'],
+}
+
+export const CANADIAN_CITIES_BY_PROVINCE: Record<string, string[]> = {
+  'Alberta': ['Calgary', 'Edmonton', 'Red Deer', 'Lethbridge'],
+  'British Columbia': ['Vancouver', 'Victoria', 'Kelowna', 'Abbotsford', 'Kamloops', 'Nanaimo'],
+  'Manitoba': ['Winnipeg', 'Brandon', 'Steinbach'],
+  'New Brunswick': ['Saint John', 'Moncton', 'Fredericton'],
+  'Newfoundland and Labrador': ['St. John\'s', 'Mount Pearl', 'Corner Brook'],
+  'Northwest Territories': ['Yellowknife', 'Hay River'],
+  'Nova Scotia': ['Halifax', 'Dartmouth', 'Sydney'],
+  'Nunavut': ['Iqaluit'],
+  'Ontario': ['Toronto', 'Ottawa', 'Mississauga', 'Hamilton', 'London', 'Kitchener', 'Windsor', 'Oshawa', 'Barrie', 'Kingston', 'Guelph', 'Thunder Bay', 'Sudbury'],
+  'Prince Edward Island': ['Charlottetown', 'Summerside'],
+  'Quebec': ['Montreal', 'Quebec City', 'Sherbrooke', 'Laval'],
+  'Saskatchewan': ['Saskatoon', 'Regina', 'Prince Albert'],
+  'Yukon': ['Whitehorse'],
+}
+
+// Get cities for a specific state/province
+export function getCitiesForRegion(country: string, regionName: string): string[] {
+  if (country === 'US') {
+    return US_CITIES_BY_STATE[regionName] || []
+  }
+  if (country === 'CA') {
+    return CANADIAN_CITIES_BY_PROVINCE[regionName] || []
+  }
+  return []
 }
 

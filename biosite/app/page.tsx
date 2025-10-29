@@ -408,127 +408,147 @@ export default function HomePage() {
           </div>
         </section>
 
-        {/* Verification Badge Card */}
-        <div className="mt-12 flex justify-center">
-          <div className="relative max-w-md w-full">
-            {/* Dark Veil Background */}
-            <div className="absolute inset-0 rounded-xl overflow-hidden">
-              <DarkVeil
-                speed={0.8}
-                hueShift={200}
-                noiseIntensity={0.1}
-                scanlineIntensity={0.05}
-                scanlineFrequency={0.5}
-                warpAmount={0.02}
-              />
-            </div>
-
-            {/* Card Content */}
-            <div className="relative bg-black/90 backdrop-blur-sm rounded-xl border border-blue-500/30 p-6 text-white shadow-xl">
-              <div className="text-center">
-                <div className="flex items-center justify-center gap-2 mb-3">
-                  <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 20 20">
-                    <path fillRule="evenodd" d="M6.267 3.455a3.066 3.066 0 001.745-.723 3.066 3.066 0 013.976 0 3.066 3.066 0 001.745.723 3.066 3.066 0 012.812 2.812c.051.643.304 1.254.723 1.745a3.066 3.066 0 010 3.976 3.066 3.066 0 00-.723 1.745 3.066 3.066 0 01-2.812 2.812 3.066 3.066 0 00-1.745.723 3.066 3.066 0 01-3.976 0 3.066 3.066 0 00-1.745-.723 3.066 3.066 0 01-2.812-2.812 3.066 3.066 0 00-.723-1.745 3.066 3.066 0 010-3.976 3.066 3.066 0 00.723-1.745 3.066 3.066 0 012.812-2.812zm7.44 5.252a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
-                  </svg>
-                  <span className="font-bold text-lg">Verified Agent Badge</span>
-                </div>
-
-                <div className="text-3xl font-bold mb-2">$25</div>
-                <p className="text-blue-100 text-sm mb-4">One-time verification fee</p>
-
-                <div className="text-left space-y-2 mb-4">
-                  <div className="flex items-center gap-2">
-                    <Check className="h-4 w-4 flex-shrink-0" />
-                    <span className="text-sm">Blue checkmark on profile</span>
-                  </div>
-                  <div className="flex items-center gap-2">
-                    <Check className="h-4 w-4 flex-shrink-0" />
-                    <span className="text-sm">Build trust with clients</span>
-                  </div>
-                  <div className="flex items-center gap-2">
-                    <Check className="h-4 w-4 flex-shrink-0" />
-                    <span className="text-sm">Stand out from competition</span>
-                  </div>
-                </div>
-
-                <Link
-                  href="/signup"
-                  className="block bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition-all font-semibold text-sm shadow-xl"
-                >
-                  Get Verified →
-                </Link>
+        {/* Additional Services Cards */}
+        <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-12 pb-20">
+          <div className="grid md:grid-cols-2 gap-6 max-w-5xl mx-auto">
+            {/* Verification Badge Card */}
+            <div className="relative h-full">
+              {/* Dark Veil Background */}
+              <div className="absolute inset-0 rounded-xl overflow-hidden">
+                <DarkVeil
+                  speed={0.8}
+                  hueShift={200}
+                  noiseIntensity={0.1}
+                  scanlineIntensity={0.05}
+                  scanlineFrequency={0.5}
+                  warpAmount={0.02}
+                />
               </div>
-            </div>
-          </div>
 
-          {/* Personal Help Pack Card */}
-          <div className="relative group">
-            <div className="absolute -inset-1 bg-gradient-to-r from-purple-600 via-pink-500 to-blue-600 rounded-xl blur opacity-30 group-hover:opacity-50 transition duration-1000 group-hover:duration-200"></div>
-            <div className="relative bg-black/95 backdrop-blur-sm rounded-xl border border-purple-400/40 p-6 text-white shadow-2xl">
-              <div className="text-center">
-                {/* Premium Badge */}
-                <div className="absolute -top-3 left-1/2 -translate-x-1/2 bg-gradient-to-r from-purple-600 to-pink-500 text-white px-4 py-1 rounded-full text-xs font-bold border border-purple-400/50">
-                  👨‍💼 PERSONAL ASSISTANCE
-                </div>
-
-                {/* Icon and Title */}
-                <div className="flex items-center justify-center gap-3 mb-4 mt-2">
-                  <div className="w-10 h-10 bg-gradient-to-br from-purple-500 to-pink-500 rounded-full flex items-center justify-center">
-                    <svg className="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 20 20">
-                      <path d="M13 6a3 3 0 11-6 0 3 3 0 016 0zM18 8a2 2 0 11-4 0 2 2 0 014 0zM14 15a4 4 0 00-8 0v3h8v-3zM6 8a2 2 0 11-4 0 2 2 0 014 0zM16 18v-3a5.972 5.972 0 00-.75-2.906A3.005 3.005 0 0119 15v3h-3zM4.75 12.094A5.973 5.973 0 004 15v3H1v-3a3 3 0 013.75-2.906z" />
+              {/* Card Content */}
+              <div className="relative bg-black/90 backdrop-blur-sm rounded-xl border border-blue-500/30 p-6 text-white shadow-xl h-full flex flex-col">
+                <div className="text-center flex-grow flex flex-col">
+                  <div className="flex items-center justify-center gap-2 mb-4">
+                    <svg className="w-6 h-6 text-blue-400" fill="currentColor" viewBox="0 0 20 20">
+                      <path fillRule="evenodd" d="M6.267 3.455a3.066 3.066 0 001.745-.723 3.066 3.066 0 013.976 0 3.066 3.066 0 001.745.723 3.066 3.066 0 012.812 2.812c.051.643.304 1.254.723 1.745a3.066 3.066 0 010 3.976 3.066 3.066 0 00-.723 1.745 3.066 3.066 0 01-2.812 2.812 3.066 3.066 0 00-1.745.723 3.066 3.066 0 01-3.976 0 3.066 3.066 0 00-1.745-.723 3.066 3.066 0 01-2.812-2.812 3.066 3.066 0 00-.723-1.745 3.066 3.066 0 010-3.976 3.066 3.066 0 00.723-1.745 3.066 3.066 0 012.812-2.812zm7.44 5.252a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
                     </svg>
+                    <span className="font-bold text-lg">Verified Agent Badge</span>
                   </div>
-                  <span className="font-bold text-xl bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">Personal Help Pack</span>
-                </div>
 
-                {/* Price */}
-                <div className="text-4xl font-bold mb-2 bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">
-                  $50<span className="text-xl opacity-90">/mo</span>
-                </div>
-                <p className="text-purple-200 text-sm mb-6 font-medium">Personal assistance with listings and setup</p>
+                  <div className="text-3xl font-bold mb-2">$25</div>
+                  <p className="text-blue-100 text-sm mb-6">One-time verification fee</p>
 
-                {/* Features */}
-                <div className="text-left space-y-3 mb-6">
-                  <div className="flex items-center gap-3">
-                    <div className="w-5 h-5 bg-gradient-to-br from-purple-500 to-pink-500 rounded-full flex items-center justify-center flex-shrink-0">
-                      <Check className="h-3 w-3 text-white" />
+                  <div className="text-left space-y-3 mb-6 flex-grow">
+                    <div className="flex items-center gap-2">
+                      <Check className="h-5 w-5 text-blue-400 flex-shrink-0" />
+                      <span className="text-sm">Blue checkmark on profile</span>
                     </div>
-                    <span className="text-sm text-gray-200">Personal 1-on-1 consultation</span>
+                    <div className="flex items-center gap-2">
+                      <Check className="h-5 w-5 text-blue-400 flex-shrink-0" />
+                      <span className="text-sm">Build trust with clients</span>
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <Check className="h-5 w-5 text-blue-400 flex-shrink-0" />
+                      <span className="text-sm">Stand out from competition</span>
+                    </div>
                   </div>
-                  <div className="flex items-center gap-3">
-                    <div className="w-5 h-5 bg-gradient-to-br from-purple-500 to-pink-500 rounded-full flex items-center justify-center flex-shrink-0">
-                      <Check className="h-3 w-3 text-white" />
-                    </div>
-                    <span className="text-sm text-gray-200">Help updating your listings</span>
+
+                  <Link
+                    href="/signup"
+                    className="block bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition-all font-semibold text-sm shadow-xl mt-auto"
+                  >
+                    Get Verified →
+                  </Link>
+                </div>
+              </div>
+            </div>
+
+            {/* Personal Help Pack Card */}
+            <div className="relative h-full">
+              {/* Glow Effect */}
+              <div className="absolute -inset-1 bg-gradient-to-r from-purple-600 via-pink-500 to-blue-600 rounded-xl blur opacity-30 group-hover:opacity-50 transition duration-1000 group-hover:duration-200"></div>
+
+              {/* Dark Veil Background */}
+              <div className="absolute inset-0 rounded-xl overflow-hidden">
+                <DarkVeil
+                  speed={0.8}
+                  hueShift={250}
+                  noiseIntensity={0.1}
+                  scanlineIntensity={0.05}
+                  scanlineFrequency={0.5}
+                  warpAmount={0.02}
+                />
+              </div>
+
+              {/* Card Content */}
+              <div className="relative bg-black/95 backdrop-blur-sm rounded-xl border border-purple-400/40 p-6 text-white shadow-2xl h-full flex flex-col">
+                <div className="text-center flex-grow flex flex-col">
+                  {/* Premium Badge */}
+                  <div className="absolute -top-3 left-1/2 -translate-x-1/2 bg-gradient-to-r from-purple-600 to-pink-500 text-white px-4 py-1 rounded-full text-xs font-bold border border-purple-400/50 z-10">
+                    👨‍💼 PERSONAL ASSISTANCE
                   </div>
-                  <div className="flex items-center gap-3">
-                    <div className="w-5 h-5 bg-gradient-to-br from-purple-500 to-pink-500 rounded-full flex items-center justify-center flex-shrink-0">
-                      <Check className="h-3 w-3 text-white" />
+
+                  {/* Icon and Title */}
+                  <div className="flex items-center justify-center gap-3 mb-4 mt-2">
+                    <div className="w-10 h-10 bg-gradient-to-br from-purple-500 to-pink-500 rounded-full flex items-center justify-center">
+                      <svg className="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 20 20">
+                        <path d="M13 6a3 3 0 11-6 0 3 3 0 016 0zM18 8a2 2 0 11-4 0 2 2 0 014 0zM14 15a4 4 0 00-8 0v3h8v-3zM6 8a2 2 0 11-4 0 2 2 0 014 0zM16 18v-3a5.972 5.972 0 00-.75-2.906A3.005 3.005 0 0119 15v3h-3zM4.75 12.094A5.973 5.973 0 004 15v3H1v-3a3 3 0 013.75-2.906z" />
+                      </svg>
                     </div>
-                    <span className="text-sm text-gray-200">Website setup assistance</span>
+                    <span className="font-bold text-xl bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">Personal Help Pack</span>
                   </div>
-                  <div className="flex items-center gap-3">
-                    <div className="w-5 h-5 bg-gradient-to-br from-purple-500 to-pink-500 rounded-full flex items-center justify-center flex-shrink-0">
-                      <Check className="h-3 w-3 text-white" />
+
+                  {/* Price */}
+                  <div className="text-3xl font-bold mb-2 bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">
+                    $50<span className="text-lg opacity-90">/mo</span>
+                  </div>
+                  <p className="text-purple-200 text-sm mb-6 font-medium">Personal assistance with listings and setup</p>
+
+                  {/* Features */}
+                  <div className="text-left space-y-3 mb-6 flex-grow">
+                    <div className="flex items-center gap-3">
+                      <div className="w-5 h-5 bg-gradient-to-br from-purple-500 to-pink-500 rounded-full flex items-center justify-center flex-shrink-0">
+                        <Check className="h-3 w-3 text-white" />
+                      </div>
+                      <span className="text-sm text-gray-200">Personal 1-on-1 consultation</span>
                     </div>
-                    <span className="text-sm text-gray-200">Priority email support</span>
+                    <div className="flex items-center gap-3">
+                      <div className="w-5 h-5 bg-gradient-to-br from-purple-500 to-pink-500 rounded-full flex items-center justify-center flex-shrink-0">
+                        <Check className="h-3 w-3 text-white" />
+                      </div>
+                      <span className="text-sm text-gray-200">Help updating your listings</span>
+                    </div>
+                    <div className="flex items-center gap-3">
+                      <div className="w-5 h-5 bg-gradient-to-br from-purple-500 to-pink-500 rounded-full flex items-center justify-center flex-shrink-0">
+                        <Check className="h-3 w-3 text-white" />
+                      </div>
+                      <span className="text-sm text-gray-200">Website setup assistance</span>
+                    </div>
+                    <div className="flex items-center gap-3">
+                      <div className="w-5 h-5 bg-gradient-to-br from-purple-500 to-pink-500 rounded-full flex items-center justify-center flex-shrink-0">
+                        <Check className="h-3 w-3 text-white" />
+                      </div>
+                      <span className="text-sm text-gray-200">Priority email support</span>
+                    </div>
+                  </div>
+
+                  {/* CTA Button */}
+                  <div className="mt-auto">
+                    <Link
+                      href="/signup"
+                      className="block bg-gradient-to-r from-purple-600 to-pink-600 text-white px-8 py-3 rounded-xl hover:from-purple-700 hover:to-pink-700 transition-all font-bold text-sm shadow-xl hover:shadow-2xl hover:scale-105 transform duration-200"
+                    >
+                      Get Personal Help →
+                    </Link>
+                    <p className="text-purple-300 text-xs mt-3 font-medium">
+                      Monthly subscription • Personal assistance
+                    </p>
                   </div>
                 </div>
-
-                {/* CTA Button */}
-                <Link
-                  href="/signup"
-                  className="block bg-gradient-to-r from-purple-600 to-pink-600 text-white px-8 py-4 rounded-xl hover:from-purple-700 hover:to-pink-700 transition-all font-bold text-sm shadow-xl hover:shadow-2xl hover:scale-105 transform duration-200"
-                >
-                  Get Personal Help →
-                </Link>
-                <p className="text-purple-300 text-xs mt-3 font-medium">
-                  Monthly subscription • Personal assistance
-                </p>
               </div>
             </div>
           </div>
-        </div>
+        </section>
 
         {/* Social Proof Section */}
         <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">

@@ -59,7 +59,7 @@ export default function EditListingModal({ isOpen, onClose, onSuccess, listing }
     contact_pref: 'both',
     images: []
   })
-  
+
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState('')
 
@@ -307,7 +307,7 @@ export default function EditListingModal({ isOpen, onClose, onSuccess, listing }
               <Eye className="w-5 h-5 text-[#F3C77E]" />
               Live Preview
             </h3>
-            
+
             <div className="bg-white/5 backdrop-blur-md rounded-xl shadow-lg border border-white/10 overflow-hidden">
               {formData.images && formData.images.length > 0 ? (
                 <div className="aspect-video bg-gradient-to-br from-[#912F40]/20 to-[#702632]/20 flex items-center justify-center">
@@ -318,18 +318,22 @@ export default function EditListingModal({ isOpen, onClose, onSuccess, listing }
                   <Camera className="w-12 h-12 text-gray-400" />
                 </div>
               )}
-              
+
               <div className="p-4">
-                <h4 className="text-white font-semibold text-lg mb-2">
-                  {formData.title || 'Property Title'}
+                <h4 className="text-white font-bold text-xl mb-2 break-words min-h-[1.75rem] leading-tight">
+                  {formData.title ? (
+                    <span className="text-white">{formData.title}</span>
+                  ) : (
+                    <span className="text-gray-500 italic">Property Title</span>
+                  )}
                 </h4>
                 <p className="text-[#F3C77E] text-xl font-bold mb-2">
-                  {formData.price ? `$${Number(formData.price).toLocaleString()}` : 'Price'}
+                  {formData.price ? `$${Number(formData.price).toLocaleString()}` : <span className="text-gray-500">Price</span>}
                 </p>
                 <p className="text-gray-400 text-sm mb-3">
-                  {formData.address && formData.city && formData.province 
+                  {formData.address && formData.city && formData.province
                     ? `${formData.address}, ${formData.city}, ${formData.province}`
-                    : 'Address, City, Province'
+                    : <span className="text-gray-500 italic">Address, City, Province</span>
                   }
                 </p>
                 {formData.description && (
@@ -338,13 +342,12 @@ export default function EditListingModal({ isOpen, onClose, onSuccess, listing }
                     {formData.description.length > 100 && '...'}
                   </p>
                 )}
-                
+
                 <div className="flex items-center justify-between mt-4">
-                  <span className={`px-2 py-1 rounded-full text-xs font-medium ${
-                    formData.status === 'active' ? 'bg-green-500/20 text-green-400' :
-                    formData.status === 'draft' ? 'bg-yellow-500/20 text-yellow-400' :
-                    'bg-gray-500/20 text-gray-400'
-                  }`}>
+                  <span className={`px-2 py-1 rounded-full text-xs font-medium ${formData.status === 'active' ? 'bg-green-500/20 text-green-400' :
+                      formData.status === 'draft' ? 'bg-yellow-500/20 text-yellow-400' :
+                        'bg-gray-500/20 text-gray-400'
+                    }`}>
                     {formData.status?.charAt(0).toUpperCase() + formData.status?.slice(1)}
                   </span>
                   <button className="bg-gradient-to-r from-[#912F40] to-[#702632] text-white px-4 py-2 rounded-lg text-sm font-medium">
